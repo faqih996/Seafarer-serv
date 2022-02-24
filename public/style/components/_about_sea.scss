@@ -1,0 +1,81 @@
+
+.about-sea{
+    background-color: #0077b6;
+      
+  .about-title {
+    font-weight: bold;
+    margin-bottom: 15px;
+    color : #fff;
+  }
+
+  .about-subtitle{
+    color : #fff;
+    font-weight: normal;
+  }
+
+  .btn-outline-primary{
+    padding: 0.75rem 3rem;
+    color: #fff;
+    border-color: #fff;
+    border-width: 1px;
+  }
+
+  .btn-outline-primary:hover{
+    padding: 0.75rem 3rem;
+    color: #0077b6;
+    border-color: #fff;
+    border-width: 1px;
+    background-color: #fff;
+  }
+
+  .img-fluid{
+      max-width: 100%;
+      height: auto;
+  }
+
+}
+
+  /* Story */
+
+
+
+  /*  */
+
+
+.whysea-heading{
+  font-size: 30px;
+  font-weight: bolder;
+  margin-top: 30px;
+  margin-bottom: 30px;
+
+}
+
+.component-seaeducation {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 30px 10px 30px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    text-decoration: none;
+  }
+
+  .whysea-image{
+    align-items: center;
+  }
+
+  .whysea-title {
+    color: #0c0d36;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+
+  .whysea-text{
+    color: #0c0d36;
+    font-size: 14px;
+    margin-top: 12px;
+  }
+}

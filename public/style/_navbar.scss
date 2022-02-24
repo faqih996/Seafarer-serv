@@ -1,0 +1,98 @@
+.navbar-sea {
+  padding-top: 15px;
+
+  @include media-breakpoint-down(md) {
+    background-color: #fff !important;
+  }
+
+  .navbarbrand{
+    margin-right: 30px;
+    text-align: center;
+    font-weight: bolder;
+    font-size: 30;
+    
+    .navbar-logo{
+      height: 70px;
+    }
+  }
+  
+  .nav-item {
+    .nav-link {
+      @include media-breakpoint-up(lg) {
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+    }
+  }
+
+  .dropdown-menu{
+    background: #fff;
+    border-radius: 11px;
+    padding: 20px;
+    border: 0;
+    margin-top: 33px;
+    min-width: 300px;
+  
+    .item-menu{
+      margin-bottom: 10px;
+    }
+
+    .dropdown-item{
+      display: block;
+      width: 100%;
+      padding: 10px;
+      color: #212529;
+      border: 0;
+    }
+
+    .icon{
+      width: 56px;
+      height: 56px;
+      float: left;
+      margin-right: 14px;
+    }
+
+    .title{
+      padding-top: 6px;
+      margin-bottom: 0px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #34364a;
+      transition: all .4s;
+    }
+
+    .subtitle{
+      margin-top: 0;
+      font-size: 14px;
+      font-weight: 300;
+      color: #c2c2c8;
+      transition: all .4s;
+    }
+    
+    @include media-breakpoint-up(sm) {
+      padding: 20px;
+    }
+  }
+
+  .profile-picture {
+    max-height: 45px;
+  }
+
+  .card-badge {
+    display: inline-block;
+    min-width: 2em;
+    padding: 0.3em;
+    border-radius: 50%;
+    font-size: 10px;
+    text-align: center;
+    background: #29a867;
+    color: #fefefe;
+    margin-left: -10px;
+  }
+}
+
+.navbar-fixed-top.scrolled {
+  background-color: #fff !important;
+  transition: background-color 200ms linear;
+}
+

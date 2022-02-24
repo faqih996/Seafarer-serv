@@ -1,0 +1,36 @@
+.reason-heading{
+  font-size: 26px;
+  font-weight: bold;
+  margin-top: 30px;
+}
+
+.component-reason {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px 30px 10px 30px;
+  margin-bottom: 20px;
+  transition: all 0.2s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+    text-decoration: none;
+  }
+
+  .reason-image{
+    align-items: center;
+  }
+
+  .reason-title {
+    color: #0c0d36;
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 15px;
+  }
+
+  .reason-text{
+    color: #0c0d36;
+    font-size: 14px;
+    margin-top: 12px;
+  }
+
+}

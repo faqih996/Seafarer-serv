@@ -1,0 +1,78 @@
+.page-home {
+  background-color: #cfecf5;
+
+  .sea-header{
+    background-color: #0077b6;
+    
+    .header-title {
+      font-weight: bold;
+      margin-bottom: 15px;
+      color : #fff;
+    }
+
+    .header-subtitle{
+      color : #fff;
+      font-weight: normal;
+    }
+  }
+
+  .working-reasons {
+    margin-top: 40px;
+  }
+
+  .about-sea {
+    margin-top: 40px;
+  }
+
+  .why-seaeducation{
+    margin-top: 40px;
+  }
+
+  .sea-carousel {
+    margin-top: 10px;
+  }
+
+  .sea-programs{
+    background-color: #0077b6;
+  }
+
+  /* Reached */
+  .reached
+  {
+     margin-top: 40px;
+
+    .vertical-line{
+        width: 1px;
+        background-color: #0077b6;
+        height: 94px;
+    }
+
+    .horizontal-line{
+        width: 240px;
+        background-color: #0077b6;
+        height: 1px;
+    }
+
+        /* Margin */
+      .me-lg-35{
+          margin-right: 2.2rem;
+      }
+
+      .reached-title{
+        font-size: 2rem;
+        font-weight: bolder;
+        line-height: 2.5rem;
+        color: #0077b6;
+      }
+
+      .reached-text{
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+      }
+    }
+    
+  .student-testimonies{
+    margin-bottom: 30px;
+  }
+}
+    
