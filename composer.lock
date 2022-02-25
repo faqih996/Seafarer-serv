@@ -92,12 +92,12 @@
                 }
             },
             "autoload": {
-                "psr-4": {
-                    "AzisHapidin\\IndoRegion\\": "src/"
-                },
                 "files": [
                     "src/RawDataGetter.php"
-                ]
+                ],
+                "psr-4": {
+                    "AzisHapidin\\IndoRegion\\": "src/"
+                }
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [

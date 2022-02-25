@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EducationController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DivisionController;
@@ -25,6 +27,8 @@ use App\Http\Controllers\Admin\UserController;
 Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
 Route::get('/detail', [DetailController::class,'index'])->name('detail');
+Route::resource('profile', ProfileController::class);
+Route::resource('education', EducationController::class);
 
 // Route::get('/admin', [DashboardAdminController::class,'index'])->name('admin-dashboard');
 // Route::resource('department', DepartmentController::class);

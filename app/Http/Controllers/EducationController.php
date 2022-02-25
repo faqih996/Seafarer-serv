@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\profiles;
+use App\Models\education;
 use Illuminate\Http\Request;
 
-class ProfilesController extends Controller
+class EducationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -24,7 +24,8 @@ class ProfilesController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.profile.create', [
+        ]);
     }
 
     /**
@@ -35,16 +36,16 @@ class ProfilesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\profiles  $profiles
+     * @param  \App\Models\education  $education
      * @return \Illuminate\Http\Response
      */
-    public function show(profiles $profiles)
+    public function show(education $education)
     {
         //
     }
@@ -52,10 +53,10 @@ class ProfilesController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\profiles  $profiles
+     * @param  \App\Models\education  $education
      * @return \Illuminate\Http\Response
      */
-    public function edit(profiles $profiles)
+    public function edit(education $education)
     {
         //
     }
@@ -64,10 +65,10 @@ class ProfilesController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\profiles  $profiles
+     * @param  \App\Models\education  $education
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, profiles $profiles)
+    public function update(Request $request, education $education)
     {
         //
     }
@@ -75,10 +76,10 @@ class ProfilesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\profiles  $profiles
+     * @param  \App\Models\education  $education
      * @return \Illuminate\Http\Response
      */
-    public function destroy(profiles $profiles)
+    public function destroy(education $education)
     {
         //
     }
