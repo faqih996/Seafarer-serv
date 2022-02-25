@@ -29,8 +29,8 @@ class PositionRequest extends FormRequest
             // untuk memanggil department / dari tabel lain, dari awal harus dibuat jamak karna 
             // akan memangggil dari db -> di db selalu jamak
             'status' => 'required|string',
-            'about' => 'required|string',
-            'responsibilities' => 'required|string', 
+            'about' => 'nullable|string',
+            'responsibilities' => 'nullable|string', 
         ];
     }
     

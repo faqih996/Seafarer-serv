@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\PositionController;
+use App\Http\Controllers\Admin\PositionGalleryController;
 use App\Http\Controllers\Admin\UserController;
 
 
@@ -36,6 +37,7 @@ Route::prefix('admin')
         Route::resource('user', UserController::class);
         Route::resource('department', DepartmentController::class);
         Route::resource('position', PositionController::class);
+        Route::resource('positions-galleries', PositionGalleryController::class);
 
     });
 

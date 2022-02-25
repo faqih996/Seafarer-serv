@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-  Departments Setting
+  Position Gallery Settings
 @endsection
 
 @section('content')
@@ -12,9 +12,9 @@
 >
   <div class="container-fluid">
     <div class="dashboard-heading">
-        <h2 class="dashboard-title">Departments</h2>
+        <h2 class="dashboard-title">Position Gallery</h2>
         <p class="dashboard-subtitle">
-            {{-- Edit "{{ $item->name }}" Category --}}
+            Create New Position Gallery
         </p>
     </div>
     <div class="dashboard-content">
@@ -29,8 +29,7 @@
                   </ul>
               </div>
           @endif
-          <form action="{{ route('department.update', $item->id) }}" method="post" enctype="multipart/form-data">
-            @method('PUT')
+          <form action="{{ route('positions-galleries.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="card">
               <div class="card-body">
@@ -38,17 +37,21 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Department Name</label>
-                      <input type="text" class="form-control" name="name" required value="{{ $item->name }}"/>
+                        <select name="positions_id" class="form-control">
+                          @foreach($positions as $position)
+                          @if(old('positions_id') == $position->id)
+                              <option value="{{ $position->id }}" selected>{{ $position->name }}</option>
+                            @else
+                              <option value="{{ $position->id }}" >{{ $position->name }}</option>
+                            @endif
+                          @endforeach
+                        </select>
                     </div>
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Status</label>
-                      <select name="status" required class="form-control">
-                          <option value="{{ $item->status }}" selected>Tidak diganti</option>
-                          <option value="active">Active</option>
-                          <option value="nonactive">Non Active</option>
-                      </select>
+                      <input type="file" class="form-control" name="photos" placeholder="Photo" required />
                     </div>
                   </div>
                 </div>

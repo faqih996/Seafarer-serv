@@ -17,8 +17,8 @@
         <!-- Sidebar -->  
         <div class="border-right" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
+            <img src="/images/admin.png" alt="" class="my-4" style="max-width: 100px"/>
           </div>
-          <img src="/images/admin.png" alt="" class="my-4" style="max-width: 150px"/>
           <div class="list-group list-group-flush">
             <a
               href="{{ url('admin') }}"
@@ -40,9 +40,15 @@
             </a>
             <a
               href="{{ url('admin/position') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('admin/position*')) ? 'active' : '' }} "
+              class="list-group-item list-group-item-action {{ (request()->is('admin/position')) ? 'active' : '' }} "
             >
               Positions
+            </a>
+            <a
+              href="{{ route('positions-galleries.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/positions-galleries*')) ? 'active' : '' }} "
+            >
+              Galleries
             </a>
             <a
               {{-- href="{{ route('dashboard-settings-store') }}" --}}

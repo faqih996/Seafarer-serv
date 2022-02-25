@@ -14,7 +14,7 @@
         <div class="dashboard-heading">
             <h2 class="dashboard-title">Positions</h2>
             <p class="dashboard-subtitle">
-                List of Positions
+                List of Position Gallery
             </p>
         </div>
         <div class="dashboard-content">
@@ -22,8 +22,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{  route('division.create') }}" class="btn btn-primary mb-3"> 
-                                + Add Position
+                            <a href="{{  route('positions-galleries.create') }}" class="btn btn-primary mb-3"> 
+                                + Add New Gallery
                             </a>
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
@@ -31,8 +31,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Position Name</th>
-                                        <th>Slug</th>
-                                        <th>Status</th>
+                                        <th>Photo</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -61,10 +60,8 @@
             },
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'name', name: 'name' },
-                { data: 'slug', name: 'slug' },
-                // { data: 'photo', name: 'photo' },
-                { data: 'status', name: 'status' },
+                { data: 'positions.name', name: 'positions.name' },
+                { data: 'photos', name: 'photos' },
                 {
                     data: 'action',
                     name: 'action',

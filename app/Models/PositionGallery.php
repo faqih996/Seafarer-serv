@@ -26,4 +26,5 @@ class PositionGallery extends Model
         return $this->belongsTo(Position::class, 'positions_id', 'id');
         // panggil modelnya, kemudian sambungkan dengan 'Foreignkey' di tabel yang berelasi, 'primaryKey' dari tabel asli
     }
+    
 }

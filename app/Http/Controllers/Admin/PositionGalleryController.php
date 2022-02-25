@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\Position;
+use App\Models\PositionGallery;
 use App\Models\Department;
+use App\Http\Requests\Admin\PositionGalleryRequest;
+
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
-// use Illuminate\Support\Facades\Storage; <-kalo pake gambar
-use App\Http\Requests\Admin\DepartmentRequest;
-use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
-class DepartmentController extends Controller
+class PositionGalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,8 +21,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        if (request()->ajax()) {
-            $query = Department::query();
+         if (request()->ajax()) {
+            $query = PositionGallery::with(['positions']);
+            // departmens untuk memanggil data di index. ini mengacu ke DB bukan model
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
@@ -32,13 +35,10 @@ class DepartmentController extends Controller
                                         data-toggle="dropdown" 
                                         aria-haspopup="true"
                                         aria-expanded="false">
-                                       Action
+                                        Action
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                                    <a class="dropdown-item" href="' . route('department.edit', $item->id) . '">
-                                        Edit
-                                    </a>
-                                    <form action="' . route('department.destroy', $item->id) . '" method="POST">
+                                    <form action="' . route('positions-galleries.destroy', $item->id) . '" method="POST">
                                         ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class="dropdown-item text-danger">
                                             Delete
@@ -48,12 +48,15 @@ class DepartmentController extends Controller
                             </div>
                     </div>';
                 })
-                ->rawColumns(['action'])
-                // raw column ini berfungsi untuk memanggil Fungsi yang ada di addColumn 
+                ->editColumn('photos', function ($item) {
+                    return $item->photos ? '<img src="' . Storage::url($item->photos) . '" style="max-height: 80px;"/>' : '';
+                })
+                ->rawColumns(['action','photos'])
+                // raw column ini berfungsi untuk memanggil Fungsi yang ada di addColumn dan editColumn 
                 ->make();
         }
         
-        return view('pages.admin.department.index');
+        return view('pages.admin.position-gallery.index');
     }
 
     /**
@@ -63,7 +66,12 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        return view('pages.admin.department.create');
+
+        $positions = Position::all();
+        return view('pages.admin.position-gallery.create', [
+            'positions' => $positions
+        ]);
+        
     }
 
     /**
@@ -72,15 +80,15 @@ class DepartmentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DepartmentRequest $request)
+    public function store(PositionGalleryRequest $request)
     {
         $data = $request->all();
 
-        $data['slug'] = Str::slug($request->name);
+        $data['photos'] = $request->file('photos')->store('assets/position', 'public');
+        
+        PositionGallery::create($data);
 
-        Department::create($data);
-
-        return redirect()->route('department.index');
+        return redirect()->route('positions-galleries.index');
     }
 
     /**
@@ -102,11 +110,7 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        $item = Department::findOrFail($id);
-
-         return view('pages.admin.department.edit', [
-             'item' => $item
-         ]);
+        //
     }
 
     /**
@@ -116,17 +120,9 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(DepartmentRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $data = $request->all();
-
-        $data['slug'] = Str::slug($request->name);
-
-        $item = Department::findOrFail($id);
-
-        $item->update($data);
-
-        return redirect()->route('department.index');
+        //
     }
 
     /**
@@ -137,11 +133,9 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = PositionGallery::findorFail($id);
+        $item->delete();
 
-         $item = Department::findOrFail($id);
-         $item->delete();
-         return redirect()->route('department.index');
-
+        return redirect()->route('positions-galleries.index');
     }
 }

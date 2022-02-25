@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Admin;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,8 +24,8 @@ class PositionGalleryRequest extends FormRequest
     public function rules()
     {
         return [
+            'positions_id' => 'required|exists:positions,id',
             'photos' => 'required|image',
-            'positions_id' => 'required|exist:positions,id'
         ];
     }
 }
