@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1e3766ebc09c92dc386e44784a0ffed1",
+    "content-hash": "ede6c30909a5fbaf8ba8391977790f46",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -332,6 +332,38 @@
                 "source": "https://github.com/dflydev/dflydev-dot-access-data/tree/v3.0.1"
             },
             "time": "2021-08-13T13:06:58+00:00"
+        },
+        {
+            "name": "dg/adminer-custom",
+            "version": "v1.28.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/dg/adminer-custom.git",
+                "reference": "65cb7d1fc0249375064aaeeafd265141428fe7e1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/dg/adminer-custom/zipball/65cb7d1fc0249375064aaeeafd265141428fe7e1",
+                "reference": "65cb7d1fc0249375064aaeeafd265141428fe7e1",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "description": "Customization for Adminer, the best database management tool written in PHP.",
+            "keywords": [
+                "database",
+                "elasticsearch",
+                "mongodb",
+                "mssql",
+                "mysql",
+                "oracle",
+                "postgresql",
+                "sqlite"
+            ],
+            "support": {
+                "source": "https://github.com/dg/adminer-custom/tree/v1.28.1"
+            },
+            "time": "2021-09-16T10:15:05+00:00"
         },
         {
             "name": "doctrine/cache",

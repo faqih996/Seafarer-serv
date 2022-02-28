@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\Profile;
+use App\Http\Requests\Admin\ProfileRequest;
 
 use Illuminate\Http\Request;
 
@@ -25,7 +26,7 @@ class ProfileController extends Controller
     public function create()
     {
         return view('pages.profile.create', [
-            
+
         ]);
     }
 
@@ -35,9 +36,15 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ProfileRequest $request)
     {
-        //
+        $data = $request->all();
+
+        $data['photos'] = $request->file('photos')->store('assets/position', 'public');
+
+        PositionGallery::create($data);
+
+        return redirect()->route('positions-galleries.index');
     }
 
     /**
