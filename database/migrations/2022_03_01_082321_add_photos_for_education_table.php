@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddTableGenderNMaritalStatusForProfilesTable extends Migration
+class AddPhotosForEducationTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddTableGenderNMaritalStatusForProfilesTable extends Migration
      */
     public function up()
     {
-        Schema::table('profiles', function (Blueprint $table) {
-            $table->string('gender');
-            $table->string('marital');
+        Schema::table('educations', function (Blueprint $table) {
+
         });
     }
 
@@ -26,7 +25,7 @@ class AddTableGenderNMaritalStatusForProfilesTable extends Migration
      */
     public function down()
     {
-        Schema::table('profiles', function (Blueprint $table) {
+        Schema::table('educations', function (Blueprint $table) {
 
         });
     }

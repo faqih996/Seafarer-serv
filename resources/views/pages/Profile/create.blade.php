@@ -22,6 +22,15 @@
       <div class="dashboard-content personal">
         <div class="row">
           <div class="col-11">
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
             <form action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
             @csrf
               <div class="card">

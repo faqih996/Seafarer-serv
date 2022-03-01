@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ExperienceRequest;
-use App\Models\Experience;
+use App\Http\Requests\EmergencyRequest;
+use App\Models\Emergency;
 use Illuminate\Http\Request;
 
-class ExperiencesController extends Controller
+class EmergencyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,13 +35,13 @@ class ExperiencesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ExperienceRequest $request)
+    public function store(EmergencyRequest $request)
     {
         $data = $request->all();
 
-        $data['photos'] = $request->file('photos')->store('assets/Experience', 'public');
+        $data['photos'] = $request->file('photos')->store('assets/Emergency', 'public');
         dd($data);
-        Experience::create($data);
+        Emergency::create($data);
 
         return redirect()->route('profile.create');
     }
@@ -52,7 +52,7 @@ class ExperiencesController extends Controller
      * @param  \App\Models\experience  $experience
      * @return \Illuminate\Http\Response
      */
-    public function show(experience $experience)
+    public function show($id)
     {
 
     }
@@ -63,7 +63,7 @@ class ExperiencesController extends Controller
      * @param  \App\Models\experience  $experience
      * @return \Illuminate\Http\Response
      */
-    public function edit(experience $experience)
+    public function edit($id)
     {
         //
     }
@@ -75,7 +75,7 @@ class ExperiencesController extends Controller
      * @param  \App\Models\experience  $experience
      * @return \Illuminate\Http\Response
      */
-    public function update(ExperienceRequest $request, $id)
+    public function update(EmergencyRequest $request, $id)
     {
         //
     }
@@ -88,9 +88,9 @@ class ExperiencesController extends Controller
      */
     public function destroy($id)
     {
-        $item = Experience::findorFail($id);
+        $item = Emergency::findorFail($id);
         $item->delete();
 
-        return redirect()->route('Experience.show');
+        return redirect()->route('Emergency.show');
     }
 }

@@ -23,8 +23,9 @@ class CreateEducationsTable extends Migration
             $table->longText('address');
             $table->integer('regencies_id');
             $table->integer('provinces_id');
-            $table->integer('country');
+            $table->string('country');
             $table->integer('zip_code');
+            $table->string('certificate');
 
             $table->softDeletes();
             $table->timestamps();

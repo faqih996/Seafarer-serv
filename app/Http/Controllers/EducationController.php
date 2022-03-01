@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\education;
+use App\Http\Requests\EducationRequest;
 use Illuminate\Http\Request;
 
 class EducationController extends Controller
@@ -34,9 +35,15 @@ class EducationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(EducationRequest $request)
     {
-        
+        $data = $request->all();
+
+        $data['photos'] = $request->file('photos')->store('assets/Education', 'public');
+        dd($data);
+        Education::create($data);
+
+        return redirect()->route('profile.create');
     }
 
     /**

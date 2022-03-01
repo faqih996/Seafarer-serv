@@ -24,22 +24,15 @@ class EducationRequest extends FormRequest
     public function rules()
     {
         return [
-            'photos' => 'nullable|image',
-            'users_id'=> 'required|exists:users,id',
-            'birth_place'=> 'required|string',
-            'birth_date'=> 'required|date',
-            'about_me'=> 'nullable|string',
-            'phone_number'=> 'required|int',
-            'address'=> 'required|string',
-            'regencies_id'=> 'required|string',
-            'provinces_id'=> 'required|string',
-            'zip_code'=> 'required|string',
-            'country'=> 'required|string',
-            'occupation'=> 'nullable|string',
-            'skype'=> 'nullable|string',
-            'start_date' => 'nullable|date',
-            'gender' => 'required|string',
-            'martial' => 'required|string'
+            'name' => 'required|string',
+             'course' => 'required|string',
+             'start' => 'required|date',
+             'graduate' => 'required|date',
+             'address' => 'required|string',
+             'regencies_id' => 'required|integer',
+             'provinces_id' => 'required|integer',
+             'zip_code' => 'required|string',
+             'certificate' => 'required|string'
         ];
     }
 

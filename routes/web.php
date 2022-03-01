@@ -40,6 +40,7 @@ Route::prefix('admin')
         Route::get('/', [DashboardAdminController::class,'index'])->name('admin-dashboard');
         Route::resource('user', UserController::class);
         Route::resource('department', DepartmentController::class);
+        Route::resource('profile', ProfileController::class);
         Route::resource('position', PositionController::class);
         Route::resource('positions-galleries', PositionGalleryController::class);
 

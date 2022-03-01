@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\Admin;
+namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -24,21 +24,23 @@ class ExperienceRequest extends FormRequest
     public function rules()
     {
         return [
-            'photos' => 'nullable|image', 
-            'users_id'=> 'required|exists:users,id', 
-            'birth_place'=> 'required|string', 
-            'birth_date'=> 'required|date', 
-            'about_me'=> 'nullable|string', 
-            'phone_number'=> 'required|int',
-            'address'=> 'required|string', 
-            'regencies_id'=> 'required|string', 
-            'provinces_id'=> 'required|string', 
-            'zip_code'=> 'required|string', 
-            'country'=> 'required|string', 
-            'occupation'=> 'nullable|string',
-            'skype'=> 'nullable|string', 
-            'start_date' => 'required|date'
+            'name' => 'required|image',
+            'users_id'=> 'required|exists:users,id',
+            'base'=> 'required|string',
+            'position'=> 'required|date',
+            'job_title'=> 'required|string',
+            'start_of_contract'=> 'required|date',
+            'end_of_contract'=> 'required|date',
+            'address'=> 'required|string',
+            'regencies_id'=> 'required|int',
+            'provinces_id'=> 'required|int',
+            'zip_code'=> 'required|string',
+            'country'=> 'required|int',
+            'spv_name'=> 'required|string',
+            'institution_phone'=> 'required|int',
+            'job_descriptions'=> 'required|string',
+            'photo' => 'required|string'
         ];
     }
-    
+
 }

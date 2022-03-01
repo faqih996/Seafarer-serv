@@ -44,7 +44,7 @@ class ProfileController extends Controller
         dd($data);
         Profiles::create($data);
 
-        return redirect()->route('positions-galleries.index');
+        return redirect()->route('profile.create');
     }
 
     /**
