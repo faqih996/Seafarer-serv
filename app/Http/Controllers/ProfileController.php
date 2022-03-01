@@ -1,8 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Models\Profile;
-use App\Http\Requests\Admin\ProfileRequest;
+use App\Models\Profiles;
+use App\Http\Requests\ProfileRequest;
 
 use Illuminate\Http\Request;
 
@@ -40,9 +40,9 @@ class ProfileController extends Controller
     {
         $data = $request->all();
 
-        $data['photos'] = $request->file('photos')->store('assets/position', 'public');
-
-        PositionGallery::create($data);
+        $data['photos'] = $request->file('photos')->store('assets/profile', 'public');
+        dd($data);
+        Profiles::create($data);
 
         return redirect()->route('positions-galleries.index');
     }

@@ -87,6 +87,26 @@
                         />
                       </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="gender">Gender</label>
+                          <select name="status" required class="form-control">
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                        </select>
+                        </div>
+                      </div>
+                      <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="birth_date">Marital Status</label>
+                          <select name="status" required class="form-control">
+                            <option value="Single">Single</option>
+                            <option value="Married">Married</option>
+                            <option value="widowed">Widowed</option>
+                            <option value="divorced">Divorced</option>
+                        </select>
+                        </div>
+                      </div>
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>About Me</label>
@@ -166,18 +186,36 @@
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
-                        <label for="province">Province</label>
-                        <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
+                        <label for="provinces_id">Province</label>
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="provinces_id"
+                          aria-describedby="emailHelp"
+                          name="provinces_id"
+                          value="your address"
+                          required
+                        />
+                        {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
                           <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                        </select>
+                        </select> --}}
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="regencies_id">City</label>
-                        <select name="regencies_id" id="regencies_id" class="form-control " v-model="regencies_id" v-if="regencies" required>
+                            <input
+                              type="text"
+                              class="form-control"
+                              id="regencies_id"
+                              aria-describedby="emailHelp"
+                              name="regencies_id"
+                              value="your address"
+                              required
+                            />
+                        {{-- <select name="regencies_id" id="regencies_id" class="form-control " v-model="regencies_id" v-if="regencies" required>
                           <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
-                        </select>
+                        </select> --}}
                       </div>
                     </div>
                     <div class="col-md-4">
@@ -205,10 +243,16 @@
                         />
                       </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Photo</label>
+                          <input type="file" class="form-control" name="photos" placeholder="Photo" required />
+                        </div>
+                    </div>
                   </div>
                   <div class="row">
                     <div class="col text-left">
-                      <p class="dashboard-subtitle">
+                      <p class="dashboard-subtitle text-danger">
                         Don't forget to click SAVE after each section!
                       </p>
                     </div>

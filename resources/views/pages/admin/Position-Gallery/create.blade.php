@@ -36,7 +36,7 @@
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Department Name</label>
+                      <label>Position Name</label>
                         <select name="positions_id" class="form-control">
                           @foreach($positions as $position)
                           @if(old('positions_id') == $position->id)
@@ -50,7 +50,7 @@
                   </div>
                   <div class="col-md-12">
                     <div class="form-group">
-                      <label>Status</label>
+                      <label>Photo</label>
                       <input type="file" class="form-control" name="photos" placeholder="Photo" required />
                     </div>
                   </div>
