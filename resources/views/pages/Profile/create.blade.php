@@ -255,7 +255,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                           <label>Photo</label>
-                          <input type="file" class="form-control" name="photos" placeholder="Photo" required />
+                          <input type="file" class="form-control" name="photo" placeholder="Photo" required />
                         </div>
                     </div>
                   </div>
@@ -368,17 +368,35 @@
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="province">Province</label>
-                        <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
+                        {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
                           <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                        </select>
+                        </select> --}}
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="provinces_id"
+                          aria-describedby="emailHelp"
+                          name="provinces_id"
+                          value=""
+                          required
+                        />
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="city">City</label>
-                        <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
+                        {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
                           <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
-                        </select>
+                        </select> --}}
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="regencies_id"
+                          aria-describedby="emailHelp"
+                          name="regencies_id"
+                          value=""
+                          required
+                        />
                       </div>
                     </div>
                     <div class="col-md-4">
@@ -387,8 +405,8 @@
                         <input
                           type="text"
                           class="form-control"
-                          id="postalCode"
-                          name="postalCode"
+                          id="zip_code"
+                          name="zip_code"
                           value="40512"
                           required
                         />
@@ -407,14 +425,16 @@
                         />
                       </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label>Education Certificate</label>
+                          <input type="file" class="form-control" name="certificate" placeholder="certificate" required />
+                        </div>
+                    </div>
                   </div>
 
                   <div class="row">
-                    <div class="col text-left">
-                      <p class="dashboard-subtitle">
-                        Don't forget to click SAVE after each section!
-                      </p>
-                    </div>
+
                     <div class="col-md-12">
                       <button
                         class="btn btn-secondary btn-block"
@@ -422,6 +442,11 @@
                         Add Education
                       </button>
                     </div>
+                    <div class="col text-left mt-4">
+                        <p class="dashboard-subtitle text-danger">
+                          Don't forget to click SAVE after each section!
+                        </p>
+                      </div>
                     <div class="col text-right">
                       <button
                         type="submit"
@@ -443,7 +468,7 @@
       <div class="dashboard-content experience">
         <div class="row">
           <div class="col-11">
-            <form action="">
+            <form action="{{ route('experience.store') }}">
               <div class="card">
                 <div class="card-body">
                   <h5>
@@ -467,14 +492,10 @@
                     <div class="col-md-3 ">
                       <div class="form-group">
                         <label for="base">Work Base</label>
-                        <input
-                          type="base"
-                          class="form-control"
-                          id="base"
-                          aria-describedby="emailHelp"
-                          name="base"
-                          value=""
-                        />
+                        <select name="base" required class="form-control">
+                            <option value="HotelBase">Land Base Hotel</option>
+                            <option value="CruiseBase">Cruise Ship</option>
+                        </select>
                       </div>
                     </div>
                     <div class="col-md-3 ">
@@ -505,26 +526,26 @@
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
-                        <label for="start">From</label>
+                        <label for="start_of_contract	">Date Attendance From</label>
                         <input
                           type="date"
                           class="form-control"
-                          id="start"
+                          id="start_of_contract	"
                           aria-describedby="emailHelp"
-                          name="start"
+                          name="start_of_contract	"
                           value=""
                         />
                       </div>
                     </div>
                     <div class="col-md-3">
                       <div class="form-group">
-                        <label for="graduate">To</label>
+                        <label for="end_of_contract">Date Attendance To</label>
                         <input
                           type="date"
                           class="form-control"
-                          id="graduate"
+                          id="end_of_contract"
                           aria-describedby="emailHelp"
-                          name="graduate"
+                          name="end_of_contract"
                           value="Rejoiner"
                         />
                       </div>
@@ -545,17 +566,33 @@
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="province">Province</label>
-                        <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="provinces_id"
+                          aria-describedby="emailHelp"
+                          name="provinces_id"
+                          value=""
+                        />
+                        {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
                           <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                        </select>
+                        </select> --}}
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="city">City</label>
-                        <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
+                        <input
+                          type="text"
+                          class="form-control"
+                          id="regencies_id"
+                          aria-describedby="emailHelp"
+                          name="regencies_id"
+                          value=""
+                        />
+                        {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
                           <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
-                        </select>
+                        </select> --}}
                       </div>
                     </div>
                     <div class="col-md-4">
@@ -564,8 +601,8 @@
                         <input
                           type="text"
                           class="form-control"
-                          id="postalCode"
-                          name="postalCode"
+                          id="zip_code"
+                          name="zip_code"
                           value="40512"
                           required
                         />
@@ -605,22 +642,34 @@
                           class="form-control"
                           id="institution_phone"
                           name="institution_phone"
-                          value="+62 08xxxxxxxxxx"
+                          value="08xxxxxxxxxx"
                         />
                       </div>
                     </div>
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                       <div class="form-group">
-                        <label for="country">Describe your duties</label>
+                        <label for="job_descriptions">Describe your duties</label>
                         <input
                           type="text"
                           class="form-control"
-                          id="country"
-                          name="country"
+                          id="job_descriptions"
+                          name="job_descriptions"
                           value=""
                         />
                       </div>
                     </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                          <label for="job_description">Work Certificate</label>
+                          <input
+                            type="file"
+                            class="form-control"
+                            id="photo"
+                            name="photo"
+                            value=""
+                          />
+                        </div>
+                      </div>
                   </div>
 
                   <div class="row">
@@ -630,6 +679,11 @@
                       >
                         Add Experience
                       </button>
+                    </div>
+                    <div class="col text-left mt-4">
+                      <p class="dashboard-subtitle text-danger">
+                        Don't forget to click SAVE after each section!
+                      </p>
                     </div>
                     <div class="col text-right">
                       <button

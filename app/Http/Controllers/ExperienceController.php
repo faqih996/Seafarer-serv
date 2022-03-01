@@ -3,10 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ExperienceRequest;
-use App\Models\Experience;
+use App\Models\Experiences;
 use Illuminate\Http\Request;
 
-class ExperiencesController extends Controller
+class ExperienceController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -39,9 +39,9 @@ class ExperiencesController extends Controller
     {
         $data = $request->all();
 
-        $data['photos'] = $request->file('photos')->store('assets/Experience', 'public');
-        dd($data);
-        Experience::create($data);
+        $data['photo'] = $request->file('photo')->store('assets/Experience', 'public');
+
+        Experiences::create($data);
 
         return redirect()->route('profile.create');
     }
@@ -52,7 +52,7 @@ class ExperiencesController extends Controller
      * @param  \App\Models\experience  $experience
      * @return \Illuminate\Http\Response
      */
-    public function show(experience $experience)
+    public function show(Experiences $experience)
     {
 
     }
@@ -63,7 +63,7 @@ class ExperiencesController extends Controller
      * @param  \App\Models\experience  $experience
      * @return \Illuminate\Http\Response
      */
-    public function edit(experience $experience)
+    public function edit(Experiences $experience)
     {
         //
     }
@@ -88,7 +88,7 @@ class ExperiencesController extends Controller
      */
     public function destroy($id)
     {
-        $item = Experience::findorFail($id);
+        $item = Experiences::findorFail($id);
         $item->delete();
 
         return redirect()->route('Experience.show');

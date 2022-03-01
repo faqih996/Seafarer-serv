@@ -25,7 +25,7 @@ class ExperienceRequest extends FormRequest
     {
         return [
             'name' => 'required|image',
-            'users_id'=> 'required|exists:users,id',
+            // 'users_id'=> 'required|exists:users,id',
             'base'=> 'required|string',
             'position'=> 'required|date',
             'job_title'=> 'required|string',
@@ -39,7 +39,7 @@ class ExperienceRequest extends FormRequest
             'spv_name'=> 'required|string',
             'institution_phone'=> 'required|int',
             'job_descriptions'=> 'required|string',
-            'photo' => 'required|string'
+            'photo' => 'required|image'
         ];
     }
 

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\education;
+use App\Models\Educations;
 use App\Http\Requests\EducationRequest;
 use Illuminate\Http\Request;
 
@@ -39,9 +39,9 @@ class EducationController extends Controller
     {
         $data = $request->all();
 
-        $data['photos'] = $request->file('photos')->store('assets/Education', 'public');
-        dd($data);
-        Education::create($data);
+        $data['certificate'] = $request->file('certificate')->store('assets/Education', 'public');
+
+        Educations::create($data);
 
         return redirect()->route('profile.create');
     }
@@ -52,7 +52,7 @@ class EducationController extends Controller
      * @param  \App\Models\education  $education
      * @return \Illuminate\Http\Response
      */
-    public function show(education $education)
+    public function show(Educations $education)
     {
         //
     }
@@ -63,7 +63,7 @@ class EducationController extends Controller
      * @param  \App\Models\education  $education
      * @return \Illuminate\Http\Response
      */
-    public function edit(education $education)
+    public function edit($id)
     {
         //
     }
@@ -75,7 +75,7 @@ class EducationController extends Controller
      * @param  \App\Models\education  $education
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, education $education)
+    public function update(Request $request, educations $education)
     {
         //
     }
@@ -86,7 +86,7 @@ class EducationController extends Controller
      * @param  \App\Models\education  $education
      * @return \Illuminate\Http\Response
      */
-    public function destroy(education $education)
+    public function destroy(Educations $education)
     {
         //
     }
