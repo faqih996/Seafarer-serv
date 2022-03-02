@@ -5,6 +5,7 @@ use App\Models\Profiles;
 use App\Http\Requests\ProfileRequest;
 
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class ProfileController extends Controller
 {
@@ -39,9 +40,9 @@ class ProfileController extends Controller
     public function store(ProfileRequest $request)
     {
         $data = $request->all();
-
+        // dd($data);
         $data['photos'] = $request->file('photos')->store('assets/profile', 'public');
-        dd($data);
+
         Profiles::create($data);
 
         return redirect()->route('profile.create');
@@ -76,9 +77,16 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProfileRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+
+        $item = Profiles::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('profile.index');
     }
 
     /**
@@ -89,6 +97,9 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Profiles::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('profile.index');
     }
 }

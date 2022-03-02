@@ -28,9 +28,9 @@ class PositionController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
+                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
                                     type="button" id="action' .  $item->id . '"
-                                        data-toggle="dropdown" 
+                                        data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false">
                                         Action
@@ -50,10 +50,10 @@ class PositionController extends Controller
                     </div>';
                 })
                 ->rawColumns(['action'])
-                // raw column ini berfungsi untuk memanggil Fungsi yang ada di addColumn 
+                // raw column ini berfungsi untuk memanggil Fungsi yang ada di addColumn
                 ->make();
         }
-        
+
         return view('pages.admin.position.index');
     }
 
@@ -81,7 +81,7 @@ class PositionController extends Controller
     {
         $data = $request->all();
         // ->buat lihat array dari $data/variable lainnya
-        
+
         $data['slug'] = Str::slug($request->name);
 
         Position::create($data);
@@ -145,7 +145,7 @@ class PositionController extends Controller
      */
     public function destroy($id)
     {
-        $item = Position::findorFail($id);
+        $item = Position::findOrFail($id);
         $item->delete();
 
         return redirect()->route('position.index');

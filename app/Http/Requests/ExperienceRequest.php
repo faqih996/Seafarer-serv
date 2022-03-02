@@ -24,22 +24,22 @@ class ExperienceRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|image',
+            'name' => 'required|string',
             // 'users_id'=> 'required|exists:users,id',
             'base'=> 'required|string',
-            'position'=> 'required|date',
+            'position'=> 'required|string',
             'job_title'=> 'required|string',
             'start_of_contract'=> 'required|date',
             'end_of_contract'=> 'required|date',
             'address'=> 'required|string',
-            'regencies_id'=> 'required|int',
-            'provinces_id'=> 'required|int',
+            'regencies_id'=> 'required|integer',
+            'provinces_id'=> 'required|integer',
             'zip_code'=> 'required|string',
-            'country'=> 'required|int',
+            'country'=> 'required|string',
             'spv_name'=> 'required|string',
-            'institution_phone'=> 'required|int',
+            'institution_phone'=> 'required|string',
             'job_descriptions'=> 'required|string',
-            'photo' => 'required|image'
+            'certificate' => 'required|image'
         ];
     }
 

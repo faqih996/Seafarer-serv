@@ -24,12 +24,12 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
-            'photos' => 'nullable|image',
-            'users_id'=> 'required|exists:users,id',
+
+            // 'users_id'=> 'required|exists:users,id',
             'birth_place'=> 'required|string',
             'birth_date'=> 'required|date',
             'about_me'=> 'nullable|string',
-            'phone_number'=> 'required|int',
+            'phone_number'=> 'required|string|max:15',
             'address'=> 'required|string',
             'regencies_id'=> 'required|string',
             'provinces_id'=> 'required|string',
@@ -37,9 +37,10 @@ class ProfileRequest extends FormRequest
             'country'=> 'required|string',
             'occupation'=> 'nullable|string',
             'skype'=> 'nullable|string',
-            'start_date' => 'nullable|date',
+            // 'start_date' => 'nullable|date',
             'gender' => 'required|string',
-            'martial' => 'required|string'
+            'marital' => 'required|string',
+            'photos' => 'nullable|image',
         ];
     }
 

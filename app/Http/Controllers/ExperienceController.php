@@ -39,7 +39,7 @@ class ExperienceController extends Controller
     {
         $data = $request->all();
 
-        $data['photo'] = $request->file('photo')->store('assets/Experience', 'public');
+        $data['certificate'] = $request->file('certificate')->store('assets/Experience', 'public');
 
         Experiences::create($data);
 
@@ -88,7 +88,7 @@ class ExperienceController extends Controller
      */
     public function destroy($id)
     {
-        $item = Experiences::findorFail($id);
+        $item = Experiences::findOrFail($id);
         $item->delete();
 
         return redirect()->route('Experience.show');

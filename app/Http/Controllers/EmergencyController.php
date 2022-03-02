@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EmergencyRequest;
-use App\Models\Emergency;
+use App\Models\Emergencies;
 use Illuminate\Http\Request;
 
 class EmergencyController extends Controller
@@ -39,9 +39,7 @@ class EmergencyController extends Controller
     {
         $data = $request->all();
 
-        $data['photos'] = $request->file('photos')->store('assets/Emergency', 'public');
-        dd($data);
-        Emergency::create($data);
+        Emergencies::create($data);
 
         return redirect()->route('profile.create');
     }
@@ -88,7 +86,7 @@ class EmergencyController extends Controller
      */
     public function destroy($id)
     {
-        $item = Emergency::findorFail($id);
+        $item = Emergencies::findorFail($id);
         $item->delete();
 
         return redirect()->route('Emergency.show');

@@ -7,6 +7,7 @@ use App\Http\Controllers\DetailController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
+use App\Http\Controllers\EmergencyController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DivisionController;
@@ -31,6 +32,7 @@ Route::get('/detail', [DetailController::class,'index'])->name('detail');
 Route::resource('profile', ProfileController::class);
 Route::resource('education', EducationController::class);
 Route::resource('experience', ExperienceController::class);
+Route::resource('emergency', EmergencyController::class);
 
 // Route::get('/admin', [DashboardAdminController::class,'index'])->name('admin-dashboard');
 // Route::resource('department', DepartmentController::class);

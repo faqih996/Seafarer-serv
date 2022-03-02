@@ -26,9 +26,9 @@ class EmergencyRequest extends FormRequest
         return [
             'family_name' => 'required|string',
             'relations' => 'required|string',
-            'contact1' => 'required|integer',
-            'contact2' =>'required|integer',
-            'email' => 'required|string',
+            'contact1' => 'required|string',
+            'contact2' =>'nullable|string',
+            'email' => 'nullable|email',
             'address' => 'required|string',
             'regencies_id' => 'required|integer',
             'provinces_id' => 'required|integer',

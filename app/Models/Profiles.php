@@ -13,7 +13,7 @@ class Profiles extends Model
     protected $fillable = [
         'photos', 'users_id', 'birth_place', 'birth_date', 'about_me', 'phone_number',
         'address', 'regencies_id', 'provinces_id', 'zip_code', 'country', 'occupation',
-        'skype', 'start_date', 'gender', 'martial'
+        'skype', 'start_date', 'gender', 'marital'
     ];
 
     protected $hidden = [

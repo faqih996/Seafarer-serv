@@ -12,7 +12,7 @@ class Experiences extends Model
 
     protected $fillable = [
         'name', 'base', 'users_id', 'position', 'job_title', 'start_of_contract', 'end_of_contract', 'address', 'regencies_id', 'provinces_id',
-        'zip_code', 'country',  'spv_name', 'institution_phone', 'job_descriptions', 'photo'
+        'zip_code', 'country',  'spv_name', 'institution_phone', 'job_descriptions', 'certificate'
     ];
 
     protected $hidden = [
