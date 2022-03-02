@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-        
+
       @include('includes.meta')
       <title>@yield('title')</title>
 
@@ -34,7 +34,7 @@
             </a>
             <a
               {{-- href="{{ route('dashboard-transaction') }}" --}}
-              class="list-group-item list-group-item-action {{ (request()->is('dashboard/transactions*')) ? 'active' : '' }} "
+              class="list-group-item list-group-item-action {{ (request()->is('dashboard/documents*')) ? 'active' : '' }} "
             >
               My Documents
             </a>
@@ -133,8 +133,8 @@
                             Hi, Faqih
                         </a>
                     </li>
-                    
-                </ul>    
+
+                </ul>
               </div>
             </div>
           </nav>

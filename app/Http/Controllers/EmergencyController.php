@@ -75,7 +75,11 @@ class EmergencyController extends Controller
      */
     public function update(EmergencyRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        Emergencies::create($data);
+
+        return redirect()->route('profile.index');
     }
 
     /**

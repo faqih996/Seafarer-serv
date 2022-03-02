@@ -8,6 +8,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EducationController;
 use App\Http\Controllers\ExperienceController;
 use App\Http\Controllers\EmergencyController;
+use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\DivisionController;
@@ -30,6 +31,7 @@ Route::get('/', [HomeController::class,'index'])->name('home');
 Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
 Route::get('/detail', [DetailController::class,'index'])->name('detail');
 Route::resource('profile', ProfileController::class);
+Route::resource('documents', DocumentsController::class);
 Route::resource('education', EducationController::class);
 Route::resource('experience', ExperienceController::class);
 Route::resource('emergency', EmergencyController::class);
@@ -47,6 +49,7 @@ Route::prefix('admin')
         Route::resource('position', PositionController::class);
         Route::resource('positions-galleries', PositionGalleryController::class);
         Route::resource('profile', ProfileController::class);
+        Route::resource('documentsAdmin', DocumentsController::class);
 
     });
 

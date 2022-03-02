@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
         @include('includes.meta')
         <title>@yield('title')</title>
 
@@ -14,7 +14,7 @@
   <body>
     <div class="page-dashboard">
       <div class="d-flex" id="wrapper" data-aos="fade-right">
-        <!-- Sidebar -->  
+        <!-- Sidebar -->
         <div class="border-right" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
             <img src="/images/admin.png" alt="" class="my-4" style="max-width: 100px"/>
@@ -49,6 +49,12 @@
               class="list-group-item list-group-item-action {{ (request()->is('admin/positions-galleries*')) ? 'active' : '' }} "
             >
               Galleries
+            </a>
+            <a
+              href="{{ route('documents.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/documents*')) ? 'active' : '' }} "
+            >
+              Crew Documents
             </a>
             <a
               {{-- href="{{ route('dashboard-settings-store') }}" --}}
@@ -142,11 +148,11 @@
                 <ul class="navbar-nav d-block d-lg-none">
                     <li class="nav-item">
                         <a href="" class="nav-link">
-                            Hi, 
+                            Hi,
                         </a>
                     </li>
-                    
-                </ul>    
+
+                </ul>
               </div>
             </div>
           </nav>
