@@ -12,9 +12,9 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Positions</h2>
+            <h2 class="dashboard-title">Documents</h2>
             <p class="dashboard-subtitle">
-                List of Position Gallery
+                List of  Crew Documents
             </p>
         </div>
         <div class="dashboard-content">
@@ -33,8 +33,9 @@
                                         <th>Document Name</th>
                                         <th>Document Number</th>
                                         <th>Place Issued</th>
-                                        <th>Date Issued</th>
+                                        <th>Place Issued</th>
                                         <th>Date Expired</th>
+                                        <th>Photos</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>

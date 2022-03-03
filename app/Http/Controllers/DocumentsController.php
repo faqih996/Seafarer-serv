@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Documents;
 use App\Models\User;
 use App\Http\Requests\DocumentsRequest;
 
 use App\Http\Controllers\Controller;
+use App\Models\Documents;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class DocumentsController extends Controller
 {
@@ -22,7 +23,6 @@ class DocumentsController extends Controller
     {
          if (request()->ajax()) {
             $query = Documents::query();
-            // departmens untuk memanggil data di index. ini mengacu ke DB bukan model
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
@@ -37,7 +37,7 @@ class DocumentsController extends Controller
                                         Action
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                                    <a class="dropdown-item" href="' . route('departments.edit', $item->id) . '">
+                                    <a class="dropdown-item" href="' . route('documents.edit', $item->id) . '">
                                         Edit
                                     </a>
                                     <form action="' . route('documents.destroy', $item->id) . '" method="POST">
@@ -82,6 +82,7 @@ class DocumentsController extends Controller
     {
         $data = $request->all();
 
+        $data['slug'] = Str::slug($request->name);
         $data['photos'] = $request->file('photos')->store('assets/Documents', 'public');
 
         Documents::create($data);
@@ -108,7 +109,11 @@ class DocumentsController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Documents::findOrFail($id);
+
+         return view('pages.document.edit', [
+             'item' => $item
+         ]);
     }
 
     /**
@@ -120,7 +125,16 @@ class DocumentsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $data['slug'] = Str::slug($request->name);
+        $data['photo'] = $request->file('photo')->store('assets/passport', 'public');
+
+        $item = Documents::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('Passport.index');
     }
 
     /**
@@ -134,6 +148,6 @@ class DocumentsController extends Controller
         $item = Documents::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('documents.index');
+        return redirect()->route('passport.index');
     }
 }

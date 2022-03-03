@@ -13,7 +13,7 @@ class Documents extends Model
     // protected $table = 'departments';
 
     protected $fillable = [
-        'name', 'users_id', 'docs_number', 'place_issued', 'issued_date', 'expired_date', 'docs_status', 'photos'
+        'name', 'slug', 'users_id', 'docs_number', 'place_issued', 'issued_date', 'expired_date', 'docs_status', 'photos'
     ];
 
 
@@ -21,7 +21,7 @@ class Documents extends Model
 
     ];
 
-    public function Positions()
+    public function Users()
     {
         return $this->belongsTo(User::class, 'users_id', 'id');
         // panggil modelnya, kemudian sambungkan dengan 'Foreignkey' di tabel yang berelasi, 'primaryKey' dari tabel asli
