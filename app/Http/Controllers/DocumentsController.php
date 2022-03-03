@@ -126,15 +126,15 @@ class DocumentsController extends Controller
     public function update(Request $request, $id)
     {
         $data = $request->all();
-
+        // dd($data);
         $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/passport', 'public');
+        $data['photos'] = $request->file('photos')->store('assets/Documents', 'public');
 
         $item = Documents::findOrFail($id);
 
         $item->update($data);
 
-        return redirect()->route('Passport.index');
+        return redirect()->route('documents.index');
     }
 
     /**
@@ -148,6 +148,6 @@ class DocumentsController extends Controller
         $item = Documents::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('passport.index');
+        return redirect()->route('documents.index');
     }
 }

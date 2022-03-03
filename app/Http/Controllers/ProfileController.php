@@ -1,10 +1,15 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\Models\Profiles;
-use App\Http\Requests\ProfileRequest;
+use App\Models\User;
+use App\Models\Experiences;
+use App\Models\Educations;
+use App\Models\Emergencies;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ProfileRequest;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 
 class ProfileController extends Controller
@@ -26,8 +31,9 @@ class ProfileController extends Controller
      */
     public function create()
     {
+        $users = User::all();
         return view('pages.profile.create', [
-
+            'users' => $users
         ]);
     }
 
@@ -56,7 +62,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        //
+
     }
 
     /**
@@ -67,7 +73,16 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Profiles::findOrFail($id);
+        $education = Educations::findOrFail($id);
+        $experience = Experiences::findOrFail($id);
+        $emergency = Emergencies::findOrFail($id);
+        return view('pages.profile.edit', [
+            'item' => $item,
+            'education' => $education,
+            'experience' => $experience,
+            'emergency' => $emergency
+        ]);
     }
 
     /**
@@ -81,12 +96,11 @@ class ProfileController extends Controller
     {
         $data = $request->all();
 
-
         $item = Profiles::findOrFail($id);
 
         $item->update($data);
 
-        return redirect()->route('profile.index');
+        return redirect()->route('profile.create');
     }
 
     /**

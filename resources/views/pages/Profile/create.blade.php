@@ -14,7 +14,7 @@
       <div class="dashboard-heading">
         <h2 class="dashboard-title">My Profile</h2>
         <p class="dashboard-subtitle">
-          Please Compleate Your Data Information
+          Please Compleate Your Information
         </p>
       </div>
 
@@ -32,6 +32,7 @@
                 </div>
             @endif
             <form action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
+
             @csrf
               <div class="card">
                 <div class="card-body">
@@ -119,7 +120,7 @@
                     <div class="col-md-12">
                       <div class="form-group">
                         <label>About Me</label>
-                        <textarea name="about_me" id="editor" required></textarea>
+                        <textarea name="about_me" id="editor"></textarea>
                       </div>
                     </div>
                     <div class="col-md-6">

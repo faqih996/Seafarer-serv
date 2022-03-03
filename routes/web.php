@@ -48,7 +48,6 @@ Route::prefix('admin')
         Route::resource('department', DepartmentController::class);
         Route::resource('position', PositionController::class);
         Route::resource('positions-galleries', PositionGalleryController::class);
-        Route::resource('profile', ProfileController::class);
         Route::resource('documentsAdmin', DocumentsController::class);
 
     });

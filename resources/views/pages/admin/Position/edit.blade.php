@@ -29,7 +29,7 @@
                   </ul>
               </div>
           @endif
-          <form action="{{ route('position.update', $item->id) }}" method="post" enctype="multipart/form-data">
+          <form action="{{ route('profile.update', $item->id) }}" method="post" enctype="multipart/form-data">
             @method('PUT')
             @csrf
             <div class="card">
