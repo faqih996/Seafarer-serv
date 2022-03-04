@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 
 Use App\Models\User;
 use App\Models\Department;
+use App\Models\Position;
 
 class DashboardAdminController extends Controller
 {
@@ -22,6 +23,7 @@ class DashboardAdminController extends Controller
     {
         $applicant = User::count();
         $department = Department::count();
+        $position = Position::count();
         return view('pages.admin.dashboard', [
             'applicant' => $applicant,
             'department' => $department

@@ -63,7 +63,7 @@
                       class="card card-list d-block"
                       href="/dashboard-transactions-details.html"
                     >
-                    
+
                       <div class="card-body">
                         <div class="row">
                           <div class="col-md-1">

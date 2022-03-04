@@ -34,7 +34,7 @@
                     <div class="card mb-2">
                       <div class="card-body">
                         <div class="dashboard-card-title">
-                          Departments Open
+                          Departments
                         </div>
                         <div class="dashboard-card-subtitle">
                           {{ $department }}
@@ -46,10 +46,10 @@
                     <div class="card mb-2">
                       <div class="card-body">
                         <div class="dashboard-card-title">
-                          Ready To Join
+                          Position Available
                         </div>
                         <div class="dashboard-card-subtitle">
-                         150
+                            {{ $department }}
                         </div>
                       </div>
                     </div>
@@ -63,7 +63,7 @@
                       class="card card-list d-block"
                       href="/dashboard-transactions-details.html"
                     >
-                    
+
                       <div class="card-body">
                         <div class="row">
                           <div class="col-md-1">

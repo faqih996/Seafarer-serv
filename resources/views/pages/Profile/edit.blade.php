@@ -289,7 +289,8 @@
       <div class="dashboard-content education">
         <div class="row">
           <div class="col-11">
-            <form action="{{route('education.update', $education->id) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('education.update', $education->id) }}" method="post" enctype="multipart/form-data">
+            @method('PUT')
             @csrf
               <div class="card">
                 <div class="card-body">
@@ -321,7 +322,7 @@
                           id="course"
                           aria-describedby="emailHelp"
                           name="course"
-                          value=""
+                          value="{{ $education->course }}"
                           required
                         />
                       </div>
@@ -335,7 +336,7 @@
                           id="start"
                           aria-describedby="emailHelp"
                           name="start"
-                          value=""
+                          value="{{ $education->start }}"
                           required
                         />
                       </div>
@@ -349,7 +350,7 @@
                           id="graduate"
                           aria-describedby="emailHelp"
                           name="graduate"
-                          value=""
+                          value="{{ $education->graduate }}"
                           required
                         />
                       </div>
@@ -363,7 +364,7 @@
                           id="address"
                           aria-describedby="emailHelp"
                           name="address"
-                          value=""
+                          value="{{ $education->address }}"
                           required
                         />
                       </div>
@@ -380,7 +381,7 @@
                           id="provinces_id"
                           aria-describedby="emailHelp"
                           name="provinces_id"
-                          value=""
+                          value="{{ $education->provinces_id }}"
                           required
                         />
                       </div>
@@ -397,7 +398,7 @@
                           id="regencies_id"
                           aria-describedby="emailHelp"
                           name="regencies_id"
-                          value=""
+                          value="{{ $education->regencies_id }}"
                           required
                         />
                       </div>
@@ -410,7 +411,7 @@
                           class="form-control"
                           id="zip_code"
                           name="zip_code"
-                          value="40512"
+                          value="{{ $education->zip_code}}"
                           required
                         />
                       </div>
@@ -423,7 +424,7 @@
                           class="form-control"
                           id="country"
                           name="country"
-                          value="Indonesia"
+                          value="{{ $education->country}}"
                           required
                         />
                       </div>
@@ -431,7 +432,7 @@
                     <div class="col-md-6">
                         <div class="form-group">
                           <label>Education Certificate</label>
-                          <input type="file" class="form-control" name="certificate" placeholder="certificate" required />
+                          <input type="file" class="form-control" name="certificate" placeholder="certificate" />
                         </div>
                     </div>
                   </div>
@@ -471,7 +472,8 @@
       <div class="dashboard-content experience">
         <div class="row">
           <div class="col-11">
-            <form action="{{ route('experience.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('experience.update', $experience->id) }}" method="post" enctype="multipart/form-data">
+                 @method('PUT')
                 @csrf
               <div class="card">
                 <div class="card-body">
@@ -489,7 +491,7 @@
                           id="name"
                           aria-describedby="emailHelp"
                           name="name"
-                          value="Your Work Experience"
+                          value="{{$experience->name}}"
                         />
                       </div>
                     </div>
@@ -497,6 +499,7 @@
                       <div class="form-group">
                         <label for="base">Work Base</label>
                         <select name="base" required class="form-control">
+                            <option value="{{ $item->base }}">{{ $item->base }}</option>
                             <option value="HotelBase">Land Base Hotel</option>
                             <option value="CruiseBase">Cruise Ship</option>
                         </select>
@@ -511,7 +514,7 @@
                           id="position"
                           aria-describedby="emailHelp"
                           name="position"
-                          value=""
+                          value="{{$experience->position}}"
                         />
                       </div>
                     </div>
@@ -524,7 +527,7 @@
                           id="job_title"
                           aria-describedby="emailHelp"
                           name="job_title"
-                          value=""
+                          value="{{$experience->job_title}}"
                         />
                       </div>
                     </div>
@@ -537,7 +540,7 @@
                           id="start_of_contract"
                           aria-describedby="emailHelp"
                           name="start_of_contract"
-                          value=""
+                          value=""{{$experience->start_of_contract}}"
                         />
                       </div>
                     </div>
@@ -550,7 +553,7 @@
                           id="end_of_contract"
                           aria-describedby="emailHelp"
                           name="end_of_contract"
-                          value="Rejoiner"
+                          value="{{$experience->end_of_contract}}"
                         />
                       </div>
                     </div>
@@ -563,7 +566,7 @@
                           id="address"
                           aria-describedby="emailHelp"
                           name="address"
-                          value=""
+                          value="{{$experience->address}}"
                         />
                       </div>
                     </div>
@@ -576,7 +579,7 @@
                           id="provinces_id"
                           aria-describedby="emailHelp"
                           name="provinces_id"
-                          value=""
+                          value="{{$experience->provinces_id}}"
                         />
                         {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
                           <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
@@ -592,7 +595,7 @@
                           id="regencies_id"
                           aria-describedby="emailHelp"
                           name="regencies_id"
-                          value=""
+                          value="{{$experience->regencies_id}}"
                         />
                         {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
                           <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
@@ -607,7 +610,7 @@
                           class="form-control"
                           id="zip_code"
                           name="zip_code"
-                          value="40512"
+                          value="{{$experience->zip_code}}"
                           required
                         />
                       </div>
@@ -620,7 +623,7 @@
                           class="form-control"
                           id="country"
                           name="country"
-                          value="Indonesia"
+                          value="{{$experience->country}}"
                           required
                         />
                       </div>
@@ -633,7 +636,7 @@
                           class="form-control"
                           id="spv_name"
                           name="spv_name"
-                          value="Supervisor Name"
+                          value="{{$experience->spv_name}}"
                           required
                         />
                       </div>
@@ -646,7 +649,7 @@
                           class="form-control"
                           id="institution_phone"
                           name="institution_phone"
-                          value="08xxxxxxxxxx"
+                          value="{{$experience->institution_phone}}"
                         />
                       </div>
                     </div>
@@ -658,7 +661,7 @@
                           class="form-control"
                           id="job_descriptions"
                           name="job_descriptions"
-                          value=""
+                          value="{{$experience->job_descriptions}}"
                         />
                       </div>
                     </div>
@@ -670,7 +673,7 @@
                             class="form-control"
                             id="certificate"
                             name="certificate"
-                            value=""
+                            value="{{$experience->certificate}}"
                           />
                         </div>
                       </div>
@@ -710,7 +713,8 @@
             <div class="dashboard-content emergency">
                 <div class="row">
                   <div class="col-11">
-                    <form action="{{ route('emergency.store') }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('emergency.update', $id) }}" method="post" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                       <div class="card">
                         <div class="card-body">
@@ -728,7 +732,7 @@
                                   id="family_name"
                                   aria-describedby="emailHelp"
                                   name="family_name"
-                                  value=""
+                                  value="{{$experience->family_name}}"
                                   required
                                 />
                               </div>
@@ -737,6 +741,7 @@
                               <div class="form-group">
                                 <label for="relations">Relation</label>
                                 <select name="relations" required class="form-control">
+                                    <option value="{{ $item->relations }}">{{ $item->relations }}</option>
                                     <option value="father">Father</option>
                                     <option value="mother">Mother</option>
                                     <option value="husband">Husband</option>
@@ -757,7 +762,7 @@
                                   id="contact1"
                                   aria-describedby="emailHelp"
                                   name="contact1"
-                                  value=""
+                                  value="{{$experience->contact1}}"
                                   required
                                 />
                               </div>
@@ -771,8 +776,7 @@
                                   id="contact2"
                                   aria-describedby="emailHelp"
                                   name="contact2"
-                                  value=""
-
+                                  value="{{$experience->contact2}}"
                                 />
                               </div>
                             </div>
@@ -785,7 +789,7 @@
                                   id="email"
                                   aria-describedby="emailHelp"
                                   name="email"
-                                  value=""
+                                  value="{{$experience->email}}"
                                   required
                                 />
                               </div>
@@ -800,7 +804,7 @@
                                     id="address"
                                     aria-describedby="emailHelp"
                                     name="address"
-                                    value=""
+                                    value="{{$experience->address}}"
                                     required
                                   />
                                 </div>
@@ -818,7 +822,7 @@
                                   id="provinces_id"
                                   aria-describedby="emailHelp"
                                   name="provinces_id"
-                                  value=""
+                                  value="{{$experience->provinces_id}}"
                                   required
                                 />
                               </div>
@@ -835,7 +839,7 @@
                                   id="regencies_id"
                                   aria-describedby="emailHelp"
                                   name="regencies_id"
-                                  value=""
+                                  value="{{$experience->regencies_id}}"
                                   required
                                 />
                               </div>
@@ -848,7 +852,7 @@
                                   class="form-control"
                                   id="zip_code"
                                   name="zip_code"
-                                  value="40512"
+                                  value="{{$experience->zip_code}}"
                                   required
                                 />
                               </div>
@@ -861,7 +865,7 @@
                                   class="form-control"
                                   id="country"
                                   name="country"
-                                  value="Indonesia"
+                                  value="{{$experience->country}}"
                                   required
                                 />
                               </div>

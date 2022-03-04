@@ -18,7 +18,7 @@ class DashboardController extends Controller
     {
         $applicant = User::count();
         $candidate = User::count();
-        $hired = Experience::where('base');
+
         return view('pages.dashboard.dashboard', [
             'applicant' => $applicant,
             'candidate' => $candidate

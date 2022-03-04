@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\EmergencyRequest;
+use App\Models\User;
+use App\Models\Profiles;
+use App\Models\Experiences;
+use App\Models\Educations;
 use App\Models\Emergencies;
+use App\Http\Requests\EmergencyRequest;
 use Illuminate\Http\Request;
 
 class EmergencyController extends Controller
@@ -63,7 +67,16 @@ class EmergencyController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Profiles::findOrFail($id);
+        $education = Educations::findOrFail($id);
+        $experience = Experiences::findOrFail($id);
+        $emergency = Emergencies::findOrFail($id);
+        return view('pages.profile.edit', [
+            'item' => $item,
+            'education' => $education,
+            'experience' => $experience,
+            'emergency' => $emergency
+        ]);
     }
 
     /**
@@ -77,9 +90,11 @@ class EmergencyController extends Controller
     {
         $data = $request->all();
 
-        Emergencies::create($data);
+        $item = Emergencies::findOrFail($id);
 
-        return redirect()->route('profile.index');
+        $item->update($data);
+
+        return redirect()->route('profile.create');
     }
 
     /**

@@ -32,7 +32,7 @@ class EducationRequest extends FormRequest
              'regencies_id' => 'required|integer',
              'provinces_id' => 'required|integer',
              'zip_code' => 'required|string',
-             'certificate' => 'required|image'
+             'certificate' => 'nullable|image'
         ];
     }
 

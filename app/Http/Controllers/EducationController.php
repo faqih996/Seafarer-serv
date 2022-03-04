@@ -73,7 +73,7 @@ class EducationController extends Controller
         $education = Educations::findOrFail($id);
         $experience = Experiences::findOrFail($id);
         $emergency = Emergencies::findOrFail($id);
-        return view('pages.profile.edit', [
+        return view('pages.profile.editedu', [
             'item' => $item,
             'education' => $education,
             'experience' => $experience,
@@ -85,12 +85,20 @@ class EducationController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\education  $education
+     * @param  \App\Models\education  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, educations $education)
+    public function update(Request $request, educations $id)
     {
-        //
+        $data = $request->all();
+
+        $data['certificate'] = $request->file('certificate')->store('assets/Documents', 'public');
+
+        $item = Educations::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('profile.create');
     }
 
     /**
@@ -99,8 +107,11 @@ class EducationController extends Controller
      * @param  \App\Models\education  $education
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Educations $education)
+    public function destroy(Educations $id)
     {
-        //
+        $item = Profiles::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('profile.index');
     }
 }

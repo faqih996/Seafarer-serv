@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ExperienceRequest;
 use App\Models\Experiences;
+use App\Models\User;
+use App\Models\Profiles;
+use App\Models\Educations;
+use App\Models\Emergencies;
 use Illuminate\Http\Request;
 
 class ExperienceController extends Controller
@@ -63,9 +67,18 @@ class ExperienceController extends Controller
      * @param  \App\Models\experience  $experience
      * @return \Illuminate\Http\Response
      */
-    public function edit(Experiences $experience)
+    public function edit($id)
     {
-        //
+        $item = Profiles::findOrFail($id);
+        $education = Educations::findOrFail($id);
+        $experience = Experiences::findOrFail($id);
+        $emergency = Emergencies::findOrFail($id);
+        return view('pages.profile.edit', [
+            'item' => $item,
+            'education' => $education,
+            'experience' => $experience,
+            'emergency' => $emergency
+        ]);
     }
 
     /**
@@ -77,7 +90,15 @@ class ExperienceController extends Controller
      */
     public function update(ExperienceRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $data['certificate'] = $request->file('certificate')->store('assets/Documents', 'public');
+
+        $item = Experiences::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('profile.create');
     }
 
     /**
