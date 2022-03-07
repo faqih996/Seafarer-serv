@@ -499,7 +499,7 @@
                       <div class="form-group">
                         <label for="base">Work Base</label>
                         <select name="base" required class="form-control">
-                            <option value="{{ $item->base }}">{{ $item->base }}</option>
+                            <option value="{{$experience->base }}">{{$experience->base }}</option>
                             <option value="HotelBase">Land Base Hotel</option>
                             <option value="CruiseBase">Cruise Ship</option>
                         </select>
@@ -540,7 +540,7 @@
                           id="start_of_contract"
                           aria-describedby="emailHelp"
                           name="start_of_contract"
-                          value=""{{$experience->start_of_contract}}"
+                          value="{{$experience->start_of_contract}}"
                         />
                       </div>
                     </div>
@@ -673,7 +673,7 @@
                             class="form-control"
                             id="certificate"
                             name="certificate"
-                            value="{{$experience->certificate}}"
+                            value=""
                           />
                         </div>
                       </div>
@@ -713,7 +713,7 @@
             <div class="dashboard-content emergency">
                 <div class="row">
                   <div class="col-11">
-                    <form action="{{ route('emergency.update', $id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('emergency.update', $emergency->id) }}" method="post" enctype="multipart/form-data">
                     @method('PUT')
                     @csrf
                       <div class="card">
@@ -732,7 +732,7 @@
                                   id="family_name"
                                   aria-describedby="emailHelp"
                                   name="family_name"
-                                  value="{{$experience->family_name}}"
+                                  value="{{$emergency->family_name}}"
                                   required
                                 />
                               </div>
@@ -741,7 +741,7 @@
                               <div class="form-group">
                                 <label for="relations">Relation</label>
                                 <select name="relations" required class="form-control">
-                                    <option value="{{ $item->relations }}">{{ $item->relations }}</option>
+                                    <option value="{{ $emergency->relations }}">{{$emergency->relations }}</option>
                                     <option value="father">Father</option>
                                     <option value="mother">Mother</option>
                                     <option value="husband">Husband</option>
@@ -762,7 +762,7 @@
                                   id="contact1"
                                   aria-describedby="emailHelp"
                                   name="contact1"
-                                  value="{{$experience->contact1}}"
+                                  value="{{$emergency->contact1}}"
                                   required
                                 />
                               </div>
@@ -776,7 +776,7 @@
                                   id="contact2"
                                   aria-describedby="emailHelp"
                                   name="contact2"
-                                  value="{{$experience->contact2}}"
+                                  value="{{$emergency->contact2}}"
                                 />
                               </div>
                             </div>
@@ -789,7 +789,7 @@
                                   id="email"
                                   aria-describedby="emailHelp"
                                   name="email"
-                                  value="{{$experience->email}}"
+                                  value="{{$emergency->email}}"
                                   required
                                 />
                               </div>
@@ -804,7 +804,7 @@
                                     id="address"
                                     aria-describedby="emailHelp"
                                     name="address"
-                                    value="{{$experience->address}}"
+                                    value="{{$emergency->address}}"
                                     required
                                   />
                                 </div>
@@ -822,7 +822,7 @@
                                   id="provinces_id"
                                   aria-describedby="emailHelp"
                                   name="provinces_id"
-                                  value="{{$experience->provinces_id}}"
+                                  value="{{$emergency->provinces_id}}"
                                   required
                                 />
                               </div>
@@ -839,7 +839,7 @@
                                   id="regencies_id"
                                   aria-describedby="emailHelp"
                                   name="regencies_id"
-                                  value="{{$experience->regencies_id}}"
+                                  value="{{$emergency->regencies_id}}"
                                   required
                                 />
                               </div>
@@ -852,7 +852,7 @@
                                   class="form-control"
                                   id="zip_code"
                                   name="zip_code"
-                                  value="{{$experience->zip_code}}"
+                                  value="{{$emergency->zip_code}}"
                                   required
                                 />
                               </div>
@@ -865,7 +865,7 @@
                                   class="form-control"
                                   id="country"
                                   name="country"
-                                  value="{{$experience->country}}"
+                                  value="{{$emergency->country}}"
                                   required
                                 />
                               </div>

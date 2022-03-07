@@ -39,7 +39,7 @@ class ExperienceRequest extends FormRequest
             'spv_name'=> 'required|string',
             'institution_phone'=> 'required|string',
             'job_descriptions'=> 'required|string',
-            'certificate' => 'required|image'
+            'certificate' => 'nullable|image'
         ];
     }
 

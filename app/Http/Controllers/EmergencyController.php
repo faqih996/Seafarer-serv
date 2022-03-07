@@ -89,10 +89,10 @@ class EmergencyController extends Controller
     public function update(EmergencyRequest $request, $id)
     {
         $data = $request->all();
+        // dd($data);
+        $emergency = Emergencies::findOrFail($id);
 
-        $item = Emergencies::findOrFail($id);
-
-        $item->update($data);
+        $emergency->update($data);
 
         return redirect()->route('profile.create');
     }
@@ -105,8 +105,8 @@ class EmergencyController extends Controller
      */
     public function destroy($id)
     {
-        $item = Emergencies::findorFail($id);
-        $item->delete();
+        $emergency = Emergencies::findorFail($id);
+        $emergency ->delete();
 
         return redirect()->route('Emergency.show');
     }

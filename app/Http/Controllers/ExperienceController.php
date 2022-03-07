@@ -92,7 +92,7 @@ class ExperienceController extends Controller
     {
         $data = $request->all();
 
-        $data['certificate'] = $request->file('certificate')->store('assets/Documents', 'public');
+        $data['certificate'] = $request->file('certificate')->store('assets/Experience', 'public');
 
         $item = Experiences::findOrFail($id);
 
