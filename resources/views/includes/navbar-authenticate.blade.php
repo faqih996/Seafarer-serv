@@ -62,15 +62,21 @@
                                         src="images/icon-user.png"
                                         alt=""
                                         class="rounded-circle mr-2 profile-picture">
-                                        Hi, Faqih
+                                        Hi, {{ Auth::user()->first_name }}
                                     </a>
                                     <div class="dropdown-menu">
-                                        <a href="/dashboard.html" class="dropdown-item">My Profile</a>
-                                        <a href="/dashboard.html" class="dropdown-item">My Documents</a>
+                                        <a href="{{route('dashboard')}}" class="dropdown-item">My Profile</a>
+                                        <a href="{{route('dashboard.documents')}}" class="dropdown-item">My Documents</a>
                                         <a href="" class="dropdown-item">Settings</a>
 
                                         <div class="dropdown-divider"></div>
-                                        <a href="" class="dropdown-item">Log Out</a>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            @csrf
+                                        </form>
                                     </div>
                                 </li>
                                 <li class="nav-item">
@@ -83,13 +89,17 @@
                             <ul class="navbar-nav d-block d-lg-none">
                                 <li class="nav-item">
                                 <a href="#" class="nav-link">
-                                    Hi, Faqih
+                                    Hi, {{ Auth::user()->first_name }}
                                 </a>
                                 </li>
                                 <li class="nav-item">
-                                <a href="#" class="nav-link d-inline-block">
-                                    Log Out
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    Logout
                                 </a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
                                 </li>
                             </ul>
                         </div>
