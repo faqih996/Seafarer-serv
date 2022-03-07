@@ -22,7 +22,7 @@
                         <a class="btn btn-primary" href="#" role="button">Get Started</a>
                     </div>
                     <div class="col d-none d-sm-block">
-                        <img width="600" src="images/team.png" alt="" class="w-30" data-aos="fade-left">
+                        <img width="600" src="images/logososs.png" alt="" class="w-30" data-aos="fade-left">
                     </div>
                 </div>
             </div>
@@ -58,7 +58,7 @@
                 </div>
             </div>
         </section> --}}
-        
+
         <!-- Testimoni -->
         <section class="student-testimonies">
             <div class="container">
@@ -103,7 +103,7 @@
                                                 <p class="text-right mr-5"><a href="https://www.dicoding.com/blog/tips-dapat-tawaran-kerja-di-unicorn/" class="remove-style-link font-weight-bold btn-text-arrow-black">Baca kisahnya</a></p>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -178,7 +178,7 @@
                                                 <p class="text-right mr-5"><a href="https://www.dicoding.com/blog/3-rahasia-pindah-karir-developer/" class="remove-style-link font-weight-bold btn-text-arrow-black">Baca kisahnya</a></p>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>
@@ -203,7 +203,7 @@
                                                 <p class="text-right mr-5"><a href="https://www.dicoding.com/blog/bangkit-dari-keterpurukan-dengan-belajar-android/" class="remove-style-link font-weight-bold btn-text-arrow-black">Baca kisahnya</a></p>
                                             </div>
                                         </div>
-                                        
+
                                     </div>
                                 </div>
                             </div>

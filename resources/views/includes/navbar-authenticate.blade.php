@@ -3,7 +3,7 @@
         <!-- Sidebar -->
         <div class="border-right" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
-            <img src="images/logososs.png" alt="" class="my-4" />
+            <img src="{{url('images/sosslogo.png')}}" alt="" class="my-4" />
           </div>
           <div class="list-group list-group-flush">
             <a
@@ -34,8 +34,8 @@
         <div id="page-content-wrapper">
         <nav
           class="navbar navbar-expand-lg navbar-light navbar-sea fixed-top"
-          data-aos="fade-down">   
-                
+          data-aos="fade-down">
+
         <div class="container">
           <button class="btn-secondary d-md-none mr-auto mr-2" id="menu-toggle">
               &laquo; Menu
@@ -47,20 +47,20 @@
                 data-target="#navbarSupportedContent"
               >
               <span class="navbar-toggler-icon"></span>
-            </button>                  
+            </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            
+
                             <!-- Desktop Menu -->
                             <ul class="navbar-nav d-none d-lg-flex ml-auto">
                                 <li class="nav-item dropdown">
-                                    <a href="" class="nav-link" 
+                                    <a href="" class="nav-link"
                                         id="navbarDropdown"
-                                        role="button" 
+                                        role="button"
                                         data-toggle="dropdown"
                                     >
-                                        <img 
-                                        src="images/icon-user.png" 
-                                        alt="" 
+                                        <img
+                                        src="images/icon-user.png"
+                                        alt=""
                                         class="rounded-circle mr-2 profile-picture">
                                         Hi, Faqih
                                     </a>
@@ -68,7 +68,7 @@
                                         <a href="/dashboard.html" class="dropdown-item">My Profile</a>
                                         <a href="/dashboard.html" class="dropdown-item">My Documents</a>
                                         <a href="" class="dropdown-item">Settings</a>
-                                        
+
                                         <div class="dropdown-divider"></div>
                                         <a href="" class="dropdown-item">Log Out</a>
                                     </div>
@@ -78,7 +78,7 @@
                                         <img src="" alt="">
                                     </a>
                                 </li>
-                            </ul>   
+                            </ul>
                             <!-- mobile Menu -->
                             <ul class="navbar-nav d-block d-lg-none">
                                 <li class="nav-item">
