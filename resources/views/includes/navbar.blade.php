@@ -16,7 +16,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+                <ul class="ml-auto navbar-nav">
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('home')}}">Home </a>
                     </li>
@@ -30,7 +30,7 @@
                     <li class="nav-item">
                         <a
                         href="{{  route('login') }}"
-                        class="btn btn-success nav-link px-4 text-white"
+                        class="px-4 text-white btn btn-success nav-link"
                         >Sign In</a
                         >
                     </li>
@@ -54,12 +54,12 @@
                         <img
                         src="/images/icon-user.png"
                         alt=""
-                        class="rounded-circle mr-2 profile-picture"
+                        class="mr-2 rounded-circle profile-picture"
                         />
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="/dashboard.html">Dashboard</a>
-                        <a class="dropdown-item" href="/dashboard-account.html"
+                        <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
+                        <a class="dropdown-item" href=""
                         >Settings</a
                         >
                         <div class="dropdown-divider"></div>

@@ -11,9 +11,9 @@
           >
             <div class="container-fluid">
               <div class="dashboard-heading">
-                <h2 class="dashboard-title">Dashboard</h2>
+                <h2 class="dashboard-title">Dashboard Admin</h2>
                 <p class="dashboard-subtitle">
-                  Recent Information
+                  This is Seafarer Service Dashboard
                 </p>
               </div>
               <div class="dashboard-content">

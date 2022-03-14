@@ -32,7 +32,6 @@
                 </div>
             @endif
             <form action="{{ route('profile.store') }}" method="post" enctype="multipart/form-data">
-
             @csrf
               <div class="card">
                 <div class="card-body">
@@ -40,7 +39,7 @@
                     Personal Information
                   </h5>
                   <div class="dropdown-divider"></div>
-                  <div class="row mb-2">
+                  <div class="mb-2 row" id="locations">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="first_name">First Name</label>
@@ -78,7 +77,7 @@
                           id="placeOfBirth"
                           aria-describedby="emailHelp"
                           name="birth_place"
-                          value="London"
+                          value=""
                           required
                         />
                       </div>
@@ -110,6 +109,7 @@
                         <div class="form-group">
                           <label for="marital">Marital Status</label>
                           <select name="marital" required class="form-control">
+                            <option value="">---------------</option>
                             <option value="Single">Single</option>
                             <option value="Married">Married</option>
                             <option value="widowed">Widowed</option>
@@ -161,7 +161,7 @@
                           id="skype"
                           aria-describedby="emailHelp"
                           name="skype"
-                          value="Rejoiner"
+                          value=""
                           required
                         />
                       </div>
@@ -175,7 +175,7 @@
                           id="phone_number"
                           aria-describedby="emailHelp"
                           name="phone_number"
-                          value="Mobile number"
+                          value=""
                           required
                         />
                       </div>
@@ -197,37 +197,21 @@
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="provinces_id">Province</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="provinces_id"
-                          aria-describedby="emailHelp"
-                          name="provinces_id"
-                          value="your address"
-                          required
-                        />
-                        {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
-                          <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                        </select> --}}
+                        <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
+                            <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                        </select>
+                        <select v-else class="form-control"></select>
                       </div>
                     </div>
                     <div class="col-md-4">
-                      <div class="form-group">
-                        <label for="regencies_id">City</label>
-                            <input
-                              type="text"
-                              class="form-control"
-                              id="regencies_id"
-                              aria-describedby="emailHelp"
-                              name="regencies_id"
-                              value="your address"
-                              required
-                            />
-                        {{-- <select name="regencies_id" id="regencies_id" class="form-control " v-model="regencies_id" v-if="regencies" required>
-                          <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
-                        </select> --}}
+                        <div class="form-group">
+                          <label for="regencies_id">City</label>
+                          <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
+                            <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
+                          </select>
+                          <select v-else class="form-control"></select>
+                        </div>
                       </div>
-                    </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="zip_code">Postal Code</label>
@@ -261,15 +245,15 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col text-left">
+                    <div class="text-left col">
                       <p class="dashboard-subtitle text-danger">
                         Don't forget to click SAVE after each section!
                       </p>
                     </div>
-                    <div class="col text-right">
+                    <div class="text-right col">
                       <button
                         type="submit"
-                        class="btn btn-success px-5"
+                        class="px-5 btn btn-success"
                       >
                         Save
                       </button>
@@ -295,7 +279,7 @@
                     Education Background
                   </h5>
                   <div class="dropdown-divider"></div>
-                  <div class="row mb-2">
+                  <div class="mb-2 row"  id="edu-locations">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="institution_name">Institution Name</label>
@@ -368,36 +352,19 @@
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
-                        <label for="province">Province</label>
-                        {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
-                          <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                        </select> --}}
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="provinces_id"
-                          aria-describedby="emailHelp"
-                          name="provinces_id"
-                          value=""
-                          required
-                        />
+                        <label for="provinces_id">Province</label>
+                        <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
+                            <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                        </select>
+                        <select v-else class="form-control"></select>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
-                        <label for="city">City</label>
-                        {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
+                        <label for="regencies_id">City</label>
+                        <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
                           <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
-                        </select> --}}
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="regencies_id"
-                          aria-describedby="emailHelp"
-                          name="regencies_id"
-                          value=""
-                          required
-                        />
+                        </select>
                       </div>
                     </div>
                     <div class="col-md-4">
@@ -443,15 +410,15 @@
                         Add Education
                       </button>
                     </div>
-                    <div class="col text-left mt-4">
+                    <div class="mt-4 text-left col">
                         <p class="dashboard-subtitle text-danger">
                           Don't forget to click SAVE after each section!
                         </p>
                       </div>
-                    <div class="col text-right">
+                    <div class="text-right col">
                       <button
                         type="submit"
-                        class="btn btn-success px-5 mt-4"
+                        class="px-5 mt-4 btn btn-success"
                       >
                         Save
                       </button>
@@ -477,7 +444,7 @@
                     Work Experience
                   </h5>
                   <div class="dropdown-divider"></div>
-                  <div class="row mb-2">
+                  <div class="mb-2 row" id="exp-locations">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="name">Institution Name</label>
@@ -548,7 +515,7 @@
                           id="end_of_contract"
                           aria-describedby="emailHelp"
                           name="end_of_contract"
-                          value="Rejoiner"
+                          value=""
                         />
                       </div>
                     </div>
@@ -568,33 +535,19 @@
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="provinces_id">Province</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="provinces_id"
-                          aria-describedby="emailHelp"
-                          name="provinces_id"
-                          value=""
-                        />
-                        {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
+                        <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
                           <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                        </select> --}}
+                        </select>
+                        <select v-else class="form-control"></select>
                       </div>
                     </div>
                     <div class="col-md-4">
                       <div class="form-group">
                         <label for="city">City</label>
-                        <input
-                          type="text"
-                          class="form-control"
-                          id="regencies_id"
-                          aria-describedby="emailHelp"
-                          name="regencies_id"
-                          value=""
-                        />
-                        {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
+                        <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
                           <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
-                        </select> --}}
+                        </select>
+                        <select v-else class="form-control"></select>
                       </div>
                     </div>
                     <div class="col-md-4">
@@ -644,7 +597,7 @@
                           class="form-control"
                           id="institution_phone"
                           name="institution_phone"
-                          value="08xxxxxxxxxx"
+                          value=""
                         />
                       </div>
                     </div>
@@ -682,15 +635,15 @@
                         Add Experience
                       </button>
                     </div>
-                    <div class="col text-left mt-4">
+                    <div class="mt-4 text-left col">
                       <p class="dashboard-subtitle text-danger">
                         Don't forget to click SAVE after each section!
                       </p>
                     </div>
-                    <div class="col text-right">
+                    <div class="text-right col">
                       <button
                         type="submit"
-                        class="btn btn-success px-5 mt-3"
+                        class="px-5 mt-3 btn btn-success"
                       >
                         Save Now
                       </button>
@@ -704,190 +657,174 @@
       </div>
       <!-- end of  experience -->
 
-            <!-- emergency -->
-            <div class="dashboard-content emergency">
-                <div class="row">
-                  <div class="col-11">
-                    <form action="{{ route('emergency.store') }}" method="post" enctype="multipart/form-data">
-                    @csrf
-                      <div class="card">
-                        <div class="card-body">
-                          <h5>
-                            Emergency Contact
-                          </h5>
-                          <div class="dropdown-divider"></div>
-                          <div class="row mb-2">
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="family_name">Family Name</label>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="family_name"
-                                  aria-describedby="emailHelp"
-                                  name="family_name"
-                                  value=""
-                                  required
-                                />
-                              </div>
+        <!-- emergency -->
+        <div class="dashboard-content emergency">
+            <div class="row">
+                <div class="col-11">
+                <form action="{{ route('emergency.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                    <div class="card">
+                    <div class="card-body">
+                        <h5>
+                        Emergency Contact
+                        </h5>
+                        <div class="dropdown-divider"></div>
+                        <div class="mb-2 row" id="eme-locations">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="family_name">Family Name</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="family_name"
+                                aria-describedby="emailHelp"
+                                name="family_name"
+                                value=""
+                                required
+                            />
                             </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="relations">Relation</label>
-                                <select name="relations" required class="form-control">
-                                    <option value="father">Father</option>
-                                    <option value="mother">Mother</option>
-                                    <option value="husband">Husband</option>
-                                    <option value="wife">Wife</option>
-                                    <option value="brother">Brother</option>
-                                    <option value="sister">Sister</option>
-                                    <option value="uncle">Uncle</option>
-                                    <option value="aunt">Aunt</option>
-                                </select>
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="contact1">Emergency Contact 1</label>
-                                <input
-                                  type="number"
-                                  class="form-control"
-                                  id="contact1"
-                                  aria-describedby="emailHelp"
-                                  name="contact1"
-                                  value=""
-                                  required
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="contact2">Emergency Contact 2</label>
-                                <input
-                                  type="number"
-                                  class="form-control"
-                                  id="contact2"
-                                  aria-describedby="emailHelp"
-                                  name="contact2"
-                                  value=""
-
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="email">Email</label>
-                                <input
-                                  type="email"
-                                  class="form-control"
-                                  id="email"
-                                  aria-describedby="emailHelp"
-                                  name="email"
-                                  value=""
-                                  required
-                                />
-                              </div>
-                            </div>
-
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                  <label for="address">Emergency Address</label>
-                                  <input
-                                    type="text"
-                                    class="form-control"
-                                    id="address"
-                                    aria-describedby="emailHelp"
-                                    name="address"
-                                    value=""
-                                    required
-                                  />
-                                </div>
-                              </div>
-
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="province">Province</label>
-                                {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
-                                  <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                                </select> --}}
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="provinces_id"
-                                  aria-describedby="emailHelp"
-                                  name="provinces_id"
-                                  value=""
-                                  required
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="city">City</label>
-                                {{-- <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
-                                  <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
-                                </select> --}}
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="regencies_id"
-                                  aria-describedby="emailHelp"
-                                  name="regencies_id"
-                                  value=""
-                                  required
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="postalCode">Postal Code</label>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="zip_code"
-                                  name="zip_code"
-                                  value="40512"
-                                  required
-                                />
-                              </div>
-                            </div>
-                            <div class="col-md-6">
-                              <div class="form-group">
-                                <label for="country">Country</label>
-                                <input
-                                  type="text"
-                                  class="form-control"
-                                  id="country"
-                                  name="country"
-                                  value="Indonesia"
-                                  required
-                                />
-                              </div>
-                            </div>
-                          </div>
-
-                            <div class="row">
-
-                                <div class="col text-left mt-4">
-                                  <p class="dashboard-subtitle text-danger">
-                                    Don't forget to click SAVE after each section!
-                                  </p>
-                                </div>
-                                <div class="col text-right">
-                                  <button
-                                    type="submit"
-                                    class="btn btn-success px-5 mt-3"
-                                  >
-                                    Save Now
-                                  </button>
-                                </div>
                         </div>
-                      </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="relations">Relation</label>
+                            <select name="relations" required class="form-control">
+                                <option value="father">Father</option>
+                                <option value="mother">Mother</option>
+                                <option value="husband">Husband</option>
+                                <option value="wife">Wife</option>
+                                <option value="brother">Brother</option>
+                                <option value="sister">Sister</option>
+                                <option value="uncle">Uncle</option>
+                                <option value="aunt">Aunt</option>
+                            </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="contact1">Emergency Contact 1</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="contact1"
+                                aria-describedby="emailHelp"
+                                name="contact1"
+                                value=""
+                                required
+                            />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="contact2">Emergency Contact 2</label>
+                            <input
+                                type="number"
+                                class="form-control"
+                                id="contact2"
+                                aria-describedby="emailHelp"
+                                name="contact2"
+                                value=""
+
+                            />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="email">Email</label>
+                            <input
+                                type="email"
+                                class="form-control"
+                                id="email"
+                                aria-describedby="emailHelp"
+                                name="email"
+                                value=""
+                                required
+                            />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="address">Emergency Address</label>
+                                <input
+                                type="text"
+                                class="form-control"
+                                id="address"
+                                aria-describedby="emailHelp"
+                                name="address"
+                                value=""
+                                required
+                                />
+                            </div>
+                            </div>
+
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="province">Province</label>
+                            <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces">
+                                <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                            </select>
+                            <select v-else class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="city">City</label>
+                            <select name="regencies_id" id="regencies_id" class="form-control" v-model="regencies_id" v-if="regencies">
+                                <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
+                            </select>
+                            <select v-else class="form-control"></select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="postalCode">Postal Code</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="zip_code"
+                                name="zip_code"
+                                value="40512"
+                                required
+                            />
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                            <label for="country">Country</label>
+                            <input
+                                type="text"
+                                class="form-control"
+                                id="country"
+                                name="country"
+                                value="Indonesia"
+                                required
+                            />
+                            </div>
+                        </div>
+                        </div>
+
+                        <div class="row">
+
+                            <div class="mt-4 text-left col">
+                                <p class="dashboard-subtitle text-danger">
+                                Don't forget to click SAVE after each section!
+                                </p>
+                            </div>
+                            <div class="text-right col">
+                                <button
+                                type="submit"
+                                class="px-5 mt-3 btn btn-success"
+                                >
+                                Save Now
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     </form>
-                  </div>
                 </div>
-              </div>
-              <!-- end of emergency contact -->
+            </div>
+        </div>
+            <!-- end of emergency contact -->
     </div>
   </div>
 </div>
@@ -898,4 +835,156 @@
   <script>
     CKEDITOR.replace( 'editor' );
   </script>
+
+  <script src="{{ url('vendor/vue/vue.js')}}"></script>
+  <script src="{https://unpkg.com/vue-toasted}"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    var locations = new Vue({
+      el: "#locations",
+      mounted() {
+        this.getProvincesData();
+      },
+      data: {
+        provinces: null,
+        regencies: null,
+        provinces_id: null,
+        regencies_id: null,
+      },
+      methods: {
+        getProvincesData() {
+          var self = this;
+          axios.get('{{ route('api-provinces') }}')
+            .then(function (response) {
+                self.provinces = response.data;
+            })
+        },
+        getRegenciesData() {
+          var self = this;
+          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+            .then(function (response) {
+                self.regencies = response.data;
+            })
+        },
+      },
+      watch: {
+        provinces_id: function (val, oldVal) {
+          this.regencies_id = null;
+          this.getRegenciesData();
+        },
+      }
+    });
+  </script>
+
+<script>
+    var locations = new Vue({
+      el: "#edu-locations",
+      mounted() {
+        this.getProvincesData();
+      },
+      data: {
+        provinces: null,
+        regencies: null,
+        provinces_id: null,
+        regencies_id: null,
+      },
+      methods: {
+        getProvincesData() {
+          var self = this;
+          axios.get('{{ route('api-provinces') }}')
+            .then(function (response) {
+                self.provinces = response.data;
+            })
+        },
+        getRegenciesData() {
+          var self = this;
+          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+            .then(function (response) {
+                self.regencies = response.data;
+            })
+        },
+      },
+      watch: {
+        provinces_id: function (val, oldVal) {
+          this.regencies_id = null;
+          this.getRegenciesData();
+        },
+      }
+    });
+</script>
+
+<script>
+    var locations = new Vue({
+      el: "#exp-locations",
+      mounted() {
+        this.getProvincesData();
+      },
+      data: {
+        provinces: null,
+        regencies: null,
+        provinces_id: null,
+        regencies_id: null,
+      },
+      methods: {
+        getProvincesData() {
+          var self = this;
+          axios.get('{{ route('api-provinces') }}')
+            .then(function (response) {
+                self.provinces = response.data;
+            })
+        },
+        getRegenciesData() {
+          var self = this;
+          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+            .then(function (response) {
+                self.regencies = response.data;
+            })
+        },
+      },
+      watch: {
+        provinces_id: function (val, oldVal) {
+          this.regencies_id = null;
+          this.getRegenciesData();
+        },
+      }
+    });
+</script>
+
+<script>
+    var locations = new Vue({
+      el: "#eme-locations",
+      mounted() {
+        this.getProvincesData();
+      },
+      data: {
+        provinces: null,
+        regencies: null,
+        provinces_id: null,
+        regencies_id: null,
+      },
+      methods: {
+        getProvincesData() {
+          var self = this;
+          axios.get('{{ route('api-provinces') }}')
+            .then(function (response) {
+                self.provinces = response.data;
+            })
+        },
+        getRegenciesData() {
+          var self = this;
+          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+            .then(function (response) {
+                self.regencies = response.data;
+            })
+        },
+      },
+      watch: {
+        provinces_id: function (val, oldVal) {
+          this.regencies_id = null;
+          this.getRegenciesData();
+        },
+      }
+    });
+</script>
 @endpush
+

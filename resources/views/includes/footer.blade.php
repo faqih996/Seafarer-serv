@@ -7,9 +7,9 @@
                     <div class="col-12">
                         <div class="row">
                         <div class="col-12 col-lg-3">
-                            <h3>Sentina Arta Sumberdaya</h3>
+                            <h3>Prima Andalan Sumberdaya</h3>
                             <p>
-                                Sentina Arta Sumberdaya bertekad untuk mencetak sumberdaya manusia yang siap berkarir di dunia hospitality internasional sehingga siap nenasuki dunia kerja.
+                                Prima Andalan Sumberdaya bertekad untuk mencetak sumberdaya manusia yang siap berkarir di dunia hospitality internasional sehingga siap nenasuki dunia kerja.
                             </p>
                         </div>
                         <div class="col-12 col-lg-3">
@@ -47,7 +47,7 @@
                 class="row border-top justify-content-center align-items-center pt-4"
                 >
                 <div class="col-auto text-gray-500 font-weight-light">
-                    2021 Copyright Sentina Arta Sumberdaya • All rights reserved • Made in Jakarta
+                    2021 Copyright Prima Andalan Sumberdaya• All rights reserved • Made in Jakarta
                 </div>
                 </div>
             </div>

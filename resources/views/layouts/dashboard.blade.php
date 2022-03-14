@@ -17,29 +17,29 @@
         <!-- Sidebar -->
         <div class="border-right" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
-            <img src="/images/sosslogo.png" alt="" class="my-4" width="200"/>
+            <img src="{{ url('images/sosslogo.png')}}" alt="" class="my-4" width="200"/>
           </div>
           <div class="list-group list-group-flush">
             <a
-              {{-- href="{{ route('dashboard') }}" --}}
+              href="{{ route('dashboard') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard')) ? 'active' : '' }} "
             >
               Dashboard
             </a>
             <a
-              {{-- href="{{ route('dashboard-product') }}" --}}
+              href="{{ route('profile.create') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/products*')) ? 'active' : '' }} "
             >
               My Profile
             </a>
             <a
-              {{-- href="{{ route('dashboard-transaction') }}" --}}
+              href="{{ route('documents.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/documents*')) ? 'active' : '' }} "
             >
               My Documents
             </a>
             <a
-              {{-- href="{{ route('dashboard-settings-store') }}" --}}
+              href="{{ url('settings') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/settings*')) ? 'active' : '' }} "
             >
               My Account
@@ -94,7 +94,7 @@
                        Hi, {{ Auth::user()->first_name }}
                     </a>
                     <div class="dropdown-menu">
-                        <a href="" class="dropdown-item">Dashboard</a>
+                        <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
                         <a href="" class="dropdown-item">
                             Settings
                         </a>
