@@ -1,4 +1,4 @@
-@extends('layouts.dashboard')
+@extends('layouts.admin')
 
 @section('title')
     Admin Dashboard
@@ -12,9 +12,9 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Positions</h2>
+            <h2 class="dashboard-title">Applicant</h2>
             <p class="dashboard-subtitle">
-                List of Positions
+                List of Apllicant
             </p>
         </div>
         <div class="dashboard-content">
@@ -22,9 +22,9 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{  route('position.create') }}" class="btn btn-primary mb-3">
+                            <a href="{{  route('profile.create') }}" class="btn btn-primary mb-3">
                                 {{-- {{  route('position.create') }} --}}
-                                + Add Position
+                                + Add Applicant
                             </a>
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">

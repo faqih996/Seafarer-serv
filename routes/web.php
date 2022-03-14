@@ -33,7 +33,7 @@ Route::get('/detail', [DetailController::class,'index'])->name('detail');
 
 Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
-        Route::resource('profile', ProfileController::class);
+        Route::resource('profile', ProfileController::class)->name('dashboard-profile');
         Route::resource('documents', DocumentsController::class);
         Route::resource('education', EducationController::class);
         Route::resource('experience', ExperienceController::class);
@@ -45,6 +45,7 @@ Route::prefix('admin')
     ->group(function(){
         Route::get('/', [DashboardAdminController::class,'index'])->name('admin-dashboard');
         Route::resource('user', UserController::class);
+        Route::resource('profile', ProfileController::class);
         Route::resource('department', DepartmentController::class);
         Route::resource('position', PositionController::class);
         Route::resource('positions-galleries', PositionGalleryController::class);

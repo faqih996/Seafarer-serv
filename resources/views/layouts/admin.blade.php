@@ -33,6 +33,12 @@
               Users
             </a>
             <a
+               href="{{ route('profile.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/profile*')) ? 'active' : '' }}"
+            >
+              Profile
+            </a>
+            <a
               href="{{ url('admin/department') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/department*')) ? 'active' : '' }}"
             >
@@ -116,7 +122,7 @@
                         Hi, {{ Auth::user()->first_name }}
                     </a>
                     <div class="dropdown-menu">
-                        <a href="{{ route('dashboard') }}" class="dropdown-item">Dashboard</a>
+                        <a href="{{ route('admin-dashboard') }}" class="dropdown-item">Dashboard</a>
                         <a href="" class="dropdown-item">
                             Settings
                         </a>

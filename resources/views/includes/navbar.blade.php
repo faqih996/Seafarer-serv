@@ -21,7 +21,7 @@
                         <a class="nav-link" href="{{route('home')}}">Home </a>
                     </li>
                     <li class="nav-item active">
-                        <a class="nav-link" href="/categories.html">Jobs</a>
+                        <a class="nav-link" href="">Jobs</a>
                     </li>
                     @guest
                     <li class="nav-item">
@@ -52,7 +52,7 @@
                     >
                         Hi, {{Auth::user()->first_name    }}
                         <img
-                        src="/images/icon-user.png"
+                        src="images/icon-user.png"
                         alt=""
                         class="mr-2 rounded-circle profile-picture"
                         />
