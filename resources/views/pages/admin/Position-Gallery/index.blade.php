@@ -22,7 +22,7 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{  route('positions-galleries.create') }}" class="btn btn-primary mb-3"> 
+                            <a href="{{  route('positions-galleries.create') }}" class="btn btn-primary mb-3">
                                 + Add New Gallery
                             </a>
                             <div class="table-responsive">

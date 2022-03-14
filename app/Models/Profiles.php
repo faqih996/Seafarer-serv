@@ -20,7 +20,7 @@ class Profiles extends Model
 
     ];
 
-    public function user(){
-        return $this->hasOne( User::class, 'id', 'users_id');
+    public function users(){
+        return $this->belongsTO( User::class, 'users_id', 'id', );
     }
 }

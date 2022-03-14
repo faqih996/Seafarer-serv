@@ -10,7 +10,11 @@ use App\Models\Emergencies;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
+use Yajra\DataTables\Facades\DataTables;
 use Symfony\Component\HttpKernel\Profiler\Profile;
+use Illuminate\Support\Facades\Storage;
+use App\Exports\ProfileExport;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProfileController extends Controller
 {
@@ -21,6 +25,42 @@ class ProfileController extends Controller
      */
     public function index()
     {
+
+        if (request()->ajax()) {
+            $query = Profiles::with(['users']);
+
+            return Datatables::of($query)
+                ->addColumn('action', function ($item) {
+                    return '
+                        <div class="btn-group">
+                            <div class="dropdown">
+                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
+                                    type="button" id="action' .  $item->id . '"
+                                        data-toggle="dropdown"
+                                        aria-haspopup="true"
+                                        aria-expanded="false">
+                                        Action
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
+                                    <a class="dropdown-item" href="' . route('profile.edit', $item->id) . '">
+                                        Edit
+                                    </a>
+                                    <form action="' . route('profile.destroy', $item->id) . '" method="POST">
+                                        ' . method_field('delete') . csrf_field() . '
+                                        <button type="submit" class="dropdown-item text-danger">
+                                            Delete
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                    </div>';
+                })
+                ->editColumn('photos', function ($item) {
+                    return $item->photos ? '<img src="' . Storage::url($item->photos) . '" style="max-height: 80px;"/>' : '';
+                })
+                ->rawColumns(['action','photos'])
+                ->make();
+        }
         return view('pages.admin.profiles.index', [
 
         ]);
@@ -117,5 +157,10 @@ class ProfileController extends Controller
         $item->delete();
 
         return redirect()->route('profile.index');
+    }
+
+    public function export()
+    {
+        return Excel::download(new ProfileExport, 'profile.xlsx');
     }
 }

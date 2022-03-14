@@ -49,7 +49,7 @@
                           id="first_name"
                           aria-describedby="emailHelp"
                           name="first_name"
-                          value="your first name"
+                          value="{{Auth::user()->first_name}}"
                           required
                         />
                       </div>
@@ -63,7 +63,7 @@
                           id="last_name"
                           aria-describedby="emailHelp"
                           name="last_name"
-                          value="your last name"
+                          value="{{Auth::user()->last_name}}"
                           required
                         />
                       </div>
@@ -147,7 +147,7 @@
                           id="addressOne"
                           aria-describedby="emailHelp"
                           name="addressOne"
-                          value="your valid email"
+                          value="{{Auth::user()->email}}"
                           required
                         />
                       </div>
@@ -831,14 +831,12 @@
 @endsection
 
 @push('addon-script')
-  <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
-  <script>
-    CKEDITOR.replace( 'editor' );
-  </script>
+
 
   <script src="{{ url('vendor/vue/vue.js')}}"></script>
   <script src="{https://unpkg.com/vue-toasted}"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
   <script>
     var locations = new Vue({
       el: "#locations",
@@ -985,6 +983,11 @@
         },
       }
     });
+</script>
+
+<script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+<script>
+  CKEDITOR.replace( 'editor' );
 </script>
 @endpush
 

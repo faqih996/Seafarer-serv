@@ -12,7 +12,7 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Applicant</h2>
+            <h2 class="dashboard-title">Applicant Database</h2>
             <p class="dashboard-subtitle">
                 List of Apllicant
             </p>
@@ -26,15 +26,26 @@
                                 {{-- {{  route('position.create') }} --}}
                                 + Add Applicant
                             </a>
+                            <div class="text-right col">
+                                <a
+                                href="{{route('profile.export')}}"
+                                  type="submit"
+                                  class="px-5 btn btn-success"
+                                >
+                                  Save
+                                </a>
+                              </div>
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Position Name</th>
-                                        <th>Slug</th>
-                                        <th>Department</th>
-                                        <th>Status</th>
+                                        <th>Photo</th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Gender</th>
+                                        <th>Whatsapp Number</th>
+                                        <th>Position</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -63,11 +74,13 @@
             },
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'name', name: 'name' },
-                { data: 'slug', name: 'slug' },
-                { data: 'departments.name', name: 'departments.name' },
-                // { data: 'photo', name: 'photo' },
-                { data: 'status', name: 'status' },
+                { data: 'photos', name: 'photos' },
+                { data: 'users.first_name', name: 'users.first_name' },
+                { data: 'users.last_name', name: 'users.last_name' },
+                { data: 'gender', name: 'gender' },
+                { data: 'phone_number', name: 'phone_number' },
+                { data: 'occupation', name: 'occupation' },
+
                 {
                     data: 'action',
                     name: 'action',
