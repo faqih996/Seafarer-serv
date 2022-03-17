@@ -1,22 +1,18 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Profiles;
-use App\Models\User;
-use App\Models\Experiences;
-use App\Models\Educations;
-use App\Models\Emergencies;
+use App\Http\Controllers\Controller;
 
-use Illuminate\Http\Request;
-use App\Http\Requests\ProfileRequest;
-use Yajra\DataTables\Facades\DataTables;
-use Symfony\Component\HttpKernel\Profiler\Profile;
+use App\Models\ProductGallery;
+use App\Models\Product;
+
+use App\Http\Requests\Admin\ProductGalleryRequest;
+
 use Illuminate\Support\Facades\Storage;
-use App\Exports\ProfilesExport;
-use Maatwebsite\Excel\Facades\Excel;
+use Yajra\DataTables\Facades\DataTables;
 
-class ProfileController extends Controller
+class ProductGalleryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,9 +21,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-
         if (request()->ajax()) {
-            $query = Profiles::with(['users']);
+            $query = ProductGallery::with(['product']);
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
@@ -39,16 +34,13 @@ class ProfileController extends Controller
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false">
-                                        Action
+                                        Aksi
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                                    <a class="dropdown-item" href="' . route('profile.edit', $item->id) . '">
-                                        Edit
-                                    </a>
-                                    <form action="' . route('profile.destroy', $item->id) . '" method="POST">
+                                    <form action="' . route('product-gallery.destroy', $item->id) . '" method="POST">
                                         ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class="dropdown-item text-danger">
-                                            Delete
+                                            Hapus
                                         </button>
                                     </form>
                                 </div>
@@ -61,9 +53,8 @@ class ProfileController extends Controller
                 ->rawColumns(['action','photos'])
                 ->make();
         }
-        return view('pages.profile.index', [
 
-        ]);
+        return view('pages.admin.product-gallery.index');
     }
 
     /**
@@ -73,9 +64,10 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        return view('pages.profile.create', [
-            'users' => $users
+        $products = Product::all();
+
+        return view('pages.admin.product-gallery.create',[
+            'products' => $products
         ]);
     }
 
@@ -85,15 +77,15 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProfileRequest $request)
+    public function store(ProductGalleryRequest $request)
     {
         $data = $request->all();
-        // dd($data);
-        $data['photos'] = $request->file('photos')->store('assets/profile', 'public');
 
-        Profiles::create($data);
+        $data['photos'] = $request->file('photos')->store('assets/product', 'public');
 
-        return redirect()->route('profile.create');
+        ProductGallery::create($data);
+
+        return redirect()->route('product-gallery.index');
     }
 
     /**
@@ -104,7 +96,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -115,16 +107,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $item = Profiles::findOrFail($id);
-        $education = Educations::findOrFail($id);
-        $experience = Experiences::findOrFail($id);
-        $emergency = Emergencies::findOrFail($id);
-        return view('pages.profile.edit', [
-            'item' => $item,
-            'education' => $education,
-            'experience' => $experience,
-            'emergency' => $emergency
-        ]);
+        //
     }
 
     /**
@@ -134,15 +117,9 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProfileRequest $request, $id)
+    public function update(ProductGalleryRequest $request, $id)
     {
-        $data = $request->all();
-
-        $item = Profiles::findOrFail($id);
-
-        $item->update($data);
-
-        return redirect()->route('profile.create');
+        //
     }
 
     /**
@@ -153,14 +130,10 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        $item = Profiles::findOrFail($id);
+        $item = ProductGallery::findorFail($id);
         $item->delete();
 
-        return redirect()->route('profile.index');
-    }
+        return redirect()->route('product-gallery.index');
 
-    public function export()
-    {
-        return Excel::download(new ProfilesExport, 'profiles.xlsx');
     }
 }

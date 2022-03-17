@@ -1,22 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Profiles;
+use App\Http\Controllers\Controller;
+
+use App\Models\Product;
+use App\Models\Category;
 use App\Models\User;
-use App\Models\Experiences;
-use App\Models\Educations;
-use App\Models\Emergencies;
+
+use App\Http\Requests\Admin\ProductRequest;
 
 use Illuminate\Http\Request;
-use App\Http\Requests\ProfileRequest;
-use Yajra\DataTables\Facades\DataTables;
-use Symfony\Component\HttpKernel\Profiler\Profile;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
-use App\Exports\ProfilesExport;
-use Maatwebsite\Excel\Facades\Excel;
+use Yajra\DataTables\Facades\DataTables;
 
-class ProfileController extends Controller
+class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -25,9 +24,8 @@ class ProfileController extends Controller
      */
     public function index()
     {
-
         if (request()->ajax()) {
-            $query = Profiles::with(['users']);
+            $query = Product::with(['user','category']);
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
@@ -39,31 +37,27 @@ class ProfileController extends Controller
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false">
-                                        Action
+                                        Aksi
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                                    <a class="dropdown-item" href="' . route('profile.edit', $item->id) . '">
-                                        Edit
+                                    <a class="dropdown-item" href="' . route('product.edit', $item->id) . '">
+                                        Sunting
                                     </a>
-                                    <form action="' . route('profile.destroy', $item->id) . '" method="POST">
+                                    <form action="' . route('product.destroy', $item->id) . '" method="POST">
                                         ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class="dropdown-item text-danger">
-                                            Delete
+                                            Hapus
                                         </button>
                                     </form>
                                 </div>
                             </div>
                     </div>';
                 })
-                ->editColumn('photos', function ($item) {
-                    return $item->photos ? '<img src="' . Storage::url($item->photos) . '" style="max-height: 80px;"/>' : '';
-                })
-                ->rawColumns(['action','photos'])
+                ->rawColumns(['action'])
                 ->make();
         }
-        return view('pages.profile.index', [
 
-        ]);
+        return view('pages.admin.product.index');
     }
 
     /**
@@ -74,8 +68,11 @@ class ProfileController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('pages.profile.create', [
-            'users' => $users
+        $categories = Category::all();
+
+        return view('pages.admin.product.create',[
+            'users' => $users,
+            'categories' => $categories
         ]);
     }
 
@@ -85,15 +82,15 @@ class ProfileController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProfileRequest $request)
+    public function store(ProductRequest $request)
     {
         $data = $request->all();
-        // dd($data);
-        $data['photos'] = $request->file('photos')->store('assets/profile', 'public');
 
-        Profiles::create($data);
+        $data['slug'] = Str::slug($request->name);
 
-        return redirect()->route('profile.create');
+        Product::create($data);
+
+        return redirect()->route('product.index');
     }
 
     /**
@@ -104,7 +101,7 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-
+        //
     }
 
     /**
@@ -115,15 +112,14 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $item = Profiles::findOrFail($id);
-        $education = Educations::findOrFail($id);
-        $experience = Experiences::findOrFail($id);
-        $emergency = Emergencies::findOrFail($id);
-        return view('pages.profile.edit', [
+        $item = Product::with(['category','user'])->findOrFail($id);
+        $users = User::all();
+        $categories = Category::all();
+
+        return view('pages.admin.product.edit',[
             'item' => $item,
-            'education' => $education,
-            'experience' => $experience,
-            'emergency' => $emergency
+            'users' => $users,
+            'categories' => $categories
         ]);
     }
 
@@ -134,15 +130,17 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProfileRequest $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         $data = $request->all();
 
-        $item = Profiles::findOrFail($id);
+        $item = Product::findOrFail($id);
+
+        $data['slug'] = Str::slug($request->name);
 
         $item->update($data);
 
-        return redirect()->route('profile.create');
+        return redirect()->route('product.index');
     }
 
     /**
@@ -153,14 +151,10 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        $item = Profiles::findOrFail($id);
+        $item = Product::findorFail($id);
         $item->delete();
 
-        return redirect()->route('profile.index');
-    }
+        return redirect()->route('product.index');
 
-    public function export()
-    {
-        return Excel::download(new ProfilesExport, 'profiles.xlsx');
     }
 }

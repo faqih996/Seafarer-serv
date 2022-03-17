@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 @section('title')
-    Admin Dashboard
+    Store Dashboard
 @endsection
 
 @section('content')
@@ -12,9 +12,9 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Applicant Database</h2>
+            <h2 class="dashboard-title">Services</h2>
             <p class="dashboard-subtitle">
-                List of Apllicant
+                List of Services
             </p>
         </div>
         <div class="dashboard-content">
@@ -22,29 +22,17 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{  route('profiles.create') }}" class="btn btn-primary mb-3">
-                                {{-- {{  route('position.create') }} --}}
-                                + Add Applicant
+                            <a href="{{  route('category.create') }}" class="btn btn-primary mb-3">
+                                + Add New Services
                             </a>
-
-                            <a
-                            href="{{ url('profiles.export') }}"
-                                class="btn btn-success mb-3 text-right"
-                            >
-                                Export
-                            </a>
-
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Photo</th>
-                                        <th>First Name</th>
-                                        <th>Last Name</th>
-                                        <th>Gender</th>
-                                        <th>Whatsapp Number</th>
-                                        <th>Position</th>
+                                        <th>Name</th>
+                                        <th>Icon</th>
+                                        <th>Slug</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -73,18 +61,14 @@
             },
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'photos', name: 'photos' },
-                { data: 'users.first_name', name: 'users.first_name' },
-                { data: 'users.last_name', name: 'users.last_name' },
-                { data: 'gender', name: 'gender' },
-                { data: 'phone_number', name: 'phone_number' },
-                { data: 'occupation', name: 'occupation' },
-
+                { data: 'name', name: 'name' },
+                { data: 'photo', name: 'photo' },
+                { data: 'slug', name: 'slug' },
                 {
                     data: 'action',
                     name: 'action',
-                    orderable: true,
-                    searchable: true,
+                    orderable: false,
+                    searchable: false,
                     width: '15%'
                 },
             ]

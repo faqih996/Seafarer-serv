@@ -27,8 +27,8 @@
               Dashboard
             </a>
             <a
-              href="{{ route('profile.index') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('profile*')) ? 'active' : '' }} "
+              href="{{ route('profile.create') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('dashboard/profile*')) ? 'active' : '' }} "
             >
               My Profile
             </a>

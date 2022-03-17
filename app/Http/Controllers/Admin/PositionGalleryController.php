@@ -30,9 +30,9 @@ class PositionGalleryController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1" 
+                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
                                     type="button" id="action' .  $item->id . '"
-                                        data-toggle="dropdown" 
+                                        data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false">
                                         Action
@@ -52,10 +52,10 @@ class PositionGalleryController extends Controller
                     return $item->photos ? '<img src="' . Storage::url($item->photos) . '" style="max-height: 80px;"/>' : '';
                 })
                 ->rawColumns(['action','photos'])
-                // raw column ini berfungsi untuk memanggil Fungsi yang ada di addColumn dan editColumn 
+                // raw column ini berfungsi untuk memanggil Fungsi yang ada di addColumn dan editColumn
                 ->make();
         }
-        
+
         return view('pages.admin.position-gallery.index');
     }
 
@@ -71,7 +71,7 @@ class PositionGalleryController extends Controller
         return view('pages.admin.position-gallery.create', [
             'positions' => $positions
         ]);
-        
+
     }
 
     /**
@@ -85,7 +85,7 @@ class PositionGalleryController extends Controller
         $data = $request->all();
 
         $data['photos'] = $request->file('photos')->store('assets/position', 'public');
-        
+
         PositionGallery::create($data);
 
         return redirect()->route('positions-galleries.index');

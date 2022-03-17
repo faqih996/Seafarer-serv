@@ -12,6 +12,7 @@ use App\Http\Controllers\EmergencyController;
 use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\DepartmentController;
+use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\PositionController;
 use App\Http\Controllers\Admin\PositionGalleryController;
@@ -33,7 +34,7 @@ Route::get('/detail', [DetailController::class,'index'])->name('detail');
 
 Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
-        Route::resource('profile', ProfileController::class)->name('dashboard-profile');
+        Route::resource('profile', ProfileController::class);
         Route::resource('documents', DocumentsController::class);
         Route::resource('education', EducationController::class);
         Route::resource('experience', ExperienceController::class);
@@ -45,7 +46,8 @@ Route::prefix('admin')
     ->group(function(){
         Route::get('/', [DashboardAdminController::class,'index'])->name('admin-dashboard');
         Route::resource('user', UserController::class);
-        Route::resource('profile', ProfileController::class);
+        Route::resource('category', CategoryController::class);
+        Route::resource('profiles', ProfileAdminController::class);
         Route::resource('department', DepartmentController::class);
         Route::resource('position', PositionController::class);
         Route::resource('positions-galleries', PositionGalleryController::class);

@@ -25,7 +25,7 @@ class ProfileRequest extends FormRequest
     {
         return [
 
-            // 'users_id'=> 'required|exists:users,id',
+            'users_id'=> 'required|exists:users,id',
             'birth_place'=> 'required|string',
             'birth_date'=> 'required|date',
             'about_me'=> 'nullable|string',
@@ -37,7 +37,6 @@ class ProfileRequest extends FormRequest
             'country'=> 'required|string',
             'occupation'=> 'nullable|string',
             'skype'=> 'nullable|string',
-            // 'start_date' => 'nullable|date',
             'gender' => 'required|string',
             'marital' => 'required|string',
             'photos' => 'nullable|image',

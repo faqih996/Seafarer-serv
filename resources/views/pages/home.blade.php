@@ -12,16 +12,16 @@
             <div class="container">
                 <div class="row">
                     <div class="col align-self-center">
-                        <h1 class="mb-4 header-title">
+                        <h1 class="mb-3 header-title">
                             Seafarer One Stop Services
                         </h1>
                         <p class="mb-4 header-subtitle">
-                            One Way to connect to your dreams job
+                            Easy, Transparent, Reliable <br>
+                            Stop Worriying, Start Sailing
                         </p>
-                        <a class="btn btn-primary" href="#" role="button">Join Now</a>
                     </div>
                     <div class="col d-none d-sm-block">
-                        <img width="600" src="images/logososs.png" alt="" class="w-30" data-aos="fade-left">
+                        <img width="500" src="images/logososs.png" alt="" class="w-30" data-aos="fade-left">
                     </div>
                 </div>
             </div>

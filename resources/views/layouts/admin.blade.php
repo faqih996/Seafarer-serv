@@ -32,26 +32,34 @@
             >
               Users
             </a>
-            <a
-               href="{{ route('profile.index') }}"
+            {{-- <a
+               href="{{ url('profiles.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/profile*')) ? 'active' : '' }}"
             >
               Profile
+            </a> --}}
+            <a
+              href="{{ route('category.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }} "
+            >
+              Services
             </a>
             <a
-              href="{{ url('admin/department') }}"
+            <a
+              href="{{ route('department.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/department*')) ? 'active' : '' }}"
             >
+
               Departments
             </a>
             <a
-              href="{{ url('admin/position') }}"
+              href="{{ route('position.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/position')) ? 'active' : '' }} "
             >
               Positions
             </a>
             <a
-              href="{{ url('admin/positions-galleries.index') }}"
+              href="{{ route('positions-galleries.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/positions-galleries*')) ? 'active' : '' }} "
             >
               Galleries

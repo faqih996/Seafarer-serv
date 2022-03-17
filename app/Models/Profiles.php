@@ -21,6 +21,6 @@ class Profiles extends Model
     ];
 
     public function users(){
-        return $this->belongsTO( User::class, 'users_id', 'id', );
+        return $this->hasOne( User::class, 'users_id', 'id', );
     }
 }

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Exports\ProfilesExport;
 use Maatwebsite\Excel\Facades\Excel;
 
-class ProfileController extends Controller
+class ProfileAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class ProfileController extends Controller
                                         Action
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                                    <a class="dropdown-item" href="' . route('profile.edit', $item->id) . '">
+                                    <a class="dropdown-item" href="' . route('profiles.edit', $item->id) . '">
                                         Edit
                                     </a>
-                                    <form action="' . route('profile.destroy', $item->id) . '" method="POST">
+                                    <form action="' . route('profiles.destroy', $item->id) . '" method="POST">
                                         ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class="dropdown-item text-danger">
                                             Delete
@@ -61,7 +61,7 @@ class ProfileController extends Controller
                 ->rawColumns(['action','photos'])
                 ->make();
         }
-        return view('pages.profile.index', [
+        return view('pages.admin.profiles.index', [
 
         ]);
     }
@@ -74,7 +74,7 @@ class ProfileController extends Controller
     public function create()
     {
         $users = User::all();
-        return view('pages.profile.create', [
+        return view('pages.admin.profiles.create', [
             'users' => $users
         ]);
     }
@@ -93,7 +93,7 @@ class ProfileController extends Controller
 
         Profiles::create($data);
 
-        return redirect()->route('profile.create');
+        return redirect()->route('profilesadmin.create');
     }
 
     /**
@@ -119,7 +119,7 @@ class ProfileController extends Controller
         $education = Educations::findOrFail($id);
         $experience = Experiences::findOrFail($id);
         $emergency = Emergencies::findOrFail($id);
-        return view('pages.profile.edit', [
+        return view('pages.admin.profilesadmin.edit', [
             'item' => $item,
             'education' => $education,
             'experience' => $experience,
@@ -142,7 +142,7 @@ class ProfileController extends Controller
 
         $item->update($data);
 
-        return redirect()->route('profile.create');
+        return redirect()->route('profileadmin.create');
     }
 
     /**
@@ -156,7 +156,7 @@ class ProfileController extends Controller
         $item = Profiles::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('profile.index');
+        return redirect()->route('profileadmin.index');
     }
 
     public function export()

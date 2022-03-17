@@ -17,44 +17,7 @@
                 </p>
               </div>
               <div class="dashboard-content">
-                <div class="row">
-                  <div class="col-md-4">
-                    <div class="card mb-2">
-                      <div class="card-body">
-                        <div class="dashboard-card-title">
-                          Applicant
-                        </div>
-                        <div class="dashboard-card-subtitle">
-                          {{ $applicant }}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card mb-2">
-                      <div class="card-body">
-                        <div class="dashboard-card-title">
-                          Department
-                        </div>
-                        <div class="dashboard-card-subtitle">
-                          120
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-4">
-                    <div class="card mb-2">
-                      <div class="card-body">
-                        <div class="dashboard-card-title">
-                          Ready To Join
-                        </div>
-                        <div class="dashboard-card-subtitle">
-                         150
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+
                 <div class="row mt-3">
                   <div class="col-12 mt-2">
                     <h5 class="mb-3">Recent Update</h5>
