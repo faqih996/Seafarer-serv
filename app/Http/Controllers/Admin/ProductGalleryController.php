@@ -29,7 +29,7 @@ class ProductGalleryController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
+                                <button class="mb-1 mr-1 btn btn-primary dropdown-toggle"
                                     type="button" id="action' .  $item->id . '"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
@@ -37,7 +37,7 @@ class ProductGalleryController extends Controller
                                         Aksi
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                                    <form action="' . route('product-gallery.destroy', $item->id) . '" method="POST">
+                                    <form action="' . route('products-gallery.destroy', $item->id) . '" method="POST">
                                         ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class="dropdown-item text-danger">
                                             Hapus
@@ -85,7 +85,7 @@ class ProductGalleryController extends Controller
 
         ProductGallery::create($data);
 
-        return redirect()->route('product-gallery.index');
+        return redirect()->route('products-gallery.index');
     }
 
     /**
@@ -133,7 +133,7 @@ class ProductGalleryController extends Controller
         $item = ProductGallery::findorFail($id);
         $item->delete();
 
-        return redirect()->route('product-gallery.index');
+        return redirect()->route('products-gallerys.index');
 
     }
 }

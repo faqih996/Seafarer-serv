@@ -13,6 +13,8 @@ use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\Admin\DashboardAdminController;
 use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\ProductGalleryController;
 use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\PositionController;
 use App\Http\Controllers\Admin\PositionGalleryController;
@@ -47,6 +49,8 @@ Route::prefix('admin')
         Route::get('/', [DashboardAdminController::class,'index'])->name('admin-dashboard');
         Route::resource('user', UserController::class);
         Route::resource('category', CategoryController::class);
+        Route::resource('product', ProductController::class);
+        Route::resource('products-gallery', ProductGalleryController::class);
         Route::resource('profiles', ProfileAdminController::class);
         Route::resource('department', DepartmentController::class);
         Route::resource('position', PositionController::class);

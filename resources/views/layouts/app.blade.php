@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
+
         @include('includes.meta')
         <title>@yield('title')</title>
 
@@ -24,6 +24,6 @@
         @stack('prepend-script')
         @include('includes.script')
         @stack('addon-script')
-        
+
     </body>
 </html>

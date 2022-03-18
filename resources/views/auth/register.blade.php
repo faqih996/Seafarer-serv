@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="page-content page-auth">
+<div class="page-content page-auth" id="register">
     <div class="section-auth" data-aos="fade-up">
         <div class="container">
             <div class="row align-items-center justify-content-center row-login">
@@ -112,6 +112,7 @@
                                 <button
                                     type="submit"
                                     class="btn btn-primary btn-block 85 mt-4"
+                                    :disabled="this.email_unavailable"
                                 >
                                     Sign Up
                                 </button>
@@ -131,9 +132,9 @@
 
 @push('addon-script')
     <script src="vendor/vue/vue.js"></script>
-    <script src="https://unpkg.com/vue-toasted.js"></script>
+    <script src="https://unpkg.com/vue-toasted"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-     <script>
+    <script>
       Vue.use(Toasted);
 
       var register = new Vue({
@@ -177,10 +178,9 @@
         },
         data() {
             return {
-                name: "Angga Hazza Sett",
-                email: "kamujagoan@bwa.id",
-                is_store_open: true,
-                store_name: "",
+                first_name: "Jhon",
+                last_name: "Doe",
+                email: "iamsailor@sailor.id",
                 email_unavailable: false
             }
         },

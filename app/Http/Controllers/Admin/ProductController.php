@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\User;
-
 use App\Http\Requests\Admin\ProductRequest;
 
 use Illuminate\Http\Request;
@@ -25,14 +24,14 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Product::with(['user','category']);
+            $query = Product::with(['users','category']);
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
+                                <button class="mb-1 mr-1 btn btn-primary dropdown-toggle"
                                     type="button" id="action' .  $item->id . '"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"

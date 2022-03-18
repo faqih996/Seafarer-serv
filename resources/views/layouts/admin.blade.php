@@ -45,6 +45,19 @@
               Services
             </a>
             <a
+              href="{{ route('product.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/product')) ? 'active' : '' }}"
+            >
+
+              Product
+            </a>
+            <a
+              href="{{ route('products-gallery.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/products-gallery*')) ? 'active' : '' }}"
+            >
+
+              Product Gallery
+            </a>
             <a
               href="{{ route('department.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/department*')) ? 'active' : '' }}"
