@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\DepartmentController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\ProductGalleryController;
+use App\Http\Controllers\Admin\ProfileAdminController;
 use App\Http\Controllers\Admin\DivisionController;
 use App\Http\Controllers\Admin\PositionController;
 use App\Http\Controllers\Admin\PositionGalleryController;

@@ -32,12 +32,12 @@
             >
               Users
             </a>
-            {{-- <a
-               href="{{ url('profiles.index') }}"
-              class="list-group-item list-group-item-action {{ (request()->is('admin/profile*')) ? 'active' : '' }}"
+            <a
+               href="{{ route('profiles.index') }}"
+              class="list-group-item list-group-item-action {{ (request()->is('admin/profiles*')) ? 'active' : '' }}"
             >
               Profile
-            </a> --}}
+            </a>
             <a
               href="{{ route('category.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('admin/category*')) ? 'active' : '' }} "

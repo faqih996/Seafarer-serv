@@ -5,11 +5,11 @@
     <div class="section-auth" data-aos="fade-up">
         <div class="container">
             <div class="row align-items-center justify-content-center row-login">
-                <div class="col-lg-6 text-center">
+                <div class="text-center col-lg-6">
                 <img
                 src="images/sosslogo.png"
                 alt=""
-                class="w-50 mb-3 mb-lg-none"
+                class="mb-3 w-50 mb-lg-none"
                 />
             </div>
                 <div class="col-lg-6">
@@ -111,14 +111,14 @@
 
                                 <button
                                     type="submit"
-                                    class="btn btn-primary btn-block 85 mt-4"
+                                    class="mt-4 btn btn-primary btn-block 85"
                                     :disabled="this.email_unavailable"
                                 >
                                     Sign Up
                                 </button>
                                 <a
                                     href="{{ route('login') }}"
-                                    class="btn btn-signup btn-block w-85 mt-3"
+                                    class="mt-3 btn btn-signup btn-block w-85"
                                 >
                                     Sign In to My Account
                                 </a>
@@ -154,7 +154,7 @@
                     .then(function (response) {
                         if(response.data == 'Available') {
                             self.$toasted.show(
-                                "Email anda tersedia! Silahkan lanjut langkah selanjutnya!", {
+                                "Email available! you can continue to next step!", {
                                     position: "top-center",
                                     className: "rounded",
                                     duration: 1000,
@@ -163,7 +163,7 @@
                             self.email_unavailable = false;
                         } else {
                             self.$toasted.error(
-                                "Maaf, tampaknya email sudah terdaftar pada sistem kami.", {
+                                "Sorry, email already registered. use another email!", {
                                     position: "top-center",
                                     className: "rounded",
                                     duration: 1000,
@@ -180,7 +180,7 @@
             return {
                 first_name: "Jhon",
                 last_name: "Doe",
-                email: "iamsailor@sailor.id",
+                email: "new@sailor.id",
                 email_unavailable: false
             }
         },

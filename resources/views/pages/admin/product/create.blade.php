@@ -43,11 +43,7 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Product Owner</label>
-                      <select name="users_id" class="form-control">
-                        @foreach ($users as $user)
-                          <option value="{{ $user->id }}">{{ $user->name }}</option>
-                        @endforeach
-                      </select>
+                       <input type="text" class="form-control" name="user_id" value="{{ Auth::user()->id }}" required />
                     </div>
                   </div>
                   <div class="col-md-12">
