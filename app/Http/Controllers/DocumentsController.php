@@ -29,7 +29,7 @@ class DocumentsController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
+                                <button class="mb-1 mr-1 btn btn-primary dropdown-toggle"
                                     type="button" id="action' .  $item->id . '"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
@@ -81,13 +81,13 @@ class DocumentsController extends Controller
     public function store(DocumentsRequest $request)
     {
         $data = $request->all();
-
+        $data['users_id'] = auth()->user()->id;
         $data['slug'] = Str::slug($request->name);
         $data['photos'] = $request->file('photos')->store('assets/Documents', 'public');
 
         Documents::create($data);
 
-        return redirect()->route('documents.index');
+        return redirect()->route('documents.index')->with('success', 'Your Document Has Been Saved!');
     }
 
     /**

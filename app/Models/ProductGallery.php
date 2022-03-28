@@ -18,4 +18,8 @@ class ProductGallery extends Model
     public function product(){
         return $this->belongsTo(Product::class, 'products_id', 'id');
     }
+
+    public function users(){
+        return $this->hasOne( User::class, 'id', 'users_id');
+    }
 }

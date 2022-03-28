@@ -22,8 +22,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{  route('documents.create') }}" class="btn btn-primary mb-3">
-                                + Add New Gallery
+                            <a href="{{  route('documents.create') }}" class="mb-3 btn btn-primary">
+                                + Add New Document
                             </a>
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">

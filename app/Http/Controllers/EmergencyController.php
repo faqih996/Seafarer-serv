@@ -42,10 +42,11 @@ class EmergencyController extends Controller
     public function store(EmergencyRequest $request)
     {
         $data = $request->all();
+        $data['user_id'] = auth()->user()->id;
 
         Emergencies::create($data);
 
-        return redirect()->route('profile.create');
+        return redirect()->route('profile.create')->with('success', 'Your Emergency Contact Has Been Saved!');
     }
 
     /**

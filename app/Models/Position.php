@@ -32,4 +32,8 @@ class Position extends Model
         return $this->belongsTo(Department::class, 'departments_id', 'id');
         // panggil modelnya, kemudian sambungkan dengan 'Foreignkey' di tabel yang berelasi, 'primaryKey' dari tabel asli
     }
+
+    public function users(){
+        return $this->hasOne( User::class, 'id', 'users_id');
+    }
 }

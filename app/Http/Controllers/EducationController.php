@@ -43,11 +43,12 @@ class EducationController extends Controller
     {
         $data = $request->all();
 
+        $data['users_id'] = auth()->user()->id;
         $data['certificate'] = $request->file('certificate')->store('assets/Education', 'public');
 
         Educations::create($data);
 
-        return redirect()->route('profile.create');
+        return redirect()->route('profile.create')->with('success', 'Your Education Data Has Been Saved!');
     }
 
     /**

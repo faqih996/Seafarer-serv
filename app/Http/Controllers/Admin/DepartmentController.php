@@ -27,7 +27,7 @@ class DepartmentController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
+                                <button class="mb-1 mr-1 btn btn-primary dropdown-toggle"
                                     type="button" id="action' .  $item->id . '"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
@@ -80,7 +80,7 @@ class DepartmentController extends Controller
 
         Department::create($data);
 
-        return redirect()->route('department.index');
+        return redirect()->route('department.index')->with('success', 'Experience Has Been Added!');
     }
 
     /**

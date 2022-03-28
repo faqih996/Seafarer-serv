@@ -19,4 +19,8 @@ class Department extends Model
     protected $hidden = [
 
     ];
+
+    public function users(){
+        return $this->hasOne( User::class, 'id', 'users_id');
+    }
 }

@@ -30,7 +30,7 @@ class PositionGalleryController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
+                                <button class="mb-1 mr-1 btn btn-primary dropdown-toggle"
                                     type="button" id="action' .  $item->id . '"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
@@ -68,6 +68,7 @@ class PositionGalleryController extends Controller
     {
 
         $positions = Position::all();
+
         return view('pages.admin.position-gallery.create', [
             'positions' => $positions
         ]);
@@ -136,6 +137,6 @@ class PositionGalleryController extends Controller
         $item = PositionGallery::findorFail($id);
         $item->delete();
 
-        return redirect()->route('positions-galleries.index');
+        return redirect()->route('positions-galleries.index')->with('success', 'Picture Has Been Added!');
     }
 }

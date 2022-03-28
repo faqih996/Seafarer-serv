@@ -25,7 +25,7 @@ class DocumentsRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'users_id' => 'nullable|string',
+            'users_id'=> 'nullable|exists:users,id',
             'docs_number' => 'required|string',
             'place_issued' => 'required|string',
             'issued_date' => 'required|date',

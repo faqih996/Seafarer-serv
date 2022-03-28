@@ -25,8 +25,8 @@ class ProfileRequest extends FormRequest
     {
         return [
 
-            'users_id'=> 'required|exists:users,id',
-            'birth_place'=> 'required|string',
+            'users_id'=> 'nullable|exists:users,id',
+            'birth_place'=> 'nullable|string',
             'birth_date'=> 'required|date',
             'about_me'=> 'nullable|string',
             'phone_number'=> 'required|string|max:15',

@@ -20,6 +20,16 @@
     <div class="dashboard-content">
       <div class="row">
         <div class="col-12">
+
+
+           @if($success->any())
+                <div class="alert alert-success" role="alert">
+                    @foreach ($success->all() as $success)
+                          <li>{{ $success }}</li>
+                      @endforeach
+                </div>
+            @endif
+
           @if ($errors->any())
               <div class="alert alert-danger">
                   <ul>
@@ -48,10 +58,10 @@
                   </div>
                 </div>
                 <div class="row">
-                  <div class="col text-right">
+                  <div class="text-right col">
                     <button
                       type="submit"
-                      class="btn btn-success px-5"
+                      class="px-5 btn btn-success"
                     >
                       Save Now
                     </button>

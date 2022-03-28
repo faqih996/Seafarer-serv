@@ -25,6 +25,7 @@ class EducationRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
+            'users_id'=> 'nullable|exists:users,id',
              'course' => 'required|string',
              'start' => 'required|date',
              'graduate' => 'required|date',

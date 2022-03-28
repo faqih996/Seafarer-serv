@@ -29,7 +29,7 @@ class PositionController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
+                                <button class="mb-1 mr-1 btn btn-primary dropdown-toggle"
                                     type="button" id="action' .  $item->id . '"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
@@ -87,7 +87,7 @@ class PositionController extends Controller
 
         Position::create($data);
 
-        return redirect()->route('position.index');
+        return redirect()->route('position.index')->with('success', 'Data Has Been Saved!');
     }
 
     /**

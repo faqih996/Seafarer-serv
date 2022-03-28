@@ -21,10 +21,8 @@ class Documents extends Model
 
     ];
 
-    public function Users()
-    {
-        return $this->belongsTo(User::class, 'users_id', 'id');
-        // panggil modelnya, kemudian sambungkan dengan 'Foreignkey' di tabel yang berelasi, 'primaryKey' dari tabel asli
+    public function users(){
+        return $this->hasOne( User::class, 'id', 'users_id');
     }
 
 }

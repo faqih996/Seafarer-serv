@@ -25,6 +25,7 @@ class EmergencyRequest extends FormRequest
     {
         return [
             'family_name' => 'required|string',
+            'user_id'=> 'nullable|exists:users,id',
             'relations' => 'required|string',
             'contact1' => 'required|string',
             'contact2' =>'nullable|string',

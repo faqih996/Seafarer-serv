@@ -36,7 +36,7 @@ class ProfileAdminController extends Controller
                     return '
                         <div class="btn-group">
                             <div class="dropdown">
-                                <button class="btn btn-primary dropdown-toggle mr-1 mb-1"
+                                <button class="mb-1 mr-1 btn btn-primary dropdown-toggle"
                                     type="button" id="action' .  $item->id . '"
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
@@ -91,11 +91,12 @@ class ProfileAdminController extends Controller
     {
         $data = $request->all();
         // dd($data);
+        $data['users_id'] = auth()->user()->id;
         $data['photos'] = $request->file('photos')->store('assets/profile', 'public');
 
         Profiles::create($data);
 
-        return redirect()->route('profilesadmin.create');
+        return redirect()->route('profiles.create');
     }
 
     /**
@@ -121,7 +122,7 @@ class ProfileAdminController extends Controller
         $education = Educations::findOrFail($id);
         $experience = Experiences::findOrFail($id);
         $emergency = Emergencies::findOrFail($id);
-        return view('pages.admin.profilesadmin.edit', [
+        return view('pages.admin.profiles.edit', [
             'item' => $item,
             'education' => $education,
             'experience' => $experience,
@@ -144,7 +145,7 @@ class ProfileAdminController extends Controller
 
         $item->update($data);
 
-        return redirect()->route('profileadmin.create');
+        return redirect()->route('profiles.create');
     }
 
     /**
@@ -158,7 +159,7 @@ class ProfileAdminController extends Controller
         $item = Profiles::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('profileadmin.index');
+        return redirect()->route('profiles.index');
     }
 
     public function export()

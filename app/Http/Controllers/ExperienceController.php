@@ -43,11 +43,12 @@ class ExperienceController extends Controller
     {
         $data = $request->all();
 
+        $data['users_id'] = auth()->user()->id;
         $data['certificate'] = $request->file('certificate')->store('assets/Experience', 'public');
 
         Experiences::create($data);
 
-        return redirect()->route('profile.create');
+        return redirect()->route('profile.create')->with('success', 'Your Experience Has Been Saved!');
     }
 
     /**

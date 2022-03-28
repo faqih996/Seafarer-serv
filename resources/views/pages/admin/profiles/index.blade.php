@@ -22,14 +22,14 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{  route('profiles.create') }}" class="btn btn-primary mb-3">
+                            <a href="{{  route('profiles.create') }}" class="mb-3 btn btn-primary">
                                 {{-- {{  route('position.create') }} --}}
                                 + Add Applicant
                             </a>
 
                             <a
-                            href="{{ url('profiles.export') }}"
-                                class="btn btn-success mb-3 text-right"
+                            {{-- href="{{ route('profiles.export') }}" --}}
+                                class="mb-3 text-right btn btn-success"
                             >
                                 Export
                             </a>

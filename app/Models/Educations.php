@@ -19,7 +19,7 @@ class Educations extends Model
 
     ];
 
-    public function user(){
+    public function users(){
         return $this->hasOne( User::class, 'id', 'users_id');
     }
 }
