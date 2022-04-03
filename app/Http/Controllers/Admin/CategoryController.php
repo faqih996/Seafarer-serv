@@ -86,7 +86,7 @@ class CategoryController extends Controller
 
         Category::create($data);
 
-        return redirect()->route('category.index')->with('success', 'Experience Has Been Added!');
+        return redirect()->route('category.index')->with('success', 'Data Has Been Saved!');
     }
 
     /**

@@ -50,11 +50,13 @@
                         aria-haspopup="true"
                         aria-expanded="false"
                     >
-                        Hi, {{Auth::user()->first_name    }}
+                        Hi, {{Auth::user()->first_name }}
                         <img
-                        src="images/icon-user.png"
-                        alt=""
-                        class="mr-2 rounded-circle profile-picture"
+                            src="
+                                {{-- {{Auth::user()->profile()->photos}} --}}
+                            "
+                            alt=""
+                            class="mr-2 rounded-circle profile-picture"
                         />
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">

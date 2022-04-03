@@ -107,7 +107,10 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-
+        $item = Profiles::findOrFail($id);
+        return view('pages.profile.me',[
+              'item' => $item,
+        ]);
     }
 
     /**
@@ -148,6 +151,10 @@ class ProfileController extends Controller
         return redirect()->route('profile.create');
     }
 
+    public function myprofile()
+    {
+        return view('pages.profile.me');
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -162,8 +169,5 @@ class ProfileController extends Controller
         return redirect()->route('profile.index');
     }
 
-    public function export()
-    {
-        return Excel::download(new ProfilesExport, 'profiles.xlsx');
-    }
+
 }

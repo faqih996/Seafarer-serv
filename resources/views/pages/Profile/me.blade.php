@@ -1,134 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, shrink-to-fit=no"
-    />
-    <meta name="description" content="" />
-    <meta name="author" content="" />
+@extends('layouts.admin')
 
-    <title>Dashboard - Your Best Marketplace</title>
+@section('title')
+  User Settings
+@endsection
 
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-    <link href="style/main.css" rel="stylesheet" />
-  </head>
-
-  <body>
-    <div class="page-dashboard">
-      <div class="d-flex" id="wrapper" data-aos="fade-right">
-        <!-- Sidebar -->
-        <div class="border-right" id="sidebar-wrapper">
-          <div class="sidebar-heading text-center">
-            <img src="images/logosas.png" alt="" class="my-4" />
-          </div>
-          <div class="list-group list-group-flush">
-            <a
-              href="/dashboard.html"
-              class="list-group-item list-group-item-action "
-              >Dashboard</a
-            >
-            <a
-              href="/dashboard-products.html"
-              class="list-group-item list-group-item-action active"
-              >My Profile</a
-            >
-            <a
-              href="/dashboard-documents.html"
-              class="list-group-item list-group-item-action"
-              >My Documents</a
-            >
-            <a
-              href="/dashboard-account.html"
-              class="list-group-item list-group-item-action"
-              >My Account</a
-            >
-          </div>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-          <nav
-            class="navbar navbar-store navbar-expand-lg navbar-light fixed-top"
-            data-aos="fade-down"
-          >
-            <button
-              class="btn btn-secondary d-md-none mr-auto mr-2"
-              id="menu-toggle"
-            >
-              &laquo; Menu
-            </button>
-
-            <button
-              class="navbar-toggler"
-              type="button"
-              data-toggle="collapse"
-              data-target="#navbarSupportedContent"
-              aria-controls="navbarSupportedContent"
-              aria-expanded="false"
-              aria-label="Toggle navigation"
-            >
-              <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav ml-auto d-none d-lg-flex">
-                <li class="nav-item dropdown">
-                  <a
-                    class="nav-link"
-                    href="#"
-                    id="navbarDropdown"
-                    role="button"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
-                  >
-                    <img
-                      src="images/icon-user.png"
-                      alt=""
-                      class="rounded-circle mr-2 profile-picture"
-                    />
-                    Hi, Angga
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="/index.html"
-                      >Back to Store</a
-                    >
-                    <a class="dropdown-item" href="/dashboard-account.html"
-                      >Settings</a
-                    >
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="/">Logout</a>
-                  </div>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link d-inline-block mt-2" href="#">
-                    <img src="/images/icon-cart-empty.svg" alt="" />
-                  </a>
-                </li>
-              </ul>
-              <!-- Mobile Menu -->
-              <ul class="navbar-nav d-block d-lg-none mt-3">
-                <li class="nav-item">
-                  <a class="nav-link" href="#">
-                    Hi, Angga
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link d-inline-block" href="#">
-                    Cart
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </nav>
-
-          <div
-            class="section-content section-dashboard-home"
-            data-aos="fade-up"
-          >
+@section('content')
             <div class="container-fluid">
               <div class="dashboard-heading">
                 <h2 class="dashboard-title">My Profile</h2>
@@ -146,7 +22,7 @@
                             <img
                               src="images/LMjkt@2x.png"
                               alt=""
-                              class="w-80 mb-3"
+                              class="mb-3 w-80"
                             />
                           </div>
                           <div class="col-12 col-md-8">
@@ -194,13 +70,13 @@
               </div>
               </div>
               <!-- Personal Information -->
-              <div class="dashboard-content mt-3" id="personalDetails">
+              <div class="mt-3 dashboard-content" id="personalDetails">
                 <div class="row">
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
                         <div class="row">
-                          <div class="col-12 mt-4">
+                          <div class="mt-4 col-12">
                             <h5>
                               Personal Information
                             </h5>
@@ -287,7 +163,7 @@
                                     <div class="col-md-2">
                                       <button
                                         type="submit"
-                                        class="btn btn-success btn-block mt-4"
+                                        class="mt-4 btn btn-success btn-block"
                                       >
                                         Update Resi
                                       </button>
@@ -304,13 +180,13 @@
                 </div>
               </div>
               <!-- Emergency Contact Person -->
-              <div class="dashboard-content mt-3" id="emergencyDetails">
+              <div class="mt-3 dashboard-content" id="emergencyDetails">
                 <div class="row">
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
                         <div class="row">
-                          <div class="col-12 mt-4">
+                          <div class="mt-4 col-12">
                             <h5>
                               Emergency Contact Information
                             </h5>
@@ -404,7 +280,7 @@
                                     <div class="col-md-2">
                                       <button
                                         type="submit"
-                                        class="btn btn-success btn-block mt-4"
+                                        class="mt-4 btn btn-success btn-block"
                                       >
                                         Update Resi
                                       </button>
@@ -421,13 +297,13 @@
                 </div>
               </div>
               <!-- Education History -->
-              <div class="dashboard-content mt-3" id="educationDetails">
+              <div class="mt-3 dashboard-content" id="educationDetails">
                 <div class="row">
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
                         <div class="row">
-                          <div class="col-12 mt-4">
+                          <div class="mt-4 col-12">
                             <h5>
                               Education Background
                             </h5>
@@ -495,13 +371,13 @@
                 </div>
               </div>
               <!-- Experience History -->
-              <div class="dashboard-content mt-3" id="experienceDetails">
+              <div class="mt-3 dashboard-content" id="experienceDetails">
                 <div class="row">
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
                         <div class="row">
-                          <div class="col-12 mt-4">
+                          <div class="mt-4 col-12">
                             <h5>
                               Work Experience
                             </h5>
@@ -587,13 +463,13 @@
                 </div>
               </div>
               <!-- Document -->
-              <div class="dashboard-content mt-3" id="documentsDetails">
+              <div class="mt-3 dashboard-content" id="documentsDetails">
                 <div class="row">
                   <div class="col-12">
                     <div class="card">
                       <div class="card-body">
                         <div class="row">
-                          <div class="col-12 mt-4">
+                          <div class="mt-4 col-12">
                             <h5>
                               My Documents
                             </h5>
@@ -663,34 +539,11 @@
             </div>
           </div>
         </div>
-        <!-- /#page-content-wrapper -->
-      </div>
+@endsection
 
-
-    </div>
-    <!-- Bootstrap core JavaScript -->
-    <script src="/vendor/jquery/jquery.slim.min.js"></script>
-    <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-      AOS.init();
-    </script>
-    <!-- Menu Toggle Script -->
-    <script>
-      $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-      });
-    </script>
-    <script src="/vendor/vue/vue.js"></script>
-    <script>
-      var transactionDetails = new Vue({
-        el: "#transactionDetails",
-        data: {
-          status: "SHIPPING",
-          resi: "BDO12308012132",
-        },
-      });
-    </script>
-  </body>
-</html>
+@push('addon-script')
+  <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+  <script>
+    CKEDITOR.replace( 'editor' );
+  </script>
+@endpush
