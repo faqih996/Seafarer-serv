@@ -3,7 +3,7 @@
         <!-- Sidebar -->
         <div class="border-right" id="sidebar-wrapper">
           <div class="sidebar-heading text-center">
-            <img src="{{url('images/sosslogo.png')}}" alt="" class="my-4" />
+            <img src="{{ asset('/images/logoheader.png')}}" alt="" class="my-4" />
           </div>
           <div class="list-group list-group-flush">
             <a

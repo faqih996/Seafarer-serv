@@ -8,12 +8,12 @@
 @section('content')
     <div class="page-content page-home">
         <!-- header -->
-        <section class="sea-header" data-aos="fade-down">
+        <section class="section" data-aos="fade-down">
             <div class="container">
                 <div class="row">
                     <div class="col align-self-center">
                         <h1 class="mb-3 header-title" data-aos="fade-right">
-                            Seafarer One Stop Services
+                            Seafarer One <br> Stop Services
                         </h1>
                         <p class="mb-4 header-subtitle"data-aos="fade-right">
                             Easy, Transparent, Reliable <br>
@@ -21,60 +21,55 @@
                         </p>
                     </div>
                     <div class="col d-none d-sm-block">
-                        <img width="500" src="images/logososs.png" alt="" class="w-30" data-aos="fade-left">
+                        <img width="500" src="{{ asset('/images/logo.png')}}" alt="company logo" class="w-30" data-aos="fade-left">
                     </div>
                 </div>
             </div>
         </section>
         <!-- end header -->
 
-        <section class="services-section align-self-center">
+        <section class="section align-self-center">
             <div class="container">
-                <div class="row">
-                    <h1 class="mt-4 text-center section-seaedu-title2">Our Services</h1>
+                <div class="row justify-content-center">
+                    <h1 class="mt-4 mb-4 header-title"  data-aos="fade-up">Our Services</h1>
                 </div>
             </div>
 
             <div class="row">
-                    <div class="col-lg-4 col-md-3 col-sm-10 col-10">
-                        <div class="p-2 mb-5 shadow card bg-body">
-                            <div class="seaedu-card__img">
-                                <img src="{{ url('frontend/assets/consultancy.png') }}" alt="" />
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-3 col-md-3 col-sm-10 col-10">
+                            <div class="p-2 mb-5 shadow card bg-body">
+                                <div class="card-body">
+                                    <h5 class="dashboard-card-title">Crewing Assitancy</h5>
+                                    <p class="dashboard-card-subtitle">
+                                        Career consultation and job opportunities without worry and hassle
+                                    </p>
+                                </div>
                             </div>
-                            <div class="card-body">
-                                <h5 class="card-seaedu-title">Crewing Assitancy</h5>
-                                <p class="card-seatext">
-                                    Career consultation and job opportunities without worry and hassle
-                                </p>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-10 col-10">
+                            <div class="p-2 mb-5 shadow card bg-body">
+                                <div class="card-body">
+                                    <h5 class="dashboard-card-title">Document Assistancy</h5>
+                                    <p class="dashboard-card-subtitle">
+                                        Complete the education program and get a certificate from us
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-10">
+                            <div class="p-2 mb-5 shadow card bg-body">
+                                <div class="card-body">
+                                    <h5 class="dashboard-card-title">Career Consultancy</h5>
+                                    <p class="dashboard-card-subtitle">
+                                        at International Hotels Malaysia, Singapore, China, Maldives, Thailand
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-4 col-md-3 col-sm-10 col-10">
-                        <div class="p-2 mb-5 shadow card seaedu-card bg-body">
-                            <div class="seaedu-card__img">
-                                <img src="{{ url('frontend/assets/certificate.png') }}" alt="" />
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-seaedu-title">Document Assistancy</h5>
-                                <p class="card-seatext">
-                                    Complete the education program and get a certificate from us
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-3 col-10">
-                        <div class="p-2 mb-5 shadow card seaedu-card bg-body">
-                            <div class="seaedu-card__img">
-                                <img src="{{ url('frontend/assets/training.png') }}" alt="" />
-                            </div>
-                            <div class="card-body">
-                                <h5 class="card-seaedu-title">Career Consultancy</h5>
-                                <p class="card-seatext">
-                                    at International Hotels Malaysia, Singapore, China, Maldives, Thailand, etc and get paid
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                </div>
             </div>
         </section>
 @endsection
