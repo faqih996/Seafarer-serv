@@ -15,8 +15,8 @@ class CreatePositionGalleriesTable extends Migration
     {
         Schema::create('position_galleries', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('position_id')->nullable()->index('fk_position_id_to_position_gallery');
             $table->string('photos');
-            $table->integer('positions_id');
             $table->softDeletes();
             $table->timestamps();
         });

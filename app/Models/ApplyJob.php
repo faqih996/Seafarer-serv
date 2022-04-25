@@ -6,11 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Documents extends Model
+class ApplyJob extends Model
 {
     use SoftDeletes;
 
-    public $table = 'documents';
+    public $table = 'apply_job';
 
     protected $dates = [
         'updated_at',
@@ -19,16 +19,10 @@ class Documents extends Model
     ];
 
     protected $fillable = [
-        'name', 'slug', 'detail_user_id', 'docs_number', 'place_issued', 'issued_date', 'expired_date', 'docs_status', 'photos'
+        'employer_id',
+        'applicant_id',
+        'job_id',
+        'cv',
+        'apply_status_id'
     ];
-
-
-    protected $hidden = [
-
-    ];
-
-    public function users(){
-        return $this->hasOne( User::class, 'id', 'users_id');
-    }
-
 }

@@ -10,13 +10,21 @@ class Educations extends Model
 {
     use SoftDeletes;
 
+    public $table = 'educations';
+
     protected $fillable = [
-        'name', 'users_id', 'course', 'start', 'graduate',
+        'name', 'detail_user_id', 'course', 'start', 'graduate',
         'address', 'regencies_id', 'provinces_id', 'zip_code', 'country', 'certificate'
     ];
 
     protected $hidden = [
 
+    ];
+
+    protected $dates = [
+        'updated_at',
+        'created_at',
+        'deleted_at',
     ];
 
     public function users(){
