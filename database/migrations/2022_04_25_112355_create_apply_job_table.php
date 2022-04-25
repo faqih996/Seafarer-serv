@@ -15,7 +15,8 @@ class CreateApplyJobTable extends Migration
     {
         Schema::create('apply_job', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('applicant_id')->nullable()->index('fk_applicant_job_to_users');
+            $table->foreignId('employer_id')->nullable()->index('fk_employer_id_to_users');
+            $table->foreignId('applicant_id')->nullable()->index('fk_applicant_id_to_users');
             $table->foreignId('job_id')->nullable()->index('fk_apply_job_to_job');
             $table->longText('cv')->nullable();
             $table->foreignId('apply_status_id')->nullable()->index('fk_apply_job_to_apply_status');
