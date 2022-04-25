@@ -17,7 +17,7 @@ class CreateExperiencesTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('base');
-            $table->integer('users_id');
+            $table->foreignId('detail_user_id')->nullable()->index('fk_experience_to_detail_user');
             $table->string('position');
             $table->string('job_title');
             $table->date('start_of_contract');

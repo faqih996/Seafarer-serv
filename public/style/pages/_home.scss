@@ -1,7 +1,7 @@
 .page-home {
     background-color: #cfecf5;
 
-    .section {
+    .sea-header {
         background-color: #cfecf5;
 
         .header-title {
@@ -13,6 +13,23 @@
 
         .header-subtitle {
             color: #0077b6;
+            font-weight: normal;
+            font-size: 20px;
+        }
+    }
+
+    .sea-service {
+        background-color: #0077b6 ;
+
+        .service-title {
+            font-weight: bold !important;
+            margin-bottom: 15px !important;
+            color: #cfecf5 !important;
+            font-size: 20px !important;
+        }
+
+        .service-subtitle {
+            color: #cfecf5;
             font-weight: normal;
             font-size: 20px;
         }

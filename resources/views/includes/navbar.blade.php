@@ -30,7 +30,7 @@
                     <li class="nav-item">
                         <a
                         href="{{  route('login') }}"
-                        class="px-4 text-white btn btn-success nav-link"
+                        class="px-4 text-white btn btn-primary nav-link"
                         >Sign In</a
                         >
                     </li>

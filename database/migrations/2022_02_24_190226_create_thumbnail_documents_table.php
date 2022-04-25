@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDocumentGalleriesTable extends Migration
+class CreateThumbnailDocumentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,11 @@ class CreateDocumentGalleriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('document_galleries', function (Blueprint $table) {
+        Schema::create('thumbnail_documents', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('document_id')->nullable()->index('fk_thumbnail_document_to_documents');
+            $table->string('name')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -26,6 +29,6 @@ class CreateDocumentGalleriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('document_galleries');
+        Schema::dropIfExists('thumbnail_documents');
     }
 }

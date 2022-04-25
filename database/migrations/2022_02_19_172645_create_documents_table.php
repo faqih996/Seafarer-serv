@@ -15,13 +15,13 @@ class CreateDocumentsTable extends Migration
     {
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('users_id');
-            $table->string('docs_number');
-            $table->string('place_issued');
-            $table->date('issued_date');
-            $table->date('expired_date');
-            $table->string('docs_status');
+            $table->string('name')->nullable();
+            $table->foreignId('detail_user_id')->nullable()->index('fk_education_to_detail_user');
+            $table->string('docs_number')->nullable();
+            $table->string('place_issued')->nullable();
+            $table->date('issued_date')->nullable();
+            $table->date('expired_date')->nullable();
+            $table->string('docs_status')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

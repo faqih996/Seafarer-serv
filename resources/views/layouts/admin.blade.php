@@ -17,7 +17,7 @@
         <!-- Sidebar -->
         <div class="border-right" id="sidebar-wrapper">
           <div class="text-center sidebar-heading">
-            <img src="{{ url('images/admin.png') }}" alt="" class="my-4" style="max-width: 100px"/>
+            <img src="{{ asset('/images/admin.png') }}" alt="" class="my-4" style="max-width: 100px"/>
           </div>
           <div class="list-group list-group-flush">
             <a

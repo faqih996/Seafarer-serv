@@ -16,7 +16,6 @@ class ChangeNullableAtEmergenciesTable extends Migration
         Schema::table('emergencies', function (Blueprint $table) {
             $table->string('family_name')->nullable()->change();
             $table->string('relations')->nullable()->change();
-            $table->integer('user_id')->nullable()->change();
             $table->string('contact1')->nullable()->change();
             $table->string('contact2')->nullable()->change();
             $table->string('email')->nullable()->change();
@@ -38,7 +37,6 @@ class ChangeNullableAtEmergenciesTable extends Migration
         Schema::table('emergencies', function (Blueprint $table) {
             $table->string('family_name')->nullable(false)->change();
             $table->string('relations')->nullable(false)->change();
-            $table->integer('user_id')->nullable(false)->change();
             $table->string('contact1')->nullable(false)->change();
             $table->string('contact2')->nullable(false)->change();
             $table->string('email')->nullable(false)->change();

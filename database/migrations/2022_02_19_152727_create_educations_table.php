@@ -15,17 +15,17 @@ class CreateEducationsTable extends Migration
     {
         Schema::create('educations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('users_id');
-            $table->string('course');
-            $table->date('start');
-            $table->date('graduate');
-            $table->longText('address');
-            $table->integer('regencies_id');
-            $table->integer('provinces_id');
-            $table->string('country');
-            $table->integer('zip_code');
-            $table->string('certificate');
+            $table->string('name')->nullable();
+            $table->foreignId('detail_user_id')->nullable()->index('fk_education_to_detail_user');
+            $table->string('course')->nullable();
+            $table->date('start')->nullable();
+            $table->date('graduate')->nullable();
+            $table->longText('address')->nullable();
+            $table->integer('regencies_id')->nullable();
+            $table->integer('provinces_id')->nullable();
+            $table->string('country')->nullable();
+            $table->integer('zip_code')->nullable();
+            $table->string('certificate')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

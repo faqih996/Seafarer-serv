@@ -17,7 +17,7 @@
         <!-- Sidebar -->
         <div class="border-right" id="sidebar-wrapper">
           <div class="text-center sidebar-heading">
-            <img src="{{ url('images/sosslogo.png')}}" alt="" class="my-4" width="200"/>
+            <img src="{{ asset('/images/logoheader.png')}}" alt="logo" class="my-4" width="150"/>
           </div>
           <div class="list-group list-group-flush">
             <a
@@ -32,12 +32,12 @@
             >
               My Profile
             </a>
-            <a
-              href="{{ route('profile.show') }}"
+            {{-- <a
+              href="{{ route('profile.edit') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/profile*')) ? 'active' : '' }} "
             >
               Me
-            </a>
+            </a> --}}
             <a
               href="{{ route('documents.index') }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/documents*')) ? 'active' : '' }} "

@@ -17,7 +17,7 @@ class CreateEmergenciesTable extends Migration
             $table->id();
             $table->string('family_name');
             $table->string('relations');
-            $table->integer('user_id');
+            $table->foreignId('detail_user_id')->nullable()->index('fk_emergency_to_detail_user');
             $table->string('contact1');
             $table->string('contact2');
             $table->string('email');

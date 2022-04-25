@@ -8,7 +8,7 @@
 @section('content')
     <div class="page-content page-home">
         <!-- header -->
-        <section class="section" data-aos="fade-down">
+        <section class="sea-header" data-aos="fade-down">
             <div class="container">
                 <div class="row">
                     <div class="col align-self-center">
@@ -28,16 +28,18 @@
         </section>
         <!-- end header -->
 
-        <section class="section align-self-center">
+        <section class="sea-service align-self-center">
             <div class="container">
                 <div class="row justify-content-center">
-                    <h1 class="mt-4 mb-4 header-title"  data-aos="fade-up">Our Services</h1>
+                    <h1 class="service-title mt-4 mb-4"  data-aos="fade-up">Our Services</h1>
                 </div>
             </div>
 
             <div class="row">
                 <div class="container">
+
                     <div class="row justify-content-center">
+
                         <div class="col-lg-3 col-md-3 col-sm-10 col-10">
                             <div class="p-2 mb-5 shadow card bg-body">
                                 <div class="card-body">
@@ -48,6 +50,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-3 col-md-3 col-sm-10 col-10">
                             <div class="p-2 mb-5 shadow card bg-body">
                                 <div class="card-body">
@@ -58,6 +61,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="col-lg-3 col-md-3 col-10">
                             <div class="p-2 mb-5 shadow card bg-body">
                                 <div class="card-body">
@@ -68,6 +72,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

@@ -16,7 +16,6 @@ class ChangeNullableAtExperiencesTable extends Migration
         Schema::table('experiences', function (Blueprint $table) {
             $table->string('name')->nullable()->change();
             $table->string('base')->nullable()->change();
-            $table->integer('users_id')->nullable()->change();
             $table->string('position')->nullable()->change();
             $table->string('job_title')->nullable()->change();
             $table->date('start_of_contract')->nullable()->change();
@@ -44,7 +43,6 @@ class ChangeNullableAtExperiencesTable extends Migration
         Schema::table('experiences', function (Blueprint $table) {
             $table->string('name')->nullable(false)->change();
             $table->string('base')->nullable(false)->change();
-            $table->integer('users_id')->nullable(false)->change();
             $table->string('position')->nullable(false)->change();
             $table->string('job_title')->nullable(false)->change();
             $table->date('start_of_contract')->nullable(false)->change();
