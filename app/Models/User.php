@@ -46,11 +46,27 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function profile(){
-        return $this->hasOne( Profile::class);
+    // one to one relation
+    public function detail_user()
+    {
+        return $this->hasOne('App\Models\DetailUser', 'users_id');
     }
 
-    public function Documents(){
-        return $this->hasMany( Documents::class);
+    //one to many
+    public function job()
+    {
+        return $this->hasMany('App\Models\Job', 'users_id');
     }
+
+    public function job_applicant()
+    {
+        return $this->hasMany('App\Models\ApplyJob', 'applicant_id');
+    }
+
+    public function job_employer()
+    {
+        return $this->hasMany('App\Models\ApplyJob', 'employer_id');
+    }
+
+
 }

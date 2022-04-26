@@ -20,7 +20,19 @@ class Department extends Model
 
     ];
 
-    public function users(){
-        return $this->hasOne( User::class, 'id', 'users_id');
+    public function user()
+    {
+        return $this->hasOne('App\Models\User', 'users_id', 'id');
+    }
+
+    public function emergency_user()
+    {
+        return $this->hasMany('App\Models\Position', 'position_id');
+    }
+
+    public function job()
+    {
+        return $this->belongsTo('App\Models\Jobs', 'department_id', 'id');
+        // panggil modelnya, kemudian sambungkan dengan 'Foreignkey' di tabel yang berelasi, 'primaryKey' dari tabel asli
     }
 }

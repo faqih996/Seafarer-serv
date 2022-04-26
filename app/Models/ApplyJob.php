@@ -25,4 +25,24 @@ class ApplyJob extends Model
         'cv',
         'apply_status_id'
     ];
+
+    public function user_applicant()
+    {
+        return $this->belongsTo('App\Models\User', 'applicant_id', 'id');
+    }
+
+    public function user_employer()
+    {
+        return $this->belongsTo('App\Models\User', 'employer_id', 'id');
+    }
+
+    public function job()
+    {
+        return $this->belongsTo('App\Models\Jobs', 'job_id', 'id');
+    }
+
+    public function apply_status()
+    {
+        return $this->belongsTo('App\Models\OrderStatus', 'apply_status_id', 'id');
+    }
 }

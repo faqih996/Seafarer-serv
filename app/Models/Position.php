@@ -24,16 +24,22 @@ class Position extends Model
 
     public function galleries()
     {
-        return $this->hasMany(PositionGallery::class, 'position_id', 'id')->withTrashed();
+        return $this->hasMany('App\Models\PositionGallery', 'position_id', 'id')->withTrashed();
     }
 
-    public function Departments()
+    public function departments()
     {
-        return $this->belongsTo(Department::class, 'departments_id', 'id');
+        return $this->belongsTo('App\Models\Department', 'departments_id', 'id');
         // panggil modelnya, kemudian sambungkan dengan 'Foreignkey' di tabel yang berelasi, 'primaryKey' dari tabel asli
     }
 
-    public function users(){
-        return $this->hasOne( User::class, 'id', 'users_id');
+    public function job()
+    {
+        return $this->belongsTo('App\Models\Jobs', 'position_id', 'id');
+        // panggil modelnya, kemudian sambungkan dengan 'Foreignkey' di tabel yang berelasi, 'primaryKey' dari tabel asli
+    }
+
+    public function user(){
+        return $this->hasOne('App\Models\User', 'users_id', 'id');
     }
 }

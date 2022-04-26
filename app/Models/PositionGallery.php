@@ -21,10 +21,14 @@ class PositionGallery extends Model
 
     ];
 
-    public function Positions()
+    public function user(){
+        return $this->hasOne('App\Models\User', 'users_id', 'id');
+    }
+
+    public function positions()
     {
         return $this->belongsTo(Position::class, 'positions_id', 'id');
         // panggil modelnya, kemudian sambungkan dengan 'Foreignkey' di tabel yang berelasi, 'primaryKey' dari tabel asli
     }
-    
+
 }

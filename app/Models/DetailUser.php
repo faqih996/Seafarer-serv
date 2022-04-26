@@ -28,7 +28,30 @@ class DetailUser extends Model
 
     ];
 
-    public function users(){
-        return $this->hasOne( User::class, 'id', 'users_id');
+    // one to one relation
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'users_id', 'id');
+    }
+
+        //one to many
+    public function experience_user()
+    {
+        return $this->hasMany('App\Models\Experiences', 'detail_user_id');
+    }
+
+    public function education_user()
+    {
+        return $this->hasMany('App\Models\Educations', 'detail_user_id');
+    }
+
+    public function emergency_user()
+    {
+        return $this->hasMany('App\Models\Emergencies', 'detail_user_id');
+    }
+
+    public function document_user()
+    {
+        return $this->hasMany('App\Models\Document', 'detail_user_id');
     }
 }

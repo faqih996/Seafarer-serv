@@ -29,4 +29,25 @@ class Jobs extends Model
     protected $hidden = [
 
     ];
+
+    public function user()
+    {
+        return $this->belongsTo('App\Models\User', 'users_id', 'id');
+    }
+
+    public function apply_job()
+    {
+        return $this->hasMany('App\Models\ApplyJob', 'job_id');
+    }
+
+    public function department()
+    {
+        return $this->hasMany('App\Models\department', 'department_id');
+    }
+
+    public function position()
+    {
+        return $this->hasMany('App\Models\position', 'position_id');
+    }
+
 }
