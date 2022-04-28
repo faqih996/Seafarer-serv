@@ -5,10 +5,12 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\DetailUser;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class RegisterController extends Controller
 {
@@ -64,15 +66,55 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\Models\User
      */
-    protected function create(array $data)
+    // protected function create(array $data)
+    // {
+    //     return User::create([
+    //         'first_name' => $data['first_name'],
+    //         'last_name' => $data['last_name'],
+    //         'email' => $data['email'],
+    //         'password' => Hash::make($data['password']),
+    //     ],
+
+    //     function (User $user) {
+    //         $this->createTeam($user);
+
+    //         //add to detail user
+    //         $detail_user = new DetailUser;
+    //         $detail_user->users_id = $user->id;
+    //         $detail_user->photo = NULL;
+    //         $detail_user->role = NULL;
+    //         $detail_user->contact_number = NULL;
+    //         $detail_user->biography = NULL;
+    //         $detail_user->save();
+    //     });
+    // }
+
+    public function create(array $data)
     {
-        return User::create([
-            'first_name' => $data['first_name'],
-            'last_name' => $data['last_name'],
-            'email' => $data['email'],
+        Validator::make($data, [
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => Hash::make($data['password']),
         ]);
+
+        return DB::transaction(function () use ($data) {
+            return tap(User::create([
+                'first_name' => $data['first_name'],
+                'last_name' => $data['last_name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+            ]), function (User $user) {
+
+                //add to detail user
+                $detail_user = new DetailUser;
+                $detail_user->users_id = $user->id;
+                $detail_user->photo= NULL;
+                $detail_user->save();
+            });
+        });
     }
+
 
     public function success()
     {

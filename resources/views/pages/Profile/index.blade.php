@@ -6,7 +6,6 @@
 
 @section('content')
 
-@if (count($detail_user))
     <!-- Section Content -->
     <div class="section-content section-dashboard-home" data-aos="fade-up">
         <div class="container-fluid">
@@ -29,7 +28,7 @@
                                                 srcset="" class="w-16 h-16 rounded-full">
                                         @else
                                             <span class="inline-block w-16 h-16 overflow-hidden bg-gray-100 rounded-full">
-                                                <svg class="inline w-9 h-9 mr-3 rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                <svg class="inline mr-3 text-gray-300 rounded-full w-9 h-9" fill="currentColor" viewBox="0 0 24 24">
                                                     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"></path>
                                                 </svg>
                                             </span>
@@ -82,13 +81,13 @@
             </div>
 
             <!-- Personal Information -->
-            <div class="dashboard-content mt-3" id="personalDetails">
+            <div class="mt-3 dashboard-content" id="personalDetails">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12 mt-4">
+                                    <div class="mt-4 col-12">
                                         <h5>
                                             Personal Information
                                         </h5>
@@ -151,13 +150,13 @@
             </div>
 
             <!-- Emergency Contact Person -->
-            <div class="dashboard-content mt-3" id="emergencyDetails">
+            <div class="mt-3 dashboard-content" id="emergencyDetails">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12 mt-4">
+                                    <div class="mt-4 col-12">
                                         <h5>
                                             Emergency Contact Information
                                         </h5>
@@ -227,13 +226,13 @@
             </div>
 
             <!-- Education History -->
-            <div class="dashboard-content mt-3" id="educationDetails">
+            <div class="mt-3 dashboard-content" id="educationDetails">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12 mt-4">
+                                    <div class="mt-4 col-12">
                                         <h5>
                                             Education Background
                                         </h5>
@@ -302,13 +301,13 @@
             </div>
 
             <!-- Experience History -->
-            <div class="dashboard-content mt-3" id="experienceDetails">
+            <div class="mt-3 dashboard-content" id="experienceDetails">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12 mt-4">
+                                    <div class="mt-4 col-12">
                                         <h5>
                                             Work Experience
                                         </h5>
@@ -395,13 +394,13 @@
             </div>
 
             <!-- Document -->
-            <div class="dashboard-content mt-3" id="documentsDetails">
+            <div class="mt-3 dashboard-content" id="documentsDetails">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-12 mt-4">
+                                    <div class="mt-4 col-12">
                                         <h5>
                                             My Documents
                                         </h5>
@@ -471,9 +470,6 @@
         </div>
     </div>
     <!-- End Section Content -->
-@else
-    {{ route('dashboard.profile.create') }}
-@endif
 
 @endsection
 

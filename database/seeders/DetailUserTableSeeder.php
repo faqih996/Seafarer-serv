@@ -17,13 +17,13 @@ class DetailUserTableSeeder extends Seeder
         $detail_user = [
             [
                 'users_id' => 1,
-                'photos' => '',
+                'photo' => '',
                 'created_at' => date('Y-m-d h:i:s'),
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
             [
                 'users_id' => 2,
-                'photos' => '',
+                'photo' => '',
                 'created_at' => date('Y-m-d h:i:s'),
                 'updated_at' => date('Y-m-d h:i:s'),
             ],
