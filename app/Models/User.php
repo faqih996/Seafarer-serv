@@ -10,10 +10,19 @@ use Laravel\Sanctum\HasApiTokens;
 
 use Illuminate\Database\Eloquent\SoftDeletes;
 
+use App\Models\DetailUser;
 class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
+    use Notifiable;
+    use SoftDeletes;
 
+    protected $date =[
+        'updated_at',
+        'created_at',
+        'deleted_at',
+        'email_verified_at'
+    ];
     /**
      * The attributes that are mass assignable.
      *

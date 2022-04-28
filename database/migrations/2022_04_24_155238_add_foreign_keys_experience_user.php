@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddForeignKeysExperiences extends Migration
+class AddForeignKeysExperienceUser extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class AddForeignKeysExperiences extends Migration
      */
     public function up()
     {
-        Schema::table('experiences', function (Blueprint $table) {
-            $table->foreign('detail_user_id', 'fk_experience_to_detail_user')->references('id')
+        Schema::table('experience_user', function (Blueprint $table) {
+            $table->foreign('detail_user_id', 'fk_experience_user_to_detail_user')->references('id')
             ->on('detail_user')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
@@ -26,8 +26,8 @@ class AddForeignKeysExperiences extends Migration
      */
     public function down()
     {
-        Schema::table('experiences', function (Blueprint $table) {
-            $table->dropForeign('fk_experience_to_detail_user');
+        Schema::table('experience_user', function (Blueprint $table) {
+            $table->dropForeign('fk_experience_user_to_detail_user');
         });
     }
 }

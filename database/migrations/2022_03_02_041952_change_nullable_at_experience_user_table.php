@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeNullableAtExperiencesTable extends Migration
+class ChangeNullableAtExperienceUserTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class ChangeNullableAtExperiencesTable extends Migration
      */
     public function up()
     {
-        Schema::table('experiences', function (Blueprint $table) {
+        Schema::table('experience_user', function (Blueprint $table) {
             $table->string('name')->nullable()->change();
             $table->string('base')->nullable()->change();
             $table->string('position')->nullable()->change();
@@ -40,7 +40,7 @@ class ChangeNullableAtExperiencesTable extends Migration
      */
     public function down()
     {
-        Schema::table('experiences', function (Blueprint $table) {
+        Schema::table('experience_user', function (Blueprint $table) {
             $table->string('name')->nullable(false)->change();
             $table->string('base')->nullable(false)->change();
             $table->string('position')->nullable(false)->change();

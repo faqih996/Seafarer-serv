@@ -31,13 +31,13 @@ class DetailUser extends Model
     // one to one relation
     public function user()
     {
-        return $this->belongsTo('App\Models\User', 'users_id', 'id');
+        return $this->belongsTo(DetailUser::Class, 'users_id', 'id');
     }
 
         //one to many
     public function experience_user()
     {
-        return $this->hasMany('App\Models\Experiences', 'detail_user_id');
+        return $this->hasMany(ExperienceUser::class, 'detail_user_id');
     }
 
     public function education_user()

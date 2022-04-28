@@ -2,22 +2,35 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Profiles;
-use App\Models\User;
-use App\Models\Experiences;
-use App\Models\Educations;
-use App\Models\Emergencies;
+
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
-use Yajra\DataTables\Facades\DataTables;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Support\Facades\Storage;
-use App\Exports\ProfilesExport;
-use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\DetailUserExport;
+
+use Illuminate\Support\Facades\DB;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
+use App\Models\User;
+use App\Models\DetailUser;
+use App\Models\ExperienceUser;
+use App\Models\Educations;
+use App\Models\Emergencies;
+use App\Models\Documents;
+use App\Models\Education;
 
 class ProfileController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,45 +38,13 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        $user = User::where('id', Auth::user()->id)->first();
+        $experience_user = ExperienceUser::where('detail_user_id', $user->detail_user->id)
+                                ->OrderBy('id', 'asc')
+                                ->get();
 
-        if (request()->ajax()) {
-            $query = Profiles::with(['users']);
-
-            return Datatables::of($query)
-                ->addColumn('action', function ($item) {
-                    return '
-                        <div class="btn-group">
-                            <div class="dropdown">
-                                <button class="mb-1 mr-1 btn btn-primary dropdown-toggle"
-                                    type="button" id="action' .  $item->id . '"
-                                        data-toggle="dropdown"
-                                        aria-haspopup="true"
-                                        aria-expanded="false">
-                                        Action
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
-                                    <a class="dropdown-item" href="' . route('profile.edit', $item->id) . '">
-                                        Edit
-                                    </a>
-                                    <form action="' . route('profile.destroy', $item->id) . '" method="POST">
-                                        ' . method_field('delete') . csrf_field() . '
-                                        <button type="submit" class="dropdown-item text-danger">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                    </div>';
-                })
-                ->editColumn('photos', function ($item) {
-                    return $item->photos ? '<img src="' . Storage::url($item->photos) . '" style="max-height: 80px;"/>' : '';
-                })
-                ->rawColumns(['action','photos'])
-                ->make();
-        }
-        return view('pages.profile.index', [
-
-        ]);
+        return view('pages.profile.index', compact('user', 'experience_user', )
+        );
     }
 
     /**
@@ -77,6 +58,8 @@ class ProfileController extends Controller
         return view('pages.profile.create', [
             'users' => $users
         ]);
+
+        // return abort(404);
     }
 
     /**
@@ -88,15 +71,17 @@ class ProfileController extends Controller
     public function store(ProfileRequest $request)
     {
 
-        $data = $request->all();
-        // dd($data);
-        $data['users_id'] = auth()->user()->id;
-        $data['photos'] = $request->file('photos')->store('assets/profile', 'public');
+        // $data = $request->all();
+        // // dd($data);
+        // $data['users_id'] = auth()->user()->id;
+        // $data['photos'] = $request->file('photos')->store('assets/profile', 'public');
 
 
-        Profiles::create($data);
+        // DetailUser::create($data);
 
-        return redirect()->route('profile.create')->with('success', 'Your Profile Has Been Saved!');
+        // return redirect()->route('profile.create')->with('success', 'Your Profile Has Been Saved!');
+
+        return abort(404);
     }
 
     /**
@@ -107,10 +92,12 @@ class ProfileController extends Controller
      */
     public function show($id)
     {
-        $item = Profiles::findOrFail($id);
-        return view('pages.profile.me',[
-              'item' => $item,
-        ]);
+        // $item = DetailUser::findOrFail($id);
+        // return view('pages.profile.me',[
+        //       'item' => $item,
+        // ]);
+
+        return abort(404);
     }
 
     /**
@@ -121,7 +108,7 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $item = Profiles::findOrFail($id);
+        $item = DetailUser::findOrFail($id);
         $education = Educations::findOrFail($id);
         $experience = Experiences::findOrFail($id);
         $emergency = Emergencies::findOrFail($id);
@@ -144,7 +131,7 @@ class ProfileController extends Controller
     {
         $data = $request->all();
 
-        $item = Profiles::findOrFail($id);
+        $item = DetailUser::findOrFail($id);
 
         $item->update($data);
 
@@ -153,7 +140,9 @@ class ProfileController extends Controller
 
     public function myprofile()
     {
-        return view('pages.profile.me');
+        // return view('pages.profile.me');
+
+        return abort(404);
     }
     /**
      * Remove the specified resource from storage.
@@ -163,7 +152,7 @@ class ProfileController extends Controller
      */
     public function destroy($id)
     {
-        $item = Profiles::findOrFail($id);
+        $item = DetailUser::findOrFail($id);
         $item->delete();
 
         return redirect()->route('profile.index');
