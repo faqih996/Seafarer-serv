@@ -39,7 +39,7 @@ class ProfileRequest extends FormRequest
             'skype'=> 'nullable|string',
             'gender' => 'required|string',
             'marital' => 'required|string',
-            'photos' => 'nullable|image',
+            'photo' => 'nullable|image',
         ];
     }
 

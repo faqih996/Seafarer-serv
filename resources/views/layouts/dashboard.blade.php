@@ -33,7 +33,7 @@
               My Profile
             </a>
             {{-- <a
-              href="{{ route('profile.edit') }}"
+              href="{{ route('profile.edit', $item->id) }}"
               class="list-group-item list-group-item-action {{ (request()->is('dashboard/profile*')) ? 'active' : '' }} "
             >
               Me

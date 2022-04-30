@@ -31,7 +31,7 @@ class DocumentsRequest extends FormRequest
             'issued_date' => 'required|date',
             'expired_date' => 'required|date',
             'docs_status' => 'nullable|string',
-            'photos' => 'nullable|image'
+            'certificate' => 'nullable|image'
         ];
     }
 

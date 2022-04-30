@@ -73,7 +73,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
@@ -93,6 +92,7 @@
                                         <h5>
                                             Personal Information
                                         </h5>
+                                        <div class="dropdown-divider"></div>
                                         <div class="row">
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Place of Birth</div>
@@ -169,43 +169,43 @@
                                         <h5>
                                             Education Background
                                         </h5>
+                                        <div class="dropdown-divider"></div>
                                         <div class="row">
-
                                             @forelse ($education_user as $key => $education)
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title"> Institution Name</div>
                                                 <div class="product-subtitle">
-                                                    {{ 'educations[' .$education->name. ']' }}
+                                                    {{ $education->name }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Courses</div>
                                                 <div class="product-subtitle">
-                                                    {{'educations[' .$education->course. ']' }}
+                                                    {{$education->course}}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Start Date</div>
                                                 <div class="product-subtitle">
-                                                    {{'educations[' .$education->start. ']' }}
+                                                    {{$education->start}}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">End Date</div>
                                                 <div class="product-subtitle">
-                                                    {{'educations[' .$education->graduate. ']' }}
+                                                    {{ $education->graduate }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
                                                 <div class="product-title">Address</div>
                                                 <div class="product-subtitle">
-                                                    {{'educations[' .$education->graduate. ']' }}
+                                                    {{ $education->address }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">City</div>
                                                 <div class="product-subtitle">
-                                                    {{'educations[' .$education->regencies_id. ']' }}
+                                                    {{ $education->regencies_id }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
@@ -213,23 +213,25 @@
                                                     Province
                                                 </div>
                                                 <div class="product-subtitle">
-                                                    {{'educations[' .$education->provinces_id. ']' }}
+                                                    {{ $education->provinces_id }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Postal Code</div>
-                                                <div class="product-subtitle">{{'educations[' .$education->zip_code. ']' }}</div>
+                                                <div class="product-subtitle">{{$education->zip_code }}</div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Country</div>
                                                 <div class="product-subtitle">
-                                                    {{'educations[' .$education->country. ']' }}
+                                                    {{ $education->country }}
                                                 </div>
                                             </div>
+                                            <div class="dropdown-divider"></div>
                                             @empty
-
+                                                <div class="col-12 col-md-12 text-align-center">
+                                                    <div class="product-title align-self-center">No Data</div>
+                                                </div>
                                             @endforelse
-
                                         </div>
                                     </div>
                                 </div>
@@ -250,79 +252,112 @@
                                         <h5>
                                             Work Experience
                                         </h5>
+                                        <div class="dropdown-divider"></div>
                                         <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title"> Institution Name</div>
-                                                <div class="product-subtitle">
-                                                    Le Meredien Hotel
+                                            @forelse ($experience_user as $key => $experience)
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title"> Institution Name</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->name }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Position</div>
-                                                <div class="product-subtitle">
-                                                    Food And Beverage Services
+
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Base</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->base }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Start Date</div>
-                                                <div class="product-subtitle">
-                                                    17 December 2019
+
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Position</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->position }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">End Date</div>
-                                                <div class="product-subtitle">
-                                                    17 July 2020
+
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Job Title</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->job_title }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="product-title">Address</div>
-                                                <div class="product-subtitle">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, doloremque cumque nisi exercitationem corporis illo veniam fuga obcaecati omnis voluptates quaerat reprehenderit illum sapiente, officia facilis expedita, nam aut ipsam.
+
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Start Date</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->start_of_contract }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">City</div>
-                                                <div class="product-subtitle">
-                                                    Bandung
+
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">End Date</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->end_of_contract }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">
-                                                    Province
+
+                                                <div class="col-12 col-md-12">
+                                                    <div class="product-title">Address</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->address }}
+                                                    </div>
                                                 </div>
-                                                <div class="product-subtitle">
-                                                    West Java
+
+                                                <div class="col-12 col-md-3">
+                                                    <div class="product-title">City</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->regencies_id }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Postal Code</div>
-                                                <div class="product-subtitle">123999</div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">Country</div>
-                                                <div class="product-subtitle">
-                                                    Indonesia
+
+                                                <div class="col-12 col-md-3">
+                                                    <div class="product-title">
+                                                        Province
+                                                    </div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->provinces_id }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">Supervisor Name</div>
-                                                <div class="product-subtitle">
-                                                    Michael Jackson
+
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Postal Code</div>
+                                                    <div class="product-subtitle">{{ $experience->zip_code }}</div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">Phone Number</div>
-                                                <div class="product-subtitle">
-                                                    +62 912092123
+
+                                                <div class="col-12 col-md-3">
+                                                    <div class="product-title">Country</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->country }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="product-title">Duties</div>
-                                                <div class="product-subtitle">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, doloremque cumque nisi exercitationem corporis illo veniam fuga obcaecati omnis voluptates quaerat reprehenderit illum sapiente, officia facilis expedita, nam aut ipsam.
+
+                                                <div class="col-12 col-md-3">
+                                                    <div class="product-title">Supervisor Name</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->spv_name }}
+                                                    </div>
                                                 </div>
-                                            </div>
+
+                                                <div class="col-12 col-md-3">
+                                                    <div class="product-title">Phone Number</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->institution_phone }}
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-12 col-md-12">
+                                                    <div class="product-title">Describe Your Duty</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $experience->job_descriptions }}
+                                                    </div>
+                                                </div>
+
+                                            @empty
+                                                <div class="col-12 col-md-12 text-align-center">
+                                                    <div class="product-title align-self-center">No Data</div>
+                                                </div>
+                                            @endforelse
                                         </div>
                                     </div>
                                 </div>
@@ -343,62 +378,68 @@
                                         <h5>
                                             Emergency Contact Information
                                         </h5>
+                                        <div class="dropdown-divider"></div>
                                         <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Name</div>
-                                                <div class="product-subtitle">
-                                                    Surya
+                                            @forelse ($emergency_user as $key => $emergency)
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Name</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $emergency->family_name }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Siblings</div>
-                                                <div class="product-subtitle">
-                                                    Father
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Relation</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $emergency->relations }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-12">
-                                                <div class="product-title">Address</div>
-                                                <div class="product-subtitle">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, doloremque cumque nisi exercitationem corporis illo veniam fuga obcaecati omnis voluptates quaerat reprehenderit illum sapiente, officia facilis expedita, nam aut ipsam.
+                                                <div class="col-12 col-md-12">
+                                                    <div class="product-title">Address</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $emergency->address }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Phone Number</div>
-                                                <div class="product-subtitle">
-                                                    +62 013792348912
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Phone Number</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $emergency->contact1 }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Phone Number 2</div>
-                                                <div class="product-subtitle">
-                                                    +62 013792348913
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Phone Number 2</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $emergency->contact2 }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">City</div>
-                                                <div class="product-subtitle">
-                                                    Bandung
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">City</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $emergency->regencies_id }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">
-                                                    Province
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">
+                                                        Province
+                                                    </div>
+                                                    <div class="product-subtitle">
+                                                        {{ $emergency->provinces_id }}
+                                                    </div>
                                                 </div>
-                                                <div class="product-subtitle">
-                                                    West Java
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Postal Code</div>
+                                                    <div class="product-subtitle">{{ $emergency->zip_code }}</div>
                                                 </div>
-                                            </div>
-
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Postal Code</div>
-                                                <div class="product-subtitle">123999</div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Country</div>
-                                                <div class="product-subtitle">
-                                                    Indonesia
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Country</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $emergency->country }}
+                                                    </div>
                                                 </div>
-                                            </div>
+                                            @empty
+                                                <div class="col-12 col-md-12 text-align-center">
+                                                    <div class="product-title align-self-center">No Data</div>
+                                                </div>
+                                            @endforelse
                                         </div>
                                     </div>
                                 </div>
@@ -420,61 +461,38 @@
                                         <h5>
                                             My Documents
                                         </h5>
+                                        <div class="dropdown-divider"></div>
                                         <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">Passport Number</div>
-                                                <div class="product-subtitle">
-                                                    C345234
+                                            @forelse ($document_user as $key => $document)
+                                                <div class="col-12 col-md-3">
+                                                    <div class="product-title">{{ $document->name }}</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $document->docs_number }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">Issued Date</div>
-                                                <div class="product-subtitle">
-                                                    12 December 2019
+                                                <div class="col-12 col-md-3">
+                                                    <div class="product-title">Issued Place</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $document->place_issued }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Expired Date</div>
-                                                <div class="product-subtitle">
-                                                    17 December 2024
+                                                <div class="col-12 col-md-3">
+                                                    <div class="product-title">Issued Date</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $document->issued_date }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">Seaman Book</div>
-                                                <div class="product-subtitle">
-                                                    B12734
+                                                <div class="col-12 col-md-6">
+                                                    <div class="product-title">Expired Date</div>
+                                                    <div class="product-subtitle">
+                                                        {{ $document->expired_date }}
+                                                    </div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">Issued Date</div>
-                                                <div class="product-subtitle">
-                                                    12 December 2020
+                                            @empty
+                                                <div class="col-12 col-md-12 text-align-center">
+                                                    <div class="product-title align-self-center">No Data</div>
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Expired Date</div>
-                                                <div class="product-subtitle">
-                                                    12 December 2025
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">
-                                                    Basic Safety Training
-                                                </div>
-                                                <div class="product-subtitle">
-                                                    909182348236282
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">Issued Date</div>
-                                                <div class="product-subtitle">12 November 2020</div>
-                                            </div>
-                                            <div class="col-12 col-md-3">
-                                                <div class="product-title">Expired Date</div>
-                                                <div class="product-subtitle">
-                                                    12 December 2025
-                                                </div>
-                                            </div>
+                                            @endforelse
                                         </div>
                                     </div>
                                 </div>

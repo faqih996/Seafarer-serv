@@ -22,6 +22,7 @@ class CreateDocumentsTable extends Migration
             $table->date('issued_date')->nullable();
             $table->date('expired_date')->nullable();
             $table->string('docs_status')->nullable();
+            $table->string('certificate')->nullable();
 
             $table->softDeletes();
             $table->timestamps();

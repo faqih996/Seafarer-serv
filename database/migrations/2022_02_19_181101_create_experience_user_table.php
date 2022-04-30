@@ -30,7 +30,7 @@ class CreateExperienceUserTable extends Migration
             $table->string('spv_name');
             $table->integer('institution_phone');
             $table->longText('job_descriptions');
-            $table->string('photo');
+            $table->string('certificate');
 
             $table->softDeletes();
             $table->timestamps();

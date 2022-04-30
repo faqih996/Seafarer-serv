@@ -131,7 +131,7 @@ class ProfileController extends Controller
     {
         $item = DetailUser::findOrFail($id);
         $education = Educations::findOrFail($id);
-        $experience = Experiences::findOrFail($id);
+        $experience = ExperienceUser::findOrFail($id);
         $emergency = Emergencies::findOrFail($id);
         return view('pages.profile.edit', [
             'item' => $item,
