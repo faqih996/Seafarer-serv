@@ -21,7 +21,11 @@ use App\Models\ExperienceUser;
 use App\Models\Educations;
 use App\Models\Emergencies;
 use App\Models\Documents;
-use App\Models\Education;
+
+use App\Models\Province;
+use App\Models\Regency;
+use App\Models\District;
+use App\Models\Village;
 
 class ProfileController extends Controller
 {
@@ -38,12 +42,29 @@ class ProfileController extends Controller
      */
     public function index()
     {
+        $provinces = Province::all();
+        $regencies = Regency::all();
+        $districts = District::all();
+        $villages = Village::all();
+
         $user = User::where('id', Auth::user()->id)->first();
         $experience_user = ExperienceUser::where('detail_user_id', $user->detail_user->id)
                                 ->OrderBy('id', 'asc')
                                 ->get();
+        $education_user = Educations::where('detail_user_id', $user->detail_user->id)
+                                ->OrderBy('id', 'asc')
+                                ->get();
+        $emergency_user = Emergencies::where('detail_user_id', $user->detail_user->id)
+                                ->OrderBy('id', 'asc')
+                                ->get();
+        $document_user = Documents::where('detail_user_id', $user->detail_user->id)
+                                ->OrderBy('id', 'asc')
+                                ->get();
 
-        return view('pages.profile.index', compact('user', 'experience_user', )
+        // dd($experience_user, $education_user, $emergency_user, $document_user);
+
+        return view('pages.profile.index', compact('user', 'experience_user', 'education_user', 'emergency_user', 'document_user',
+                            'provinces', 'regencies', 'districts', 'villages')
         );
     }
 

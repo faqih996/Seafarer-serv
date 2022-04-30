@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Educations extends Model
 {
     use SoftDeletes;
+    use HasFactory;
 
     public $table = 'educations';
 

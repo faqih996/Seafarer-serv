@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    Admin Dashboard
+    My Profile
 @endsection
 
 @section('content')
@@ -22,9 +22,10 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
+
                                     <div class="col-12 col-md-4">
                                         @if (auth()->user()->detail_user()->first()->photo != NULL)
-                                            <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="photo profile"
+                                            <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="profile photo"
                                                 srcset="" class="w-16 h-16 rounded-full">
                                         @else
                                             <span class="inline-block w-16 h-16 overflow-hidden bg-gray-100 rounded-full">
@@ -72,6 +73,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -105,115 +107,46 @@
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
-                                                <div class="product-title">Address</div>
+                                                <div class="product-title">Gender</div>
                                                 <div class="product-subtitle">
-                                                Setra Duta Cemara
+                                                    {{ $user->detail_user->gender }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
-                                                <div class="product-title">Occupation</div>
+                                                <div class="product-title">Marital Status</div>
                                                 <div class="product-subtitle">
-                                                Blok B2 No. 34
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">
-                                                Province
-                                                </div>
-                                                <div class="product-subtitle">
-                                                West Java
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">City</div>
-                                                <div class="product-subtitle">
-                                                Bandung
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Postal Code</div>
-                                                <div class="product-subtitle">123999</div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Country</div>
-                                                <div class="product-subtitle">
-                                                Indonesia
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Emergency Contact Person -->
-            <div class="mt-3 dashboard-content" id="emergencyDetails">
-                <div class="row">
-                    <div class="col-12">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="mt-4 col-12">
-                                        <h5>
-                                            Emergency Contact Information
-                                        </h5>
-                                        <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Name</div>
-                                                <div class="product-subtitle">
-                                                    Surya
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Siblings</div>
-                                                <div class="product-subtitle">
-                                                    Father
+                                                    {{ $user->detail_user->marital }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
                                                 <div class="product-title">Address</div>
                                                 <div class="product-subtitle">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, doloremque cumque nisi exercitationem corporis illo veniam fuga obcaecati omnis voluptates quaerat reprehenderit illum sapiente, officia facilis expedita, nam aut ipsam.
+                                                    {{ $user->detail_user->address }}
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-6">
-                                                <div class="product-title">Phone Number</div>
-                                                <div class="product-subtitle">
-                                                    +62 013792348912
+                                                <div class="product-title">
+                                                Province
                                                 </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Phone Number 2</div>
                                                 <div class="product-subtitle">
-                                                    +62 013792348913
+                                                    {{-- {{ $user->detail_user->provinces->name }} --}}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">City</div>
                                                 <div class="product-subtitle">
-                                                    Bandung
+                                                    {{-- {{ $user->detail_user->regencies->id }} --}}
                                                 </div>
                                             </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">
-                                                    Province
-                                                </div>
-                                                <div class="product-subtitle">
-                                                    West Java
-                                                </div>
-                                            </div>
-
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Postal Code</div>
-                                                <div class="product-subtitle">123999</div>
+                                                <div class="product-subtitle">{{ $user->detail_user->zip_code }}</div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Country</div>
                                                 <div class="product-subtitle">
-                                                    Indonesia
+                                                    {{ $user->detail_user->country }}
                                                 </div>
                                             </div>
                                         </div>
@@ -237,40 +170,42 @@
                                             Education Background
                                         </h5>
                                         <div class="row">
+
+                                            @forelse ($education_user as $key => $education)
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title"> Institution Name</div>
                                                 <div class="product-subtitle">
-                                                    Seaeducation
+                                                    {{ 'educations[' .$education->name. ']' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Courses</div>
                                                 <div class="product-subtitle">
-                                                    Food And Beverage Services
+                                                    {{'educations[' .$education->course. ']' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Start Date</div>
                                                 <div class="product-subtitle">
-                                                    17 December 2019
+                                                    {{'educations[' .$education->start. ']' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">End Date</div>
                                                 <div class="product-subtitle">
-                                                    17 July 2020
+                                                    {{'educations[' .$education->graduate. ']' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
                                                 <div class="product-title">Address</div>
                                                 <div class="product-subtitle">
-                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, doloremque cumque nisi exercitationem corporis illo veniam fuga obcaecati omnis voluptates quaerat reprehenderit illum sapiente, officia facilis expedita, nam aut ipsam.
+                                                    {{'educations[' .$education->graduate. ']' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">City</div>
                                                 <div class="product-subtitle">
-                                                    Bandung
+                                                    {{'educations[' .$education->regencies_id. ']' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
@@ -278,19 +213,23 @@
                                                     Province
                                                 </div>
                                                 <div class="product-subtitle">
-                                                    West Java
+                                                    {{'educations[' .$education->provinces_id. ']' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Postal Code</div>
-                                                <div class="product-subtitle">123999</div>
+                                                <div class="product-subtitle">{{'educations[' .$education->zip_code. ']' }}</div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Country</div>
                                                 <div class="product-subtitle">
-                                                    Indonesia
+                                                    {{'educations[' .$education->country. ']' }}
                                                 </div>
                                             </div>
+                                            @empty
+
+                                            @endforelse
+
                                         </div>
                                     </div>
                                 </div>
@@ -392,6 +331,83 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Emergency Contact Person -->
+            <div class="mt-3 dashboard-content" id="emergencyDetails">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="mt-4 col-12">
+                                        <h5>
+                                            Emergency Contact Information
+                                        </h5>
+                                        <div class="row">
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Name</div>
+                                                <div class="product-subtitle">
+                                                    Surya
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Siblings</div>
+                                                <div class="product-subtitle">
+                                                    Father
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-12">
+                                                <div class="product-title">Address</div>
+                                                <div class="product-subtitle">
+                                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, doloremque cumque nisi exercitationem corporis illo veniam fuga obcaecati omnis voluptates quaerat reprehenderit illum sapiente, officia facilis expedita, nam aut ipsam.
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Phone Number</div>
+                                                <div class="product-subtitle">
+                                                    +62 013792348912
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Phone Number 2</div>
+                                                <div class="product-subtitle">
+                                                    +62 013792348913
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">City</div>
+                                                <div class="product-subtitle">
+                                                    Bandung
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">
+                                                    Province
+                                                </div>
+                                                <div class="product-subtitle">
+                                                    West Java
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Postal Code</div>
+                                                <div class="product-subtitle">123999</div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Country</div>
+                                                <div class="product-subtitle">
+                                                    Indonesia
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
 
             <!-- Document -->
             <div class="mt-3 dashboard-content" id="documentsDetails">

@@ -14,21 +14,24 @@ class DetailUserTableSeeder extends Seeder
      */
     public function run()
     {
-        $detail_user = [
-            [
-                'users_id' => 1,
-                'photo' => '',
-                'created_at' => date('Y-m-d h:i:s'),
-                'updated_at' => date('Y-m-d h:i:s'),
-            ],
-            [
-                'users_id' => 2,
-                'photo' => '',
-                'created_at' => date('Y-m-d h:i:s'),
-                'updated_at' => date('Y-m-d h:i:s'),
-            ],
-        ];
 
-        DetailUser::insert($detail_user);
+        DetailUser::factory(5)->create();
+
+        // $detail_user = [
+        //     [
+        //         'users_id' => 1,
+        //         'photo' => '',
+        //         'created_at' => date('Y-m-d h:i:s'),
+        //         'updated_at' => date('Y-m-d h:i:s'),
+        //     ],
+        //     [
+        //         'users_id' => 2,
+        //         'photo' => '',
+        //         'created_at' => date('Y-m-d h:i:s'),
+        //         'updated_at' => date('Y-m-d h:i:s'),
+        //     ],
+        // ];
+
+        // DetailUser::insert($detail_user);
     }
 }

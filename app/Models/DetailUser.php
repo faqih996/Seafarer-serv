@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class DetailUser extends Model
 {
+     use HasFactory;
     use SoftDeletes;
 
     public $table = 'detail_user';
@@ -31,13 +32,13 @@ class DetailUser extends Model
     // one to one relation
     public function user()
     {
-        return $this->belongsTo(DetailUser::Class, 'users_id', 'id');
+        return $this->belongsTo('App\Models\DetailUser', 'users_id', 'id');
     }
 
         //one to many
     public function experience_user()
     {
-        return $this->hasMany(ExperienceUser::class, 'detail_user_id');
+        return $this->hasMany('App\Models\ExperienceUser', 'detail_user_id');
     }
 
     public function education_user()
@@ -53,5 +54,10 @@ class DetailUser extends Model
     public function document_user()
     {
         return $this->hasMany('App\Models\Document', 'detail_user_id');
+    }
+
+    public function province()
+    {
+        return $this->hasOne('App\Models\Province', 'province_id', 'id');
     }
 }

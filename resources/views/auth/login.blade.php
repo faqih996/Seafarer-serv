@@ -5,11 +5,11 @@
     <div class="section-auth" data-aos="fade-up">
         <div class="container">
             <div class="row align-items-center row-login">
-                <div class="col-lg-6 text-center">
+                <div class="text-center col-lg-6">
                     <img
                     src="images/sosslogo.png"
                     alt=""
-                    class="w-50 mb-4 mb-lg-none"
+                    class="mb-4 w-50 mb-lg-none"
                     />
                 </div>
                 <div class="col-lg-6">
@@ -39,15 +39,21 @@
                                 </span>
                             @enderror
                         </div>
+
+                        @if (Route::has('password.request'))
+                        <a class="align-self-end text-decoration-none" href="{{ route('password.request') }}">
+                                        {{ __('Forgot Your Password?') }}</a>
+                        @endif
+
                         <button
                             type="submit"
-                            class="btn btn-primary btn-block 85 mt-4"
+                            class="mt-4 btn btn-primary btn-block 85"
                         >
                             Sign In to My Account
                         </button>
                         <a
                             href="{{ route('register') }}"
-                            class="btn btn-signup btn-block w-85 mt-3"
+                            class="mt-3 btn btn-signup btn-block w-85"
                         >
                             Sign Up
                         </a>

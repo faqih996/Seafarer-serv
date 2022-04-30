@@ -40,7 +40,7 @@
                     Personal Information
                   </h5>
                   <div class="dropdown-divider"></div>
-                  <div class="row mb-2">
+                  <div class="mb-2 row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="first_name">First Name</label>
@@ -205,7 +205,7 @@
                           id="provinces_id"
                           aria-describedby="emailHelp"
                           name="provinces_id"
-                          value="{{ $item->provinces_id}}"
+                          value="{{ $item->provinces_id }}"
                           required
                         />
                         {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
@@ -263,15 +263,15 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col text-left">
+                    <div class="text-left col">
                       <p class="dashboard-subtitle text-danger">
                         Don't forget to click SAVE after each section!
                       </p>
                     </div>
-                    <div class="col text-right">
+                    <div class="text-right col">
                       <button
                         type="submit"
-                        class="btn btn-success px-5"
+                        class="px-5 btn btn-success"
                       >
                         Save
                       </button>
@@ -298,7 +298,7 @@
                     Education Background
                   </h5>
                   <div class="dropdown-divider"></div>
-                  <div class="row mb-2">
+                  <div class="mb-2 row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="institution_name">Institution Name</label>
@@ -446,15 +446,15 @@
                         Add Education
                       </button>
                     </div>
-                    <div class="col text-left mt-4">
+                    <div class="mt-4 text-left col">
                         <p class="dashboard-subtitle text-danger">
                           Don't forget to click SAVE after each section!
                         </p>
                       </div>
-                    <div class="col text-right">
+                    <div class="text-right col">
                       <button
                         type="submit"
-                        class="btn btn-success px-5 mt-4"
+                        class="px-5 mt-4 btn btn-success"
                       >
                         Save
                       </button>
@@ -481,7 +481,7 @@
                     Work Experience
                   </h5>
                   <div class="dropdown-divider"></div>
-                  <div class="row mb-2">
+                  <div class="mb-2 row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="name">Institution Name</label>
@@ -687,15 +687,15 @@
                         Add Experience
                       </button>
                     </div>
-                    <div class="col text-left mt-4">
+                    <div class="mt-4 text-left col">
                       <p class="dashboard-subtitle text-danger">
                         Don't forget to click SAVE after each section!
                       </p>
                     </div>
-                    <div class="col text-right">
+                    <div class="text-right col">
                       <button
                         type="submit"
-                        class="btn btn-success px-5 mt-3"
+                        class="px-5 mt-3 btn btn-success"
                       >
                         Save Now
                       </button>
@@ -722,7 +722,7 @@
                             Emergency Contact
                           </h5>
                           <div class="dropdown-divider"></div>
-                          <div class="row mb-2">
+                          <div class="mb-2 row">
                             <div class="col-md-6">
                               <div class="form-group">
                                 <label for="family_name">Family Name</label>
@@ -874,15 +874,15 @@
 
                             <div class="row">
 
-                                <div class="col text-left mt-4">
+                                <div class="mt-4 text-left col">
                                   <p class="dashboard-subtitle text-danger">
                                     Don't forget to click SAVE after each section!
                                   </p>
                                 </div>
-                                <div class="col text-right">
+                                <div class="text-right col">
                                   <button
                                     type="submit"
-                                    class="btn btn-success px-5 mt-3"
+                                    class="px-5 mt-3 btn btn-success"
                                   >
                                     Save Now
                                   </button>
