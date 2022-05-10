@@ -12,9 +12,9 @@
     >
     <div class="container-fluid">
         <div class="dashboard-heading">
-            <h2 class="dashboard-title">Services</h2>
+            <h2 class="dashboard-title">Category</h2>
             <p class="dashboard-subtitle">
-                List of Services
+                List of Category
             </p>
         </div>
         <div class="dashboard-content">
@@ -22,8 +22,8 @@
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-body">
-                            <a href="{{  route('category.create') }}" class="btn btn-primary mb-3">
-                                + Add New Services
+                            <a href="{{  route('category.create') }}" class="mb-3 btn btn-primary">
+                                + Add New Category
                             </a>
                             <div class="table-responsive">
                                 <table class="table table-hover scroll-horizontal-vertical w-100" id="crudTable">
@@ -36,7 +36,9 @@
                                         <th>Action</th>
                                     </tr>
                                     </thead>
-                                    <tbody></tbody>
+                                    <tbody>
+
+                                    </tbody>
                                 </table>
                             </div>
                         </div>

@@ -12,9 +12,9 @@
 >
   <div class="container-fluid">
     <div class="dashboard-heading">
-        <h2 class="dashboard-title">Services</h2>
+        <h2 class="dashboard-title">Category</h2>
         <p class="dashboard-subtitle">
-            Edit "{{ $item->name }}" Services
+            Edit "{{ $item->name }}" Category
         </p>
     </div>
     <div class="dashboard-content">
@@ -44,7 +44,11 @@
                   <div class="col-md-12">
                     <div class="form-group">
                       <label>Foto</label>
-                      <input type="file" class="form-control" name="photo" placeholder="Photo" />
+                        <div class="mb-2">
+                            <img src="{{ url(Storage::url($item->photo)) }}" alt="thumbnail" srcset=""class="inline object-cover w-20 h-20 rounded" for="choose">
+                        </div>
+
+                      <input type="file" class="form-control" name="photo" placeholder="Photo" value="{{ $item->photo }}"/>
                     </div>
                   </div>
                 </div>

@@ -104,9 +104,9 @@ class DepartmentController extends Controller
     {
         $item = Department::findOrFail($id);
 
-         return view('pages.admin.department.edit', [
-             'item' => $item
-         ]);
+        return view('pages.admin.department.edit', [
+            'item' => $item
+        ]);
     }
 
     /**

@@ -129,16 +129,21 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $item = DetailUser::findOrFail($id);
-        $education = Educations::findOrFail($id);
-        $experience = ExperienceUser::findOrFail($id);
-        $emergency = Emergencies::findOrFail($id);
-        return view('pages.profile.edit', [
-            'item' => $item,
-            'education' => $education,
-            'experience' => $experience,
-            'emergency' => $emergency
-        ]);
+        $user = User::where('id', Auth::user()->id)->first();
+        $experience_user = ExperienceUser::where('detail_user_id', $user->detail_user->id)
+                                ->OrderBy('id', 'asc')
+                                ->get();
+        $education_user = Educations::where('detail_user_id', $user->detail_user->id)
+                                ->OrderBy('id', 'asc')
+                                ->get();
+        $emergency_user = Emergencies::where('detail_user_id', $user->detail_user->id)
+                                ->OrderBy('id', 'asc')
+                                ->get();
+        $document_user = Documents::where('detail_user_id', $user->detail_user->id)
+                                ->OrderBy('id', 'asc')
+                                ->get();
+        return view('pages.profile.edit', compact('user', 'experience_user', 'education_user', 'emergency_user', 'document_user',
+                            'provinces', 'regencies', 'districts', 'villages'));
     }
 
     /**

@@ -2,7 +2,7 @@
       <div class="d-flex" id="wrapper" data-aos="fade-right">
         <!-- Sidebar -->
         <div class="border-right" id="sidebar-wrapper">
-          <div class="sidebar-heading text-center">
+          <div class="text-center sidebar-heading">
             <img src="{{ asset('/images/logoheader.png')}}" alt="" class="my-4" />
           </div>
           <div class="list-group list-group-flush">
@@ -37,7 +37,7 @@
           data-aos="fade-down">
 
         <div class="container">
-          <button class="btn-secondary d-md-none mr-auto mr-2" id="menu-toggle">
+          <button class="mr-2 mr-auto btn-secondary d-md-none" id="menu-toggle">
               &laquo; Menu
           </button>
             <button
@@ -51,7 +51,7 @@
                         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
                             <!-- Desktop Menu -->
-                            <ul class="navbar-nav d-none d-lg-flex ml-auto">
+                            <ul class="ml-auto navbar-nav d-none d-lg-flex">
                                 <li class="nav-item dropdown">
                                     <a href="" class="nav-link"
                                         id="navbarDropdown"
@@ -59,9 +59,9 @@
                                         data-toggle="dropdown"
                                     >
                                         <img
-                                        src="images/icon-user.png"
+                                        src="{{ asset('/images/logoheader.png') }}"
                                         alt=""
-                                        class="rounded-circle mr-2 profile-picture">
+                                        class="mr-2 rounded-circle profile-picture">
                                         Hi, {{ Auth::user()->first_name }}
                                     </a>
                                     <div class="dropdown-menu">
@@ -80,7 +80,7 @@
                                     </div>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link d-inline-block mt-2">
+                                    <a href="" class="mt-2 nav-link d-inline-block">
                                         <img src="" alt="">
                                     </a>
                                 </li>

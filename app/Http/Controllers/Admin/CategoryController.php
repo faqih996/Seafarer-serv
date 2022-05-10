@@ -35,16 +35,16 @@ class CategoryController extends Controller
                                         data-toggle="dropdown"
                                         aria-haspopup="true"
                                         aria-expanded="false">
-                                        Aksi
+                                        Action
                                 </button>
                                 <div class="dropdown-menu" aria-labelledby="action' .  $item->id . '">
                                     <a class="dropdown-item" href="' . route('category.edit', $item->id) . '">
-                                        Sunting
+                                        Edit
                                     </a>
                                     <form action="' . route('category.destroy', $item->id) . '" method="POST">
                                         ' . method_field('delete') . csrf_field() . '
                                         <button type="submit" class="dropdown-item text-danger">
-                                            Hapus
+                                            Delete
                                         </button>
                                     </form>
                                 </div>
@@ -86,7 +86,7 @@ class CategoryController extends Controller
 
         Category::create($data);
 
-        return redirect()->route('category.index')->with('success', 'Data Has Been Saved!');
+        return redirect()->route('category.index');
     }
 
     /**
@@ -127,7 +127,47 @@ class CategoryController extends Controller
         $data = $request->all();
 
         $data['slug'] = Str::slug($request->name);
-        $data['photo'] = $request->file('photo')->store('assets/category', 'public');
+
+        if($request->hasfile('photo')){
+            foreach ($request->file('photo') as $key => $file)
+                {
+                    // get old photo thumbnail
+                    $get_photo = Category::where('id', $key)->first();
+
+                    // store photo
+                    $path = $file->store(
+                        'assets/category', 'public'
+                    );
+
+                    // update thumbail
+                    $thumbnail_service = Category::find($key);
+                    $thumbnail_service->photo = $path;
+                    $thumbnail_service->save();
+
+                    // delete old photo thumbnail
+                    $data = 'storage/'.$get_photo['photo'];
+                    if(File::exists($data)){
+                        File::delete($data);
+                    }else{
+                        File::delete('storage/app/public/'.$get_photo['photo']);
+                    }
+                }
+
+            // add to thumbnail service
+            if($request->hasfile('photo')){
+                foreach($request->file('photo') as $file)
+                {
+                    $path = $file->store(
+                        'assets/category', 'public'
+                    );
+
+                    $thumbnail_service = new Category;
+                    $thumbnail_service->service_id = $data['id'];
+                    $thumbnail_service->photo = $path;
+                    $thumbnail_service->save();
+                }
+            }
+        }
 
         $item = Category::findOrFail($id);
 
@@ -145,6 +185,7 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $item = Category::findorFail($id);
+
         $item->delete();
 
         return redirect()->route('category.index');

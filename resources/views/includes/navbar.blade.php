@@ -53,7 +53,7 @@
                         Hi, {{Auth::user()->first_name }}
                         <img
                             src="
-                                {{-- {{Auth::user()->profile()->photos}} --}}
+                                {{ url('/images/logoheader.png')}}
                             "
                             alt=""
                             class="mr-2 rounded-circle profile-picture"
