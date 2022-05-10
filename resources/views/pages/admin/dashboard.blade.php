@@ -68,8 +68,8 @@
                         <div class="row">
                           <div class="col-md-1">
                             <img
-                              src="/images/dashboard-icon-product-1.png"
-                              alt=""
+                              src=""
+                              alt="img"
                             />
                           </div>
                           <div class="col-md-4">
@@ -83,8 +83,8 @@
                           </div>
                           <div class="col-md-1 d-none d-md-block">
                             <img
-                              src="images/dashboard-arrow-right.svg"
-                              alt=""
+                              src="{{ asset('/images/dashboard-arrow-right.svg')}}"
+                              alt="icon-detail"
                             />
                           </div>
                         </div>
@@ -98,8 +98,8 @@
                         <div class="row">
                           <div class="col-md-1">
                             <img
-                              src="images/dashboard-icon-product-2.png"
-                              alt=""
+                              src=""
+                              alt="img"
                             />
                           </div>
                           <div class="col-md-4">
@@ -113,7 +113,7 @@
                           </div>
                           <div class="col-md-1 d-none d-md-block">
                             <img
-                              src="images/dashboard-arrow-right.svg"
+                              src="{{ asset('/images/dashboard-arrow-right.svg')}}"
                               alt=""
                             />
                           </div>
@@ -128,8 +128,8 @@
                         <div class="row">
                           <div class="col-md-1">
                             <img
-                              src="images/dashboard-icon-product-3.png"
-                              alt=""
+                              src=""
+                              alt="img"
                             />
                           </div>
                           <div class="col-md-4">
@@ -143,7 +143,7 @@
                           </div>
                           <div class="col-md-1 d-none d-md-block">
                             <img
-                              src="images/dashboard-arrow-right.svg"
+                              src="{{ asset('/images/dashboard-arrow-right.svg')}}"
                               alt=""
                             />
                           </div>

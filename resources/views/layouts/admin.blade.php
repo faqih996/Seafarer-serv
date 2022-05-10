@@ -142,8 +142,8 @@
                             data-toggle="dropdown"
                         >
                             <img
-                                src="images/icon-user.png"
-                                alt=""
+                                src=""
+                                alt="user-icon"
                                 class="mr-2 rounded-circle profile-picture"
                             />
                             Hi, {{ Auth::user()->first_name }}
@@ -199,10 +199,10 @@
 
         <!-- Bootstrap core JavaScript -->
         @stack('prepend-script')
-        <script src="/vendor/jquery/jquery.min.js"></script>
-        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.11.4/datatables.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        <script src="{{ asset('/vendor/jquery/jquery.min.js')}}"></script>
+        <script src="{{ asset('/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script type="text/javascript" src="{{ url('https://cdn.datatables.net/v/bs4/dt-1.11.4/datatables.min.js')}}"></script>
+        <script src="{{ url('https://unpkg.com/aos@2.3.1/dist/aos.js')}}"></script>
         <script>
         AOS.init();
         </script>

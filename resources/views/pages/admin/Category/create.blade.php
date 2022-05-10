@@ -43,7 +43,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label>Foto</label>
-                                        <img class="img-preview img-fluid col-sm-5mb-3" alt="">
+                                        <img class="img-preview img-fluid col-sm-5 mb-3" alt="">
                                         <input type="file" class="form-control" name="photo" placeholder="Photo" required
                                             id="image" onchange="previewImage()" />
                                     </div>
@@ -71,12 +71,12 @@
 @push('addon-script')
     <script  type="text/javascript">
         function previewImage(){
-            const image = document.querySelector('#image');
-            const previewImage = document.querySelector('.img-preview');
+            const image = document.querySelector( '#image' );
+            const imgPreview = document.querySelector('.img-preview');
 
             imgPreview.style.display = 'block';
 
-            const ofReader = new FileReader( );
+            const oFReader = new FileReader( );
             oFReader.readAsDataURL( image.files[0] );
 
             oFReader.onload = function( oFREvent ) {
