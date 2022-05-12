@@ -25,7 +25,7 @@ class CategoryRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'photo' => 'nullable|image',
+            'photo' => 'nullable|image|file|max:1024',
         ];
     }
 }

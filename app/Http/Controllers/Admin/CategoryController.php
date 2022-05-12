@@ -128,49 +128,15 @@ class CategoryController extends Controller
 
         $data['slug'] = Str::slug($request->name);
 
-        if($request->hasfile('photo')){
-            foreach ($request->file('photo') as $key => $file)
-                {
-                    // get old photo thumbnail
-                    $get_photo = Category::where('id', $key)->first();
-
-                    // store photo
-                    $path = $file->store(
-                        'assets/category', 'public'
-                    );
-
-                    // update thumbail
-                    $thumbnail_service = Category::find($key);
-                    $thumbnail_service->photo = $path;
-                    $thumbnail_service->save();
-
-                    // delete old photo thumbnail
-                    $data = 'storage/'.$get_photo['photo'];
-                    if(File::exists($data)){
-                        File::delete($data);
-                    }else{
-                        File::delete('storage/app/public/'.$get_photo['photo']);
-                    }
-                }
-
-            // add to thumbnail service
-            if($request->hasfile('photo')){
-                foreach($request->file('photo') as $file)
-                {
-                    $path = $file->store(
-                        'assets/category', 'public'
-                    );
-
-                    $thumbnail_service = new Category;
-                    $thumbnail_service->service_id = $data['id'];
-                    $thumbnail_service->photo = $path;
-                    $thumbnail_service->save();
-                }
+        if($data->file('photo')) {
+            if($data->oldImage) {
+                Storage::delete($request->oldImage);
             }
+            $data['photo'] = $request->file('photo')->store('photo');
         }
 
-        $item = Category::findOrFail($id);
 
+        $item = Category::findOrFail($id);
         $item->update($data);
 
         return redirect()->route('category.index');

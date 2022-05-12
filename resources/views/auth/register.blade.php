@@ -7,7 +7,7 @@
             <div class="row align-items-center justify-content-center row-login">
                 <div class="text-center col-lg-6">
                 <img
-                src="images/sosslogo.png"
+                src="{{asset('/images/logo.png') }}"
                 alt=""
                 class="mb-3 w-50 mb-lg-none"
                 />
