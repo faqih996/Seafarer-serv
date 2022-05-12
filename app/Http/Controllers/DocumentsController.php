@@ -83,7 +83,7 @@ class DocumentsController extends Controller
         $data = $request->all();
         $data['users_id'] = auth()->user()->id;
         $data['slug'] = Str::slug($request->name);
-        $data['photos'] = $request->file('photos')->store('assets/Documents', 'public');
+        $data['certificate'] = $request->file('certificate')->store('assets/documents', 'public');
 
         Documents::create($data);
 
@@ -128,7 +128,7 @@ class DocumentsController extends Controller
         $data = $request->all();
         // dd($data);
         $data['slug'] = Str::slug($request->name);
-        $data['photos'] = $request->file('photos')->store('assets/Documents', 'public');
+        $data['certificate'] = $request->file('certificate')->store('assets/Documents', 'public');
 
         $item = Documents::findOrFail($id);
 

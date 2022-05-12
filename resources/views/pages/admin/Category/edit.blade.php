@@ -48,6 +48,7 @@
                             <div class="form-group">
                                 <label>Photo</label>
                                 <div class="mb-2">
+
                                     @if ($item->photo)
                                         <img src="{{ asset( 'storage/'. $item->photo ) }}" class="img-preview img-fluid col-sm-5 mb-3" alt="">
                                     @else

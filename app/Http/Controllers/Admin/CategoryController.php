@@ -128,13 +128,29 @@ class CategoryController extends Controller
 
         $data['slug'] = Str::slug($request->name);
 
-        if($data->file('photo')) {
-            if($data->oldImage) {
-                Storage::delete($request->oldImage);
-            }
-            $data['photo'] = $request->file('photo')->store('photo');
-        }
+        if($request->hasfile('photo')){
+            foreach($request->hasfile('photo') as $key => $file){
+                 // get old photo thumbnail
+                $get_photo = Category::where('id', $key)->first();
 
+                // store photo
+                $path = $file->store(
+                    'assets/category', 'public'
+                );
+
+                // update photo
+                $data = Category::find($key);
+                $data->photo = $path;
+
+                $data = 'storage/' .$get_photo['photo'];
+                if (File::exists($data)) {
+                    File::delete($data);
+                } else {
+                    File::delete('storage/app/public/' .$get_photo['photo']);
+                }
+
+            }
+        }
 
         $item = Category::findOrFail($id);
         $item->update($data);

@@ -114,14 +114,14 @@
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
-                                <label for="photos">Scan Documents</label>
+                                <label for="certificate">Scan Documents</label>
                                 <input
                                   type="file"
                                   multiple
-                                  class="form-control pt-1"
-                                  id="photos"
-                                  aria-describedby="photos"
-                                  name="photos"
+                                  class="pt-1 form-control"
+                                  id="certificate"
+                                  aria-describedby="certificate"
+                                  name="certificate"
                                 />
 
                               </div>
@@ -129,10 +129,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col text-right">
+                            <div class="text-right col">
                               <button
                                 type="submit"
-                                class="btn btn-success px-5"
+                                class="px-5 btn btn-success"
                               >
                                 Save Now
                               </button>
@@ -241,14 +241,14 @@
                             </div>
                             <div class="col-md-4">
                               <div class="form-group">
-                                <label for="photos">Scan Documents</label>
+                                <label for="certificate">Scan Documents</label>
                                 <input
                                   type="file"
                                   multiple
-                                  class="form-control pt-1"
-                                  id="photos"
-                                  aria-describedby="photos"
-                                  name="photos"
+                                  class="pt-1 form-control"
+                                  id="certificate"
+                                  aria-describedby="certificate"
+                                  name="certificate"
                                 />
 
                               </div>
@@ -256,10 +256,10 @@
                           </div>
 
                           <div class="row">
-                            <div class="col text-right">
+                            <div class="text-right col">
                               <button
                                 type="submit"
-                                class="btn btn-success px-5"
+                                class="px-5 btn btn-success"
                               >
                                 Save Now
                               </button>
@@ -368,14 +368,14 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                <label for="photos">Scan Documents</label>
+                                <label for="certificate">Scan Documents</label>
                                 <input
                                     type="file"
                                     multiple
-                                    class="form-control pt-1"
-                                    id="photos"
-                                    aria-describedby="photos"
-                                    name="photos"
+                                    class="pt-1 form-control"
+                                    id="certificate"
+                                    aria-describedby="certificate"
+                                    name="certificate"
                                 />
 
                                 </div>
@@ -383,10 +383,10 @@
                             </div>
 
                             <div class="row">
-                            <div class="col text-right">
+                            <div class="text-right col">
                                 <button
                                 type="submit"
-                                class="btn btn-success px-5"
+                                class="px-5 btn btn-success"
                                 >
                                 Save Now
                                 </button>
@@ -501,10 +501,10 @@
                                     <input
                                         type="file"
                                         multiple
-                                        class="form-control pt-1"
-                                        id="photos"
-                                        aria-describedby="photos"
-                                        name="photos"
+                                        class="pt-1 form-control"
+                                        id="certificate"
+                                        aria-describedby="certificate"
+                                        name="certificate"
                                     />
 
                                     </div>
@@ -512,17 +512,17 @@
                                 </div>
 
                                 <div class="row">
-                                    {{-- <div class="col-md-12 mb-3">
+                                    {{-- <div class="mb-3 col-md-12">
                                         <button
                                             class="btn btn-secondary btn-block"
                                         >
                                             Add Documents
                                         </button>
                                     </div> --}}
-                                    <div class="col text-right">
+                                    <div class="text-right col">
                                         <button
                                         type="submit"
-                                        class="btn btn-success px-5"
+                                        class="px-5 btn btn-success"
                                         >
                                         Save Now
                                         </button>

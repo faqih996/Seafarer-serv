@@ -7,7 +7,7 @@
             <div class="row align-items-center row-login">
                 <div class="text-center col-lg-6">
                     <img
-                    src="{{ asset('/images/logo.png') }}"
+                    src="{{ asset('/images/logoheader.png') }}"
                     alt=""
                     class="mb-4 w-50 mb-lg-none"
                     />
