@@ -122,27 +122,43 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, $id)
+    public function update(CategoryRequest $category_request, $id)
     {
 
-        $item = Category::findOrFail($id);
+        $data_category = $category_request->all();
 
-        $data = $request->except(['_token', 'submit', '_method']);
+        $get_photo = Category::where('id', $id)->first();
 
-        if($request->hasfile('photo')){
-
-            if($request->oldImage){
-                Storage::delete($oldImage);
+        if( isset($data_category['photo']) ){
+            $data = 'storage/'.$get_photo['photo'];
+            if(File::exists($data)){
+                File::delete($data);
+            }else{
+                File::delete('storage/app/public/', $get_photo['photo']);
             }
-            $data['photo'] = $request->file('photo')->store('assets/category', 'public');
         }
 
-        // make image name use time update
-        // $imageName = time().'.'.$request->file('photo')->extension();
-        // $data['photos'] = $request->file('photo')->store('assets/category', 'public');
+        // store file to storage
+        if(isset($data_category['photo'])){
+            $data_category['photo'] = $category_request->file('photo')->store(
+                'assets/category', 'public'
+            );
+        }
 
-        Category::where('id', $item->id)
-        ->update($data);
+        // proses save to Detail User
+        $category = Category::find($id);
+        $category->update($data_category);
+
+        // if($request->hasfile('photo')){
+        //     if($item->photo != ''){
+        //         Storage::delete($item->photo);
+        //     }
+        //     $imageName = time().'.'.$request->file('photo')->extension();
+        //     $data['photo'] = $request->file('photo')->store( 'assets/category', 'public', $imageName);
+        // }
+
+        // Category::where('id', $item->id)
+        // ->update($data);
 
         return redirect()->route('category.index');
     }

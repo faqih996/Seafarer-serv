@@ -31,9 +31,10 @@
                     </div>
                 @endif
 
-                <form action="{{ route('category.update', $item->id) }}" method="POST" enctype="multipart/form-data">
-                    @method('PUT')
+                <form action="{{ route('category.update', $item->id) }}" method="post" enctype="multipart/form-data">
+
                     @csrf
+                    @method('PUT')
 
                     <div class="card">
                     <div class="card-body">
@@ -50,20 +51,20 @@
                                 <div class="mb-2">
 
                                     @if ($item->photo)
-                                        <img src="{{ asset( 'storage/'. $item->photo ) }}" class="img-preview img-fluid col-sm-5 mb-3" alt="">
+                                        <img src="{{ asset( 'storage/'. $item->photo ) }}" class="mb-3 img-preview img-fluid col-sm-5" alt="">
                                     @else
-                                        <img class="img-preview img-fluid col-sm-5 mb-3" alt="">
+                                        <img class="mb-3 img-preview img-fluid col-sm-5" alt="">
                                     @endif
-                                        <input type="file" class="form-control" name="photos" placeholder="Photos" required
+                                        <input type="file" class="form-control" name="photo" placeholder="Photo" required
                                             id="image" onchange="previewImage()" />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
-                        <div class="col text-right">
+                        <div class="text-right col">
                             <button
                             type="submit"
-                            class="btn btn-success px-5"
+                            class="px-5 btn btn-success"
                             >
                             Save Now
                             </button>
