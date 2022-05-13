@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 
 use App\Models\Category;
-
 use App\Http\Requests\Admin\CategoryRequest;
 
 use Illuminate\Http\Request;
@@ -13,6 +12,7 @@ use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
+use File;
 class CategoryController extends Controller
 {
     /**
@@ -124,36 +124,25 @@ class CategoryController extends Controller
      */
     public function update(CategoryRequest $request, $id)
     {
-        $data = $request->all();
-
-        $data['slug'] = Str::slug($request->name);
-
-        if($request->hasfile('photo')){
-            foreach($request->hasfile('photo') as $key => $file){
-                 // get old photo thumbnail
-                $get_photo = Category::where('id', $key)->first();
-
-                // store photo
-                $path = $file->store(
-                    'assets/category', 'public'
-                );
-
-                // update photo
-                $data = Category::find($key);
-                $data->photo = $path;
-
-                $data = 'storage/' .$get_photo['photo'];
-                if (File::exists($data)) {
-                    File::delete($data);
-                } else {
-                    File::delete('storage/app/public/' .$get_photo['photo']);
-                }
-
-            }
-        }
 
         $item = Category::findOrFail($id);
-        $item->update($data);
+
+        $data = $request->except(['_token', 'submit', '_method']);
+
+        if($request->hasfile('photo')){
+
+            if($request->oldImage){
+                Storage::delete($oldImage);
+            }
+            $data['photo'] = $request->file('photo')->store('assets/category', 'public');
+        }
+
+        // make image name use time update
+        // $imageName = time().'.'.$request->file('photo')->extension();
+        // $data['photos'] = $request->file('photo')->store('assets/category', 'public');
+
+        Category::where('id', $item->id)
+        ->update($data);
 
         return redirect()->route('category.index');
     }
