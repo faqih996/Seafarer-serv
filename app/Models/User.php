@@ -77,5 +77,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\ApplyJob', 'employer_id');
     }
 
+        public function product()
+    {
+        return $this->hasMany('App\Models\Product', 'users_id');
+    }
+
 
 }

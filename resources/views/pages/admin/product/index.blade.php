@@ -63,7 +63,6 @@
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
-                { data: 'users.name', name: 'users.name' },
                 { data: 'category.name', name: 'category.name' },
                 { data: 'price', name: 'price' },
                 {

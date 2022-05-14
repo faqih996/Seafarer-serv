@@ -110,9 +110,7 @@ class CategoryController extends Controller
     {
         $item = Category::findOrFail($id);
 
-        return view('pages.admin.category.edit',[
-            'item' => $item
-        ]);
+        return view('pages.admin.category.edit', compact('item'));
     }
 
     /**

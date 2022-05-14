@@ -4,14 +4,18 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 
+use App\Http\Requests\Admin\ProductRequest;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+
 use App\Models\Product;
+use App\Models\ThumbnailProduct;
 use App\Models\Category;
 use App\Models\User;
-use App\Http\Requests\Admin\ProductRequest;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
@@ -24,7 +28,7 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Product::with(['users','category']);
+            $query = Product::with(['users','category', 'thumbail']);
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
@@ -66,13 +70,9 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $users = User::all();
         $categories = Category::all();
 
-        return view('pages.admin.product.create',[
-            'users' => $users,
-            'categories' => $categories
-        ]);
+        return view('pages.admin.product.create',compact('categories'));
     }
 
     /**
@@ -85,9 +85,27 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
+        $data['users_id'] = auth()->user()->id;
+
         $data['slug'] = Str::slug($request->name);
 
         Product::create($data);
+
+        // add thumbnail service
+        if($request->hasfile('thumbnail')){
+            foreach($request->file('thumbnail') as $file)
+            {
+                $path = $file->store(
+                    'assets/product', 'public'
+                );
+
+                $thumbnail_service = new ThumbnailProduct;
+                $thumbnail_service->product_id = $data['id'];
+                $thumbnail_service->thumbnail = $path;
+                $thumbnail_service->save();
+
+            }
+        }
 
         return redirect()->route('product.index');
     }
@@ -115,11 +133,7 @@ class ProductController extends Controller
         $users = User::all();
         $categories = Category::all();
 
-        return view('pages.admin.product.edit',[
-            'item' => $item,
-            'users' => $users,
-            'categories' => $categories
-        ]);
+        return view('pages.admin.product.edit',compact('item', 'users', 'categories'));
     }
 
     /**
@@ -134,6 +148,7 @@ class ProductController extends Controller
         $data = $request->all();
 
         $item = Product::findOrFail($id);
+
 
         $data['slug'] = Str::slug($request->name);
 
