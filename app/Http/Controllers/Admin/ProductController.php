@@ -28,7 +28,7 @@ class ProductController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Product::with(['users','category', 'thumbail']);
+            $query = Product::with(['users','category', 'thumbnail_product']);
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
@@ -89,7 +89,7 @@ class ProductController extends Controller
 
         $data['slug'] = Str::slug($request->name);
 
-        Product::create($data);
+        $product = Product::create($data);
 
         // add thumbnail service
         if($request->hasfile('thumbnail')){
@@ -100,7 +100,7 @@ class ProductController extends Controller
                 );
 
                 $thumbnail_service = new ThumbnailProduct;
-                $thumbnail_service->product_id = $data['id'];
+                $thumbnail_service->product_id = $product['id'];
                 $thumbnail_service->thumbnail = $path;
                 $thumbnail_service->save();
 

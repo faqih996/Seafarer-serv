@@ -31,7 +31,7 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nama</th>
-                                        <th>Pemilik</th>
+                                        <th>Thumbnail</th>
                                         <th>Kategori</th>
                                         <th>Harga</th>
                                         <th>Aksi</th>
@@ -63,6 +63,7 @@
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
+                { data: 'thumbnail_product.id', name: 'thumbnail_product.thumbnail' },
                 { data: 'category.name', name: 'category.name' },
                 { data: 'price', name: 'price' },
                 {
