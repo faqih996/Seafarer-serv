@@ -63,7 +63,7 @@
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
-                { data: 'thumbnail_product.id', name: 'thumbnail_product.thumbnail' },
+                { data: 'thumbnail', name: 'thumbnail' },
                 { data: 'category.name', name: 'category.name' },
                 { data: 'price', name: 'price' },
                 {

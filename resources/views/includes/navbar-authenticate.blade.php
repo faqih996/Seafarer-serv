@@ -65,6 +65,7 @@
                                         Hi, {{ Auth::user()->first_name }}
                                     </a>
                                     <div class="dropdown-menu">
+
                                         <a href="{{route('dashboard')}}" class="dropdown-item">My Profile</a>
                                         <a href="{{route('dashboard.documents')}}" class="dropdown-item">My Documents</a>
                                         <a href="" class="dropdown-item">Settings</a>

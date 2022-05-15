@@ -50,39 +50,28 @@
                 >
                 Category
                 </a>
+
                 <a
                 href="{{ route('product.index') }}"
                 class="list-group-item list-group-item-action {{ (request()->is('admin/product')) ? 'active' : '' }}"
                 >
-
                 Product
                 </a>
-                <a
-                href="{{ route('products-gallery.index') }}"
-                class="list-group-item list-group-item-action {{ (request()->is('admin/products-gallery*')) ? 'active' : '' }}"
-                >
 
-                Product Gallery
-                </a>
                 <a
                 href="{{ route('department.index') }}"
                 class="list-group-item list-group-item-action {{ (request()->is('admin/department*')) ? 'active' : '' }}"
                 >
-
                 Departments
                 </a>
+
                 <a
                 href="{{ route('position.index') }}"
                 class="list-group-item list-group-item-action {{ (request()->is('admin/position')) ? 'active' : '' }} "
                 >
                 Positions
                 </a>
-                <a
-                href="{{ route('positions-galleries.index') }}"
-                class="list-group-item list-group-item-action {{ (request()->is('admin/positions-galleries*')) ? 'active' : '' }} "
-                >
-                Galleries
-                </a>
+
                 <a
                 href="{{ route('documents.index') }}"
                 class="list-group-item list-group-item-action {{ (request()->is('admin/documents*')) ? 'active' : '' }} "
