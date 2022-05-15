@@ -1,7 +1,7 @@
     @extends('layouts.admin')
 
     @section('title')
-    Product Setting
+        Product Setting
     @endsection
 
     @section('content')
@@ -17,9 +17,11 @@
                     Create New Product
                 </p>
             </div>
+
             <div class="dashboard-content">
                 <div class="row">
                     <div class="col-12">
+
                         @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -29,17 +31,20 @@
                                 </ul>
                             </div>
                         @endif
+
                         <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="card">
                                 <div class="card-body">
                                     <div class="row">
+
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Product Name</label>
                                                 <input type="text" class="form-control" name="name" required />
                                             </div>
                                         </div>
+
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Product Category</label>
@@ -50,6 +55,7 @@
                                                 </select>
                                             </div>
                                         </div>
+
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Thumbnail Product</label>
@@ -64,12 +70,14 @@
                                                 </button>
                                             </div>
                                         </div>
+
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Harga</label>
                                                 <input type="number" class="form-control" name="price" required />
                                             </div>
                                         </div>
+
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>Description</label>
@@ -77,6 +85,7 @@
                                             </div>
                                         </div>
                                     </div>
+
                                     <div class="row">
                                         <div class="text-right col">
                                             <button
@@ -87,9 +96,11 @@
                                             </button>
                                         </div>
                                     </div>
+
                                 </div>
                             </div>
                         </form>
+
                     </div>
                 </div>
             </div>

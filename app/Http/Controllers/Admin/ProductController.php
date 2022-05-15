@@ -99,10 +99,10 @@ class ProductController extends Controller
                     'assets/product', 'public'
                 );
 
-                $thumbnail_service = new ThumbnailProduct;
-                $thumbnail_service->product_id = $product['id'];
-                $thumbnail_service->thumbnail = $path;
-                $thumbnail_service->save();
+                $thumbnail_product = new ThumbnailProduct;
+                $thumbnail_product->product_id = $product['id'];
+                $thumbnail_product->thumbnail = $path;
+                $thumbnail_product->save();
 
             }
         }
@@ -129,11 +129,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $item = Product::with(['category','user'])->findOrFail($id);
-        $users = User::all();
+        $item = Product::with(['category','users'])->findOrFail($id);
         $categories = Category::all();
+        $thumbnail_product = ThumbnailProduct::where('product_id', $id)->get();
 
-        return view('pages.admin.product.edit',compact('item', 'users', 'categories'));
+        return view('pages.admin.product.edit',compact('item', 'categories', 'thumbnail_product'));
     }
 
     /**
@@ -143,16 +143,55 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, $id)
+    public function update(ProductRequest $request, Product $product)
     {
         $data = $request->all();
 
-        $item = Product::findOrFail($id);
-
-
         $data['slug'] = Str::slug($request->name);
 
-        $item->update($data);
+        $product->update($data);
+
+        // update to thumbail service
+        if($request->hasfile('thumbnails')){
+            foreach ($request->file('thumbnails') as $key => $file) {
+
+                // get old photo thumbnail
+                $get_photo = ThumbnailProduct::where('id', $key)->first();
+
+                // store photo
+                $path = $file->store(
+                    'assets/product', 'public'
+                );
+
+                // update photo
+                $thumbnail_product = ThumbnailProduct::find($key);
+                $thumbnail_product->thumbnail = $path;
+                $thumbnail_product->save();
+
+                // delete old photo thumbnail
+                $data = 'storage/' .$get_photo['photo'];
+                if (File::exists($data)) {
+                    File::delete($data);
+                } else {
+                    File::delete('storage/app/public/' .$get_photo['photo']);
+                }
+            }
+        }
+
+        // add new photo thumbnail
+        if($request->hasfile('thumbnail')){
+            foreach($request->file('thumbnail') as $file)
+            {
+                $path = $file->store(
+                    'assets/product', 'public'
+                );
+
+                $thumbnail_product = new ThumbnailProduct;
+                $thumbnail_product->product_id = $product['id'];
+                $thumbnail_product->thumbnail = $path;
+                $thumbnail_product->save();
+            }
+        }
 
         return redirect()->route('product.index');
     }

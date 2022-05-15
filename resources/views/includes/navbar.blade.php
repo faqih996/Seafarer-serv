@@ -50,17 +50,29 @@
                         aria-haspopup="true"
                         aria-expanded="false"
                     >
-                        Hi, {{Auth::user()->first_name }}
+                        {{-- Hi, {{Auth::user()->first_name }}
+                        @if (auth()->user()->detail_user()->first()->photo != NULL)
+                            <img src="{{ url(Storage::url(auth()->users()->detail_user()->first()->photo)) }}" alt="photo profile"
+                            srcset="" class="mr-2 rounded-circle profile-picture">
+                        @else
+                        <span class="mr-2 rounded-circle profile-picture">
+                            <svg class="inline w-12 h-12 mr-3 rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                            </svg>
+                        </span>
+                        @endif --}}
                         <img
-                            src="
-                                {{ url('/images/logoheader.png')}}
-                            "
-                            alt=""
-                            class="mr-2 rounded-circle profile-picture"
-                        />
+                        src="{{ asset('/images/logoheader.png') }}"
+                        alt=""
+                        class="mr-2 rounded-circle profile-picture">
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="{{route('dashboard')}}">Dashboard</a>
+                        @if (auth()->user()->roles = 'ADMIN')
+                            <a href="{{ route('admin-dashboard') }}" class="dropdown-item">Admin Dashboard</a>
+                        @else
+                            <a href="{{ route('dashboard') }}" class="dropdown-item">My Dashboard</a>
+                        @endif
+
                         <a class="dropdown-item" href=""
                         >Settings</a
                         >

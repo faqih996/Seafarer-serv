@@ -21,7 +21,7 @@ class Product extends Model
 
     public function thumbnail_product()
     {
-        return $this->hasMany('App\Models\ThumbnailProduct', 'product_id');
+        return $this->hasMany(ThumbnailProduct::class, 'product_id');
     }
 
     public function users(){
