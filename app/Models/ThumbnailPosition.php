@@ -6,24 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PositionGallery extends Model
+class ThumbnailPosition extends Model
 {
     use SoftDeletes;
+
+    public $table ='thumbnail_position';
 
     // protected $table = 'departments';
 
     protected $fillable = [
-        'photos','positions_id'
+        'thumbnail','positions_id'
     ];
 
 
     protected $hidden = [
 
     ];
-
-    public function user(){
-        return $this->hasOne('App\Models\User', 'users_id', 'id');
-    }
 
     public function positions()
     {

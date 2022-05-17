@@ -30,8 +30,8 @@
                                     <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Nama</th>
                                         <th>Thumbnail</th>
+                                        <th>Nama</th>
                                         <th>Kategori</th>
                                         <th>Harga</th>
                                         <th>Aksi</th>
@@ -62,8 +62,8 @@
             },
             columns: [
                 { data: 'id', name: 'id' },
-                { data: 'name', name: 'name' },
                 { data: 'thumbnail', name: 'thumbnail' },
+                { data: 'name', name: 'name' },
                 { data: 'category.name', name: 'category.name' },
                 { data: 'price', name: 'price' },
                 {

@@ -32,7 +32,6 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Position Name</th>
-                                        <th>Slug</th>
                                         <th>Department</th>
                                         <th>Status</th>
                                         <th>Action</th>
@@ -64,7 +63,6 @@
             columns: [
                 { data: 'id', name: 'id' },
                 { data: 'name', name: 'name' },
-                { data: 'slug', name: 'slug' },
                 { data: 'departments.name', name: 'departments.name' },
                 // { data: 'photo', name: 'photo' },
                 { data: 'status', name: 'status' },

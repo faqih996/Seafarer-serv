@@ -20,7 +20,6 @@ class CreatePositionsTable extends Migration
             $table->integer('departments_id');
             $table->string('status');
             $table->string('about');
-            $table->string('responsibilities');
             $table->softDeletes();
             $table->timestamps();
         });

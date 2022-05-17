@@ -11,6 +11,8 @@ class Position extends Model
 
     use SoftDeletes;
 
+    public $table ='product';
+
     // protected $table = 'departments';
 
     protected $fillable = [
@@ -22,9 +24,13 @@ class Position extends Model
 
     ];
 
-    public function galleries()
+    public function users(){
+        return $this->hasOne( User::class, 'id', 'users_id');
+    }
+
+    public function thumbnail()
     {
-        return $this->hasMany('App\Models\PositionGallery', 'position_id', 'id')->withTrashed();
+        return $this->hasMany('App\Models\ThumbnailPosition', 'position_id', 'id')->withTrashed();
     }
 
     public function departments()

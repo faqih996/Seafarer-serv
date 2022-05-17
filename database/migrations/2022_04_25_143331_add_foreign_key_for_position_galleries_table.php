@@ -13,8 +13,8 @@ class AddForeignKeyForPositionGalleriesTable extends Migration
      */
     public function up()
     {
-        Schema::table('position_galleries', function (Blueprint $table) {
-            $table->foreign('position_id', 'fk_position_id_to_position_gallery')->references('id')
+        Schema::table('thumbnail_position', function (Blueprint $table) {
+            $table->foreign('position_id', 'fk_position_id_to_thumbnail_position')->references('id')
             ->on('positions')->onUpdate('CASCADE')->onDelete('CASCADE');
         });
     }
@@ -26,8 +26,8 @@ class AddForeignKeyForPositionGalleriesTable extends Migration
      */
     public function down()
     {
-        Schema::table('position_galleries', function (Blueprint $table) {
-            $table->dropForeign('fk_position_id_to_position_gallery');
+        Schema::table('thumbnail_position', function (Blueprint $table) {
+            $table->dropForeign('fk_position_id_to_thumbnail_position');
         });
     }
 }

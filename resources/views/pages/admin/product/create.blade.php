@@ -60,9 +60,9 @@
                                             <div class="form-group">
                                                 <label>Thumbnail Product</label>
                                                 <img class="img-preview img-fluid col-sm-5 mb-3" alt="">
-                                                <input type="file"  placeholder="thumbnail 1" class="form-control" name="thumbnail[]" id="image" onchange="previewImage()" required />
-                                                <input type="file" placeholder="thumbnail 2" class="form-control" name="thumbnail[]" id="image" onchange="previewImage()" required />
-                                                <input type="file" placeholder="thumbnail 3" class="form-control" name="thumbnail[]" id="image" onchange="previewImage()" required />
+                                                <input type="file" placeholder="thumbnail 1" class="form-control mt-2" name="thumbnail[]" id="image" onchange="previewImage()" required />
+                                                <input type="file" placeholder="thumbnail 2" class="form-control mt-2" name="thumbnail[]" id="image" onchange="previewImage()" required />
+                                                <input type="file" placeholder="thumbnail 3" class="form-control mt-2" name="thumbnail[]" id="image" onchange="previewImage()" required />
 
                                                 <div id="newThumbnailRow"></div>
                                                 <button type="button" class="inline-flex justify-center px-3 py-2 mt-3 text-xs font-medium text-gray-700 bg-gray-100 border border-transparent rounded-lg hover:bg-gray-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-500" id="addThumbnailRow">
@@ -141,5 +141,5 @@
     $(document).on('click', '#removeThumbnailRow', function() {
         $(this).closest('#inputFormThumbnailRow').remove();
     });
-</script>
+    </script>
 @endpush

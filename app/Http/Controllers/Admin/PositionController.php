@@ -66,9 +66,7 @@ class PositionController extends Controller
     public function create()
     {
         $departments = Department::all();
-        return view('pages.admin.position.create', [
-            'departments' => $departments
-        ]);
+        return view('pages.admin.position.create', compact('departments'));
 
     }
 
@@ -85,7 +83,23 @@ class PositionController extends Controller
 
         $data['slug'] = Str::slug($request->name);
 
-        Position::create($data);
+        $position = Position::create($data);
+
+        // add thumbnail service
+        if($request->hasfile('thumbnail')){
+            foreach($request->file('thumbnail') as $file)
+            {
+                $path = $file->store(
+                    'assets/product', 'public'
+                );
+
+                $thumbnail_position = new ThumbnailPosition;
+                $thumbnail_position->position_id = $position['id'];
+                $thumbnail_position->thumbnail = $path;
+                $thumbnail_position->save();
+
+            }
+        }
 
         return redirect()->route('position.index')->with('success', 'Data Has Been Saved!');
     }
