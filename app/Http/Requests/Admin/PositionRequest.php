@@ -24,14 +24,14 @@ class PositionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:positions',
+            'users_id'=> 'nullable|exists:users,id',
+            'name' => 'required|string',
             'departments_id' => 'required|exists:departments,id',
-            // untuk memanggil department / dari tabel lain, dari awal harus dibuat jamak karna 
+            // untuk memanggil department / dari tabel lain, dari awal harus dibuat jamak karna
             // akan memangggil dari db -> di db selalu jamak
             'status' => 'required|string',
             'about' => 'nullable|string',
-            'responsibilities' => 'nullable|string', 
         ];
     }
-    
+
 }

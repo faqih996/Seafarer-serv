@@ -24,8 +24,9 @@ class DepartmentRequest extends FormRequest
     public function rules()
     {
         return [
+            'users_id'=> 'nullable|exists:users,id',
             'name' => 'required|string|unique:departments',
-            'status' => 'required|string', 
+            'status' => 'required|string',
         ];
     }
 }

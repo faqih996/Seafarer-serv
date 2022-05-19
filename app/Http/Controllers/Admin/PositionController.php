@@ -6,9 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Position;
 use App\Models\User;
+use App\Models\Department;
+use App\Models\ThumbnailPosition;
 use Yajra\DataTables\Facades\DataTables;
 use App\Http\Requests\Admin\PositionRequest;
-use App\Models\Department;
+
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
 use Illuminate\Support\Str;
 
 class PositionController extends Controller
@@ -81,6 +85,8 @@ class PositionController extends Controller
         $data = $request->all();
         // ->buat lihat array dari $data/variable lainnya
 
+        $data['users_id'] = auth()->user()->id;
+
         $data['slug'] = Str::slug($request->name);
 
         $position = Position::create($data);
@@ -90,7 +96,7 @@ class PositionController extends Controller
             foreach($request->file('thumbnail') as $file)
             {
                 $path = $file->store(
-                    'assets/product', 'public'
+                    'assets/position', 'public'
                 );
 
                 $thumbnail_position = new ThumbnailPosition;
@@ -125,11 +131,9 @@ class PositionController extends Controller
     {
         $item = Position::findOrFail($id);
         $departments = Department::all();
+        $thumbnail_position = ThumbnailPosition::where('position_id', $id)->get();
 
-         return view('pages.admin.position.edit', [
-             'item' => $item,
-             'departments' => $departments
-         ]);
+         return view('pages.admin.position.edit', compact('item', 'departments', 'thumbnail_position'));
     }
 
     /**
@@ -139,15 +143,57 @@ class PositionController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(PositionRequest $request, $id)
+    public function update(PositionRequest $request, Position $position)
     {
         $data = $request->all();
 
         $data['slug'] = Str::slug($request->name);
 
-        $item = Position::findOrFail($id);
+        $data['users_id'] = auth()->user()->id;
 
-        $item->update($data);
+        $position->update($data);
+
+        // update to thumbail service
+        if($request->hasfile('thumbnails')){
+            foreach ($request->file('thumbnails') as $key => $file) {
+
+                // get old photo thumbnail
+                $get_photo = ThumbnailPosition::where('id', $key)->first();
+
+                // store photo
+                $path = $file->store(
+                    'assets/position', 'public'
+                );
+
+                // update photo
+                $thumbnail_position = ThumbnailPosition::find($key);
+                $thumbnail_position->thumbnail = $path;
+                $thumbnail_position->save();
+
+                // delete old photo thumbnail
+                $data = 'storage/' .$get_photo['photo'];
+                if (File::exists($data)) {
+                    File::delete($data);
+                } else {
+                    File::delete('storage/app/public/' .$get_photo['photo']);
+                }
+            }
+        }
+
+        // add new photo thumbnail
+        if($request->hasfile('thumbnail')){
+            foreach($request->file('thumbnail') as $file)
+            {
+                $path = $file->store(
+                    'assets/position', 'public'
+                );
+
+                $thumbnail_position = new ThumbnailPosition;
+                $thumbnail_position->position_id = $position['id'];
+                $thumbnail_position->thumbnail = $path;
+                $thumbnail_position->save();
+            }
+        }
 
         return redirect()->route('position.index');
     }

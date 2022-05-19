@@ -44,6 +44,17 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('emergency', EmergencyController::class);
 });
 
+// Route::prefix('member')
+//     ->middleware(['auth', 'user'])
+//     ->group(function{
+//         Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
+//         Route::resource('profile', ProfileController::class);
+//         Route::resource('documents', DocumentsController::class);
+//         Route::resource('education', EducationController::class);
+//         Route::resource('experience', ExperienceController::class);
+//         Route::resource('emergency', EmergencyController::class);
+//     });
+
 Route::prefix('admin')
     ->middleware(['auth', 'admin'])
     ->group(function(){

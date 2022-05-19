@@ -66,7 +66,7 @@ data-aos="fade-up"
                                             @forelse ($thumbnail_product as $thumbnail_item)
                                                 <div class="mb-2">
                                                     <img src="{{ url(Storage::url($thumbnail_item->thumbnail)) }}" alt="thumbnail" srcset=""
-                                                    class="inline object-cover w-20 h-20 rounded" for="choose">
+                                                    class="inline object-cover w-20 h-20 rounded" height="100" for="choose">
 
                                                     <input type="file" placeholder="Thumbnails" name="{{ 'thumbnails['.$thumbnail_item->id.']' }}"
                                                     id="thumbnails" autocomplete="thumbnails" class="block w-full py-3 pl-5 mt-3 border-grey-300

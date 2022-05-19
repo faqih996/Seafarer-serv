@@ -11,12 +11,12 @@ class Position extends Model
 
     use SoftDeletes;
 
-    public $table ='product';
+    public $table ='positions';
 
     // protected $table = 'departments';
 
     protected $fillable = [
-        'name', 'slug', 'departments_id', 'status', 'about', 'responsibilities'
+        'name', 'users_id', 'slug', 'departments_id', 'status', 'about',
     ];
 
 

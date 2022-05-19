@@ -15,9 +15,10 @@ class CreatePositionsTable extends Migration
     {
         Schema::create('positions', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('users_id')->nullable()->index('fk_position_to_users');
+            $table->foreignId('departments_id')->nullable()->index('fk_departments_id_to_positions');
             $table->string('name');
             $table->string('slug');
-            $table->integer('departments_id');
             $table->string('status');
             $table->string('about');
             $table->softDeletes();

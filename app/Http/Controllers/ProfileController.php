@@ -75,12 +75,12 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        return view('pages.profile.create', [
-            'users' => $users
-        ]);
+        // $users = User::all();
+        // return view('pages.profile.create', [
+        //     'users' => $users
+        // ]);
 
-        // return abort(404);
+        return abort(404);
     }
 
     /**
@@ -129,20 +129,30 @@ class ProfileController extends Controller
      */
     public function edit($id)
     {
-        $user = User::where('id', Auth::user()->id)->first();
-        $experience_user = ExperienceUser::where('detail_user_id', $user->detail_user->id)
+
+        $data_user = User::where('id', Auth::user()->id)->first();
+
+        // $data_detail_user = DetailUser::findOrFail($id);
+
+        $provinces = Province::all();
+        $regencies = Regency::all();
+        $districts = District::all();
+        $villages = Village::all();
+
+
+        $experience_user = ExperienceUser::where('detail_user_id', $data_user->detail_user->id)
                                 ->OrderBy('id', 'asc')
                                 ->get();
-        $education_user = Educations::where('detail_user_id', $user->detail_user->id)
+        $education_user = Educations::where('detail_user_id', $data_user->detail_user->id)
                                 ->OrderBy('id', 'asc')
                                 ->get();
-        $emergency_user = Emergencies::where('detail_user_id', $user->detail_user->id)
+        $emergency_user = Emergencies::where('detail_user_id', $data_user->detail_user->id)
                                 ->OrderBy('id', 'asc')
                                 ->get();
-        $document_user = Documents::where('detail_user_id', $user->detail_user->id)
+        $document_user = Documents::where('detail_user_id', $data_user->detail_user->id)
                                 ->OrderBy('id', 'asc')
                                 ->get();
-        return view('pages.profile.edit', compact('user', 'experience_user', 'education_user', 'emergency_user', 'document_user',
+        return view('pages.profile.edit', compact( 'data_user', 'experience_user', 'education_user', 'emergency_user', 'document_user',
                             'provinces', 'regencies', 'districts', 'villages'));
     }
 

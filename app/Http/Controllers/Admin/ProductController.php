@@ -147,6 +147,8 @@ class ProductController extends Controller
     {
         $data = $request->all();
 
+        $data['users_id'] = auth()->user()->id;
+
         $data['slug'] = Str::slug($request->name);
 
         $product->update($data);
