@@ -75,12 +75,12 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        // $users = User::all();
-        // return view('pages.profile.create', [
-        //     'users' => $users
-        // ]);
+        $users = User::all();
+        return view('pages.profile.create', [
+            'users' => $users
+        ]);
 
-        return abort(404);
+        // return abort(404);
     }
 
     /**

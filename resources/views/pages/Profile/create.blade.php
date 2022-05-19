@@ -833,161 +833,161 @@
 @push('addon-script')
 
 
-  <script src="{{ url('vendor/vue/vue.js')}}"></script>
-  <script src="{https://unpkg.com/vue-toasted}"></script>
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="{{ url('vendor/vue/vue.js') }}"></script>
+    <script src="{{ url('https://unpkg.com/vue-toasted') }}"></script>
+    <script src="{{ url('https://unpkg.com/axios/dist/axios.min.js') }}"></script>
 
-  <script>
-    var locations = new Vue({
-      el: "#locations",
-      mounted() {
-        this.getProvincesData();
-      },
-      data: {
-        provinces: null,
-        regencies: null,
-        provinces_id: null,
-        regencies_id: null,
-      },
-      methods: {
-        getProvincesData() {
-          var self = this;
-          axios.get('{{ route('api-provinces') }}')
-            .then(function (response) {
-                self.provinces = response.data;
-            })
-        },
-        getRegenciesData() {
-          var self = this;
-          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
-            .then(function (response) {
-                self.regencies = response.data;
-            })
-        },
-      },
-      watch: {
-        provinces_id: function (val, oldVal) {
-          this.regencies_id = null;
-          this.getRegenciesData();
-        },
-      }
-    });
-  </script>
+    <script>
+        var locations = new Vue({
+            el: "#locations",
+            mounted() {
+                this.getProvincesData();
+            },
+            data: {
+                provinces: null,
+                regencies: null,
+                provinces_id: null,
+                regencies_id: null,
+            },
+            methods: {
+                getProvincesData() {
+                var self = this;
+                axios.get('{{ route('api-provinces') }}')
+                    .then(function (response) {
+                        self.provinces = response.data;
+                    })
+                },
+                getRegenciesData() {
+                var self = this;
+                axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+                    .then(function (response) {
+                        self.regencies = response.data;
+                    })
+                },
+            },
+            watch: {
+                provinces_id: function (val, oldVal) {
+                this.regencies_id = null;
+                this.getRegenciesData();
+                },
+            }
+        });
+    </script>
 
-<script>
-    var locations = new Vue({
-      el: "#edu-locations",
-      mounted() {
-        this.getProvincesData();
-      },
-      data: {
-        provinces: null,
-        regencies: null,
-        provinces_id: null,
-        regencies_id: null,
-      },
-      methods: {
-        getProvincesData() {
-          var self = this;
-          axios.get('{{ route('api-provinces') }}')
-            .then(function (response) {
-                self.provinces = response.data;
-            })
+    <script>
+        var locations = new Vue({
+        el: "#edu-locations",
+        mounted() {
+            this.getProvincesData();
         },
-        getRegenciesData() {
-          var self = this;
-          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
-            .then(function (response) {
-                self.regencies = response.data;
-            })
+        data: {
+            provinces: null,
+            regencies: null,
+            provinces_id: null,
+            regencies_id: null,
         },
-      },
-      watch: {
-        provinces_id: function (val, oldVal) {
-          this.regencies_id = null;
-          this.getRegenciesData();
+        methods: {
+            getProvincesData() {
+            var self = this;
+            axios.get('{{ route('api-provinces') }}')
+                .then(function (response) {
+                    self.provinces = response.data;
+                })
+            },
+            getRegenciesData() {
+            var self = this;
+            axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+                .then(function (response) {
+                    self.regencies = response.data;
+                })
+            },
         },
-      }
-    });
-</script>
+        watch: {
+            provinces_id: function (val, oldVal) {
+            this.regencies_id = null;
+            this.getRegenciesData();
+            },
+        }
+        });
+    </script>
 
-<script>
-    var locations = new Vue({
-      el: "#exp-locations",
-      mounted() {
-        this.getProvincesData();
-      },
-      data: {
-        provinces: null,
-        regencies: null,
-        provinces_id: null,
-        regencies_id: null,
-      },
-      methods: {
-        getProvincesData() {
-          var self = this;
-          axios.get('{{ route('api-provinces') }}')
-            .then(function (response) {
-                self.provinces = response.data;
-            })
+    <script>
+        var locations = new Vue({
+        el: "#exp-locations",
+        mounted() {
+            this.getProvincesData();
         },
-        getRegenciesData() {
-          var self = this;
-          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
-            .then(function (response) {
-                self.regencies = response.data;
-            })
+        data: {
+            provinces: null,
+            regencies: null,
+            provinces_id: null,
+            regencies_id: null,
         },
-      },
-      watch: {
-        provinces_id: function (val, oldVal) {
-          this.regencies_id = null;
-          this.getRegenciesData();
+        methods: {
+            getProvincesData() {
+            var self = this;
+            axios.get('{{ route('api-provinces') }}')
+                .then(function (response) {
+                    self.provinces = response.data;
+                })
+            },
+            getRegenciesData() {
+            var self = this;
+            axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+                .then(function (response) {
+                    self.regencies = response.data;
+                })
+            },
         },
-      }
-    });
-</script>
+        watch: {
+            provinces_id: function (val, oldVal) {
+            this.regencies_id = null;
+            this.getRegenciesData();
+            },
+        }
+        });
+    </script>
 
-<script>
-    var locations = new Vue({
-      el: "#eme-locations",
-      mounted() {
-        this.getProvincesData();
-      },
-      data: {
-        provinces: null,
-        regencies: null,
-        provinces_id: null,
-        regencies_id: null,
-      },
-      methods: {
-        getProvincesData() {
-          var self = this;
-          axios.get('{{ route('api-provinces') }}')
-            .then(function (response) {
-                self.provinces = response.data;
-            })
+    <script>
+        var locations = new Vue({
+        el: "#eme-locations",
+        mounted() {
+            this.getProvincesData();
         },
-        getRegenciesData() {
-          var self = this;
-          axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
-            .then(function (response) {
-                self.regencies = response.data;
-            })
+        data: {
+            provinces: null,
+            regencies: null,
+            provinces_id: null,
+            regencies_id: null,
         },
-      },
-      watch: {
-        provinces_id: function (val, oldVal) {
-          this.regencies_id = null;
-          this.getRegenciesData();
+        methods: {
+            getProvincesData() {
+            var self = this;
+            axios.get('{{ route('api-provinces') }}')
+                .then(function (response) {
+                    self.provinces = response.data;
+                })
+            },
+            getRegenciesData() {
+            var self = this;
+            axios.get('{{ url('api/regencies') }}/' + self.provinces_id)
+                .then(function (response) {
+                    self.regencies = response.data;
+                })
+            },
         },
-      }
-    });
-</script>
+        watch: {
+            provinces_id: function (val, oldVal) {
+            this.regencies_id = null;
+            this.getRegenciesData();
+            },
+        }
+        });
+    </script>
 
-<script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
-<script>
-  CKEDITOR.replace( 'editor' );
-</script>
+    <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+    <script>
+    CKEDITOR.replace( 'editor' );
+    </script>
 @endpush
 

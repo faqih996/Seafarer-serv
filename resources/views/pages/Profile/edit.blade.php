@@ -45,7 +45,7 @@ User Settings
                                     </h5>
 
                                     <div class="dropdown-divider"></div>
-                                    <div class="mb-2 row">
+                                    <div class="mb-2 row" id="locations">
 
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -213,7 +213,7 @@ User Settings
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="provinces_id">Province</label>
-                                                <input
+                                                {{-- <input
                                                     type="text"
                                                     class="form-control"
                                                     id="provinces_id"
@@ -221,17 +221,17 @@ User Settings
                                                     name="provinces_id"
                                                     value="{{ $data_user->detail_user->provinces_id ?? '' }}"
                                                     required
-                                                />
-                                                {{-- <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
-                                                <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                                                </select> --}}
+                                                /> --}}
+                                                <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
+                                                    <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                                                </select>
                                             </div>
                                         </div>
 
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="regencies_id">City</label>
-                                                    <input
+                                                    {{-- <input
                                                         type="text"
                                                         class="form-control"
                                                         id="regencies_id"
@@ -239,10 +239,10 @@ User Settings
                                                         name="regencies_id"
                                                         value="{{ $data_user->detail_user->regencies_id}}"
                                                         required
-                                                    />
-                                                {{-- <select name="regencies_id" id="regencies_id" class="form-control " v-model="regencies_id" v-if="regencies" required>
-                                                <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
-                                                </select> --}}
+                                                    /> --}}
+                                                <select name="regencies_id" id="regencies_id" class="form-control " v-model="regencies_id" v-if="regencies" required>
+                                                    <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
+                                                </select>
                                             </div>
                                         </div>
 
@@ -300,11 +300,18 @@ User Settings
 @endsection
 
 @push('addon-script')
-    <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
+
+    {{-- Package CK Editor --}}
+    <script src="{{ url('https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js') }}"></script>
     <script>
         CKEDITOR.replace( 'editor' );
     </script>
+    {{-- end Package CK editor --}}
 
+    {{-- API Location with VUE JS --}}
+    <script src="{{ url('vendor/vue/vue.js') }}"></script>
+    <script src="{{ url('https://unpkg.com/vue-toasted') }}"></script>
+    <script src="{{ url('https://unpkg.com/axios/dist/axios.min.js') }}"></script>
     <script>
         var locations = new Vue({
             el: "#locations",
@@ -341,4 +348,6 @@ User Settings
             }
         });
     </script>
+    {{-- End API Location with VUE JS--}}
+
 @endpush
