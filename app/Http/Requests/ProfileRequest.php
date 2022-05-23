@@ -3,6 +3,10 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use App\Models\User;
+
+Use Auth;
 
 class ProfileRequest extends FormRequest
 {
@@ -24,22 +28,20 @@ class ProfileRequest extends FormRequest
     public function rules()
     {
         return [
+            'first_name' => [
+                'required', 'string', 'max:100'
+            ],
 
-            'users_id'=> 'nullable|exists:users,id',
-            'birth_place'=> 'nullable|string',
-            'birth_date'=> 'required|date',
-            'about_me'=> 'nullable|string',
-            'phone_number'=> 'required|string|max:15',
-            'address'=> 'required|string',
-            'regencies_id'=> 'required|string',
-            'provinces_id'=> 'required|string',
-            'zip_code'=> 'required|string',
-            'country'=> 'required|string',
-            'occupation'=> 'nullable|string',
-            'skype'=> 'nullable|string',
-            'gender' => 'required|string',
-            'marital' => 'required|string',
-            'photo' => 'nullable|image',
+            'last_name' => [
+                'required', 'string', 'max:100'
+            ],
+
+            'email' => [
+                'required', 'string', 'max:255', 'email', Rule::unique('users')->where('id', '<>',
+                Auth::user()->id),
+            ],
+
+            'roles' => ['nullable', 'string', 'in:ADMIN,USER']
         ];
     }
 

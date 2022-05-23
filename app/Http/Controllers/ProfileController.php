@@ -6,6 +6,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\UpdateDetailUserRequest;
+use App\Http\Requests\EducationRequest;
 use Symfony\Component\HttpKernel\Profiler\Profile;
 use Illuminate\Support\Facades\Storage;
 use App\Exports\DetailUserExport;
@@ -75,12 +77,12 @@ class ProfileController extends Controller
      */
     public function create()
     {
-        $users = User::all();
-        return view('pages.profile.create', [
-            'users' => $users
-        ]);
+        // $users = User::all();
+        // return view('pages.profile.create', [
+        //     'users' => $users
+        // ]);
 
-        // return abort(404);
+        return abort(404);
     }
 
     /**
@@ -152,6 +154,7 @@ class ProfileController extends Controller
         $document_user = Documents::where('detail_user_id', $data_user->detail_user->id)
                                 ->OrderBy('id', 'asc')
                                 ->get();
+
         return view('pages.profile.edit', compact( 'data_user', 'experience_user', 'education_user', 'emergency_user', 'document_user',
                             'provinces', 'regencies', 'districts', 'villages'));
     }
@@ -163,15 +166,52 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProfileRequest $request, $id)
+    public function update(ProfileRequest $profile_request, UpdateDetailUserRequest $request_detail_user, EducationRequest $request_education )
     {
-        $data = $request->all();
+        $data_user = $profile_request->all();
+        $data_detail_user = $request_detail_user->all();
+        // $data_education = $request_education->all();
 
-        $item = DetailUser::findOrFail($id);
 
-        $item->update($data);
+        // process save to user
+        $user = User::find(Auth::user()->id);
+        $user->update($data_user);
 
-        return redirect()->route('profile.create');
+        // process save to Detail User
+        $detail_user = DetailUser::find($user->detail_user->id);
+        $detail_user->update($data_detail_user);
+
+        $education_user_id = Educations::where('detail_user_id', $detail_user['id'])->first();
+        if (isset($education_user_id)) {
+
+            foreach($data_user[ Education::class ] as $key => $value){
+                $education_user = Educations::find($key);
+                $education_user->detail_user_id = $detail_user['id'];
+                $education_user = $value;
+
+                dd($education_user);
+                $education_user->save();
+
+            }
+
+            // ['name'] ['course'] ['start'] ['graduate']
+            // ['address'] ['regencies'] ['provinces'] ['country'] ['zip_code'] ['certificate']
+
+        } else {
+            foreach($data_user[ Education::class ] as $key => $value) {
+                if(isset($value)){
+                    $education_user = new Educations;
+                    $education_user->detail_user_id = $detail_user['id'];
+                    $education_user = $value;
+
+                    dd($education_user);
+                    $education_user->save();
+
+                }
+            }
+        }
+
+        return redirect()->route('profile.index');
     }
 
     public function myprofile()

@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-User Settings
+Profile Setting
 @endsection
 
 @section('content')
@@ -46,6 +46,33 @@ User Settings
 
                                     <div class="dropdown-divider"></div>
                                     <div class="mb-2 row" id="locations">
+
+                                        <div class="col-md-12 mb-5">
+                                            <div class="flex items-center mt-1">
+                                                {{-- Image validation if profile image is null --}}
+                                                @if (auth()->user()->detail_user()->first()->photo != NULL)
+                                                    <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="photo profile"
+                                                        srcset="" class="w-16 h-16 rounded-full">
+                                                @else
+                                                    <span class="inline-block w-16 h-16 overflow-hidden bg-gray-100 rounded-full">
+                                                        <svg class="inline w-12 h-12 mr-3 rounded-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"></path>
+                                                        </svg>
+                                                    </span>
+                                                @endif
+
+                                                <label for="choose" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-gray-700 bg-white border
+                                                border-gray-300 rounded-md shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2
+                                                focus:ring-green-500">Choose File</label>
+
+                                                <input type="file" accept="image/*" id="choose" name="photo" hidden>
+
+                                                <a href="" type="button" class="px-3 py-2 ml-5 text-sm font-medium leading-4 text-red-700 bg-transparent rounded-md hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                                                onclick="return confirm( 'Are you sure want to delete your photo?' )">
+                                                    Delete
+                                                </a>
+                                            </div>
+                                        </div>
 
                                         <div class="col-md-6">
                                             <div class="form-group">
@@ -119,7 +146,7 @@ User Settings
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label for="marital">Marital Status</label>
-                                                <select name="marital" required class="form-control">
+                                                <select name="marital" required class="form-control"required>
                                                     <option value="Single" {{ $data_user->detail_user->marital == 'Single' ? 'selected' : '' }}>Single</option>
                                                     <option value="Married" {{ $data_user->detail_user->marital == 'Married' ? 'selected' : '' }}>Married</option>
                                                     <option value="Widowed" {{ $data_user->detail_user->marital == 'Widowed' ? 'selected' : '' }}>Widowed</option>
@@ -131,7 +158,7 @@ User Settings
                                         <div class="col-md-12">
                                             <div class="form-group">
                                                 <label>About Me</label>
-                                                <textarea name="about_me" id="editor"  value="{{ $data_user->detail_user->about_me ?? '' }}"></textarea>
+                                                <textarea name="about_me" id="editor">{{ $data_user->detail_user->about_me ?? '' }}</textarea>
                                             </div>
                                         </div>
 
@@ -159,7 +186,7 @@ User Settings
                                                     id="email"
                                                     aria-describedby="emailHelp"
                                                     name="email"
-                                                    value="{{ $data_user->detail_user->email ?? '' }}"
+                                                    value="{{ $data_user->email ?? '' }}"
                                                     required
                                                 />
                                             </div>
@@ -213,15 +240,6 @@ User Settings
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="provinces_id">Province</label>
-                                                {{-- <input
-                                                    type="text"
-                                                    class="form-control"
-                                                    id="provinces_id"
-                                                    aria-describedby="emailHelp"
-                                                    name="provinces_id"
-                                                    value="{{ $data_user->detail_user->provinces_id ?? '' }}"
-                                                    required
-                                                /> --}}
                                                 <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
                                                     <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
                                                 </select>
@@ -231,18 +249,10 @@ User Settings
                                         <div class="col-md-4">
                                             <div class="form-group">
                                                 <label for="regencies_id">City</label>
-                                                    {{-- <input
-                                                        type="text"
-                                                        class="form-control"
-                                                        id="regencies_id"
-                                                        aria-describedby="emailHelp"
-                                                        name="regencies_id"
-                                                        value="{{ $data_user->detail_user->regencies_id}}"
-                                                        required
-                                                    /> --}}
                                                 <select name="regencies_id" id="regencies_id" class="form-control " v-model="regencies_id" v-if="regencies" required>
                                                     <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
                                                 </select>
+                                                <select v-else class="form-control"></select>
                                             </div>
                                         </div>
 
@@ -255,6 +265,7 @@ User Settings
                                                     id="zip_code"
                                                     name="zip_code"
                                                     value="{{ $data_user->detail_user->zip_code}}"
+                                                    required
                                                 />
                                             </div>
                                         </div>
@@ -275,7 +286,6 @@ User Settings
                                     </div>
 
                                     <div class="row">
-
                                         <div class="text-right col">
                                             <button
                                             type="submit"
@@ -295,6 +305,211 @@ User Settings
                 </div>
             </div>
             <!-- end personal information -->
+
+            <!-- educations Information -->
+            <div class="dashboard-content education">
+                <div class="row">
+                    <div class="col-11">
+
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <form action="{{ route('profile.update',  [Auth::user()->id]) }}" method="post" enctype="multipart/form-data">
+
+                            @csrf
+                            @method('PUT')
+
+                            <div class="card">
+                                <div class="card-body">
+                                    <h5>
+                                        Education Background
+                                    </h5>
+                                    <div class="dropdown-divider"></div>
+
+                                    @forelse ($education_user as $key => $education)
+
+                                    <div class="mb-2 row"  id="edu-locations">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="institution_name">Institution Name</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="name"
+                                                    aria-describedby="emailHelp"
+                                                    name="name"
+                                                    value="{{ $education->name }}"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="course">Course Study</label>
+                                                <input
+                                                    type="course"
+                                                    class="form-control"
+                                                    id="course"
+                                                    aria-describedby="emailHelp"
+                                                    name="course"
+                                                    value="{{ $education->course }}"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="addressOne">Start From</label>
+                                                <input
+                                                    type="date"
+                                                    class="form-control"
+                                                    id="start"
+                                                    aria-describedby="emailHelp"
+                                                    name="start"
+                                                    value="{{ $education->start }}"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="graduate">Graduate</label>
+                                                <input
+                                                    type="date"
+                                                    class="form-control"
+                                                    id="graduate"
+                                                    aria-describedby="emailHelp"
+                                                    name="graduate"
+                                                    value="{{ $education->graduate }}"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <div class="form-group">
+                                                <label for="address">Address</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="address"
+                                                    aria-describedby="emailHelp"
+                                                    name="address"
+                                                    value="{{ $education->address }}"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="regencies">City</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="regencies"
+                                                    aria-describedby="emailHelp"
+                                                    name="regencies"
+                                                    value="{{ $education->regencies }}"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="provinces">Province</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="provinces"
+                                                    aria-describedby="emailHelp"
+                                                    name="provinces"
+                                                    value="{{ $education->provinces }}"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <div class="form-group">
+                                                <label for="postalCode">Postal Code</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="zip_code"
+                                                    name="zip_code"
+                                                    value="{{$education->zip_code }}"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label for="country">Country</label>
+                                                <input
+                                                    type="text"
+                                                    class="form-control"
+                                                    id="country"
+                                                    name="country"
+                                                    value="{{$education->country }}"
+                                                    required
+                                                />
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Education Certificate</label>
+                                                <input type="file" class="form-control" name="certificate" placeholder="certificate" required />
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="dropdown-divider bold"></div>
+                                    @empty
+                                        {{-- empty --}}
+                                    @endforelse
+
+                                    <div class="row">
+                                        <div class="card" id="newAdvantagesRow">
+                                            <div class="card-body">
+
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-12">
+                                            <button class="btn btn-secondary btn-block" id="addAdvantagesRow">
+                                                Add Education
+                                            </button>
+                                        </div>
+
+                                        <div class="text-right col">
+                                            <button type="submit" class="px-5 mt-4 btn btn-success">
+                                                Save
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <!-- end of educational -->
+
         </div>
     </div>
 @endsection
@@ -302,7 +517,7 @@ User Settings
 @push('addon-script')
 
     {{-- Package CK Editor --}}
-    <script src="{{ url('https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js') }}"></script>
+    <script src="https://cdn.ckeditor.com/4.17.2/standard/ckeditor.js"></script>
     <script>
         CKEDITOR.replace( 'editor' );
     </script>
@@ -349,5 +564,20 @@ User Settings
         });
     </script>
     {{-- End API Location with VUE JS--}}
+
+    <script type="text/javascript">
+        // add row
+        $("#addAdvantagesRow").click(function() {
+            var html = '';
+            html += '<input placeholder="Keunggulan Service" type="text" name="advantage_user[]" id="advantage_user" autocomplete="advantage_user" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
+
+            $('#newAdvantagesRow').append(html);
+        });
+
+        // remove row
+        $(document).on('click', '#removeAdvantagesRow', function() {
+            $(this).closest('#inputFormAdvantagesRow').remove();
+        });
+    </script>
 
 @endpush

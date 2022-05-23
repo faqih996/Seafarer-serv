@@ -19,8 +19,8 @@ class CreateDetailUserTable extends Migration
             $table->foreignId('users_id')->nullable()->index('fk_detail_user_to_users');
             $table->string('birth_place')->nullable();
             $table->date('birth_date')->nullable();
-            $table->date('gender')->nullable();
-            $table->date('marital')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('marital')->nullable();
             $table->string('about_me')->nullable();
             $table->integer('phone_number')->nullable();
             $table->longText('address')->nullable();

@@ -58,6 +58,10 @@ class DetailUser extends Model
 
     public function province()
     {
-        return $this->hasOne('App\Models\Province', 'province_id', 'id');
+        return $this->hasOne('App\Models\Province', 'provinces_id', 'id');
+    }
+    public function regency()
+    {
+        return $this->hasOne('App\Models\Regency', 'regencies_id', 'id');
     }
 }

@@ -34,44 +34,61 @@
                                                 </svg>
                                             </span>
                                         @endif
+
+                                        <div class="col-12 col-md-4" >
+                                            <a>Edit Photo</a>
+                                            <a>Delete Photo</a>
+                                        </div>
+
+                                        <div class="col-12 col-md-4" >
+                                            CV
+                                            <a>Upload CV</a>
+                                            <a>Delete</a>
+                                        </div>
+
                                     </div>
 
                                     <div class="col-12 col-md-8">
                                         <div class="row">
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">First Name</div>
-                                                <div class="product-subtitle">{{ $user->first_name }}</div>
+                                                <div class="product-subtitle">{{ $user->first_name ?? ' ' }}</div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Last Name</div>
                                                 <div class="product-subtitle">
-                                                    {{ $user->last_name }}
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">
-                                                    Position
-                                                </div>
-                                                <div class="product-subtitle">
-                                                    {{ $user->detail_user->occupation }}
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Status</div>
-                                                <div class="product-subtitle text-danger">
-                                                    statusas
+                                                    {{ $user->last_name ?? ' ' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Email</div>
-                                                <div class="product-subtitle"> {{ $user->email }}</div>
+                                                <div class="product-subtitle"> {{ $user->email ?? ' ' }}</div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Mobile</div>
                                                 <div class="product-subtitle">
-                                                    {{ $user->detail_user->phone_number }}
+                                                    {{ $user->detail_user->phone_number ?? ' ' }}
                                                 </div>
                                             </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">
+                                                    Skype
+                                                </div>
+                                                <div class="product-subtitle">
+                                                    {{ $user->detail_user->skype ?? ' ' }}
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Position</div>
+                                                <div class="product-subtitle text-danger">
+                                                    {{ $user->detail_user->position ?? ' ' }}
+                                                </div>
+                                            </div>
+                                            <div class="col-6 col-md-6">
+                                                <d class="product-title">Status</div>
+                                                <div class="product-subtitle"> {{ $user->detail_user->status ?? ' ' }}</div>
+                                            </div>
+
                                         </div>
                                     </div>
                                 </div>
@@ -94,30 +111,35 @@
                                         </h5>
                                         <div class="dropdown-divider"></div>
                                         <div class="row">
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Place of Birth</div>
-                                                <div class="product-subtitle">
-                                                    {{ $user->detail_user->birth_place }}
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-6">
-                                                <div class="product-title">Date of Birth</div>
-                                                <div class="product-subtitle">
-                                                    {{ $user->detail_user->birth_date }}
-                                                </div>
-                                            </div>
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Gender</div>
                                                 <div class="product-subtitle">
                                                     {{ $user->detail_user->gender }}
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Marital Status</div>
                                                 <div class="product-subtitle">
                                                     {{ $user->detail_user->marital }}
                                                 </div>
                                             </div>
+
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Place of Birth</div>
+                                                <div class="product-subtitle">
+                                                    {{ $user->detail_user->birth_place }}
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-md-6">
+                                                <div class="product-title">Date of Birth</div>
+                                                <div class="product-subtitle">
+                                                    {{ $user->detail_user->birth_date }}
+                                                </div>
+                                            </div>
+
                                             <div class="col-12 col-md-12">
                                                 <div class="product-title">Address</div>
                                                 <div class="product-subtitle">
@@ -127,28 +149,32 @@
 
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">
-                                                Province
+                                                    Province
                                                 </div>
                                                 <div class="product-subtitle">
-                                                    {{-- {{ $user->detail_user->provinces->name }} --}}
+                                                    {{ $user->detail_user->provinces_id }}
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">City</div>
                                                 <div class="product-subtitle">
-                                                    {{-- {{ $user->detail_user->regencies->id }} --}}
+                                                    {{ $user->detail_user->regencies_id }}
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Postal Code</div>
                                                 <div class="product-subtitle">{{ $user->detail_user->zip_code }}</div>
                                             </div>
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Country</div>
                                                 <div class="product-subtitle">
                                                     {{ $user->detail_user->country }}
                                                 </div>
                                             </div>
+
                                         </div>
                                     </div>
                                 </div>

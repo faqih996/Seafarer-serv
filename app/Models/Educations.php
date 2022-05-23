@@ -15,7 +15,7 @@ class Educations extends Model
 
     protected $fillable = [
         'name', 'detail_user_id', 'course', 'start', 'graduate',
-        'address', 'regencies_id', 'provinces_id', 'zip_code', 'country', 'certificate'
+        'address', 'regencies', 'provinces', 'zip_code', 'country', 'certificate'
     ];
 
     protected $hidden = [

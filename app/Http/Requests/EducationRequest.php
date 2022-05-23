@@ -25,15 +25,14 @@ class EducationRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'users_id'=> 'nullable|exists:users,id',
-             'course' => 'required|string',
-             'start' => 'required|date',
-             'graduate' => 'required|date',
-             'address' => 'required|string',
-             'regencies_id' => 'required|integer',
-             'provinces_id' => 'required|integer',
-             'zip_code' => 'required|string',
-             'certificate' => 'nullable|image'
+            'course' => 'required|string',
+            'start' => 'required|date',
+            'graduate' => 'required|date',
+            'address' => 'required|string',
+            'regencies' => 'required|string',
+            'provinces' => 'required|string',
+            'zip_code' => 'required|string',
+            'certificate' => 'nullable|image'
         ];
     }
 

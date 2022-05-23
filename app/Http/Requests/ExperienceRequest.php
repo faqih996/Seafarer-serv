@@ -25,7 +25,6 @@ class ExperienceRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'users_id'=> 'nullable|exists:users,id',
             'base'=> 'required|string',
             'position'=> 'required|string',
             'job_title'=> 'required|string',
