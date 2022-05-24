@@ -56,12 +56,12 @@ class DetailUser extends Model
         return $this->hasMany('App\Models\Document', 'detail_user_id');
     }
 
-    public function province()
+    public function Province()
     {
-        return $this->hasOne('App\Models\Province', 'provinces_id', 'id');
+        return $this->belongsTo('App\Models\Province', 'provinces_id', 'id');
     }
-    public function regency()
+    public function Regency()
     {
-        return $this->hasOne('App\Models\Regency', 'regencies_id', 'id');
+        return $this->belongsTo('App\Models\Regency', 'regencies_id', 'id');
     }
 }

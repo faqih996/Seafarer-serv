@@ -16,7 +16,7 @@
                 </p>
             </div>
 
-            <div class="dashboard-content personal" id="profileDetails">
+            <div class="dashboard-content " id="profileDetails">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -50,26 +50,32 @@
 
                                     <div class="col-12 col-md-8">
                                         <div class="row">
+
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">First Name</div>
                                                 <div class="product-subtitle">{{ $user->first_name ?? ' ' }}</div>
                                             </div>
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Last Name</div>
                                                 <div class="product-subtitle">
                                                     {{ $user->last_name ?? ' ' }}
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Email</div>
                                                 <div class="product-subtitle"> {{ $user->email ?? ' ' }}</div>
                                             </div>
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Mobile</div>
                                                 <div class="product-subtitle">
                                                     {{ $user->detail_user->phone_number ?? ' ' }}
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">
                                                     Skype
@@ -78,19 +84,21 @@
                                                     {{ $user->detail_user->skype ?? ' ' }}
                                                 </div>
                                             </div>
+
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Position</div>
                                                 <div class="product-subtitle text-danger">
                                                     {{ $user->detail_user->position ?? ' ' }}
                                                 </div>
                                             </div>
-                                            <div class="col-6 col-md-6">
+
+                                            <div class="col-12 col-md-6">
                                                 <d class="product-title">Status</div>
                                                 <div class="product-subtitle"> {{ $user->detail_user->status ?? ' ' }}</div>
                                             </div>
 
-                                        </div>
                                     </div>
+
                                 </div>
                             </div>
                         </div>
@@ -99,7 +107,7 @@
             </div>
 
             <!-- Personal Information -->
-            <div class="mt-3 dashboard-content" id="personalDetails">
+            <div class="dashboard-content mt-3" id="personalDetails">
                 <div class="row">
                     <div class="col-12">
                         <div class="card">
@@ -109,38 +117,37 @@
                                         <h5>
                                             Personal Information
                                         </h5>
-                                        <div class="dropdown-divider"></div>
                                         <div class="row">
 
-                                            <div class="col-12 col-md-6">
+                                            <div class="col-6 col-md-6">
                                                 <div class="product-title">Gender</div>
                                                 <div class="product-subtitle">
                                                     {{ $user->detail_user->gender }}
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 col-md-6">
+                                            <div class="col-6 col-md-6">
                                                 <div class="product-title">Marital Status</div>
                                                 <div class="product-subtitle">
                                                     {{ $user->detail_user->marital }}
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 col-md-6">
+                                            <div class="col-6 col-md-6">
                                                 <div class="product-title">Place of Birth</div>
                                                 <div class="product-subtitle">
                                                     {{ $user->detail_user->birth_place }}
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 col-md-6">
+                                            <div class="col-6 col-md-6">
                                                 <div class="product-title">Date of Birth</div>
                                                 <div class="product-subtitle">
                                                     {{ $user->detail_user->birth_date }}
                                                 </div>
                                             </div>
 
-                                            <div class="col-12 col-md-12">
+                                            <div class="col-6 col-md-6">
                                                 <div class="product-title">Address</div>
                                                 <div class="product-subtitle">
                                                     {{ $user->detail_user->address }}
@@ -152,14 +159,14 @@
                                                     Province
                                                 </div>
                                                 <div class="product-subtitle">
-                                                    {{ $user->detail_user->provinces_id }}
+                                                    {{ App\Models\Province::find($user->detail_user->provinces_id)->name }}
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">City</div>
                                                 <div class="product-subtitle">
-                                                    {{ $user->detail_user->regencies_id }}
+                                                    {{ App\Models\Regency::find($user->detail_user->regencies_id)->name }}
                                                 </div>
                                             </div>
 
@@ -475,7 +482,6 @@
                 </div>
             </div>
 
-
             <!-- Document -->
             <div class="mt-3 dashboard-content" id="documentsDetails">
                 <div class="row">
@@ -527,6 +533,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </div>
     <!-- End Section Content -->

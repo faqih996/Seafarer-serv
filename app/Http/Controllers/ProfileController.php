@@ -184,7 +184,8 @@ class ProfileController extends Controller
         $education_user_id = Educations::where('detail_user_id', $detail_user['id'])->first();
         if (isset($education_user_id)) {
 
-            foreach($data_user[ Education::class ] as $key => $value){
+            // update education
+            foreach($data_user[ Educations::class ] as $key => $value){
                 $education_user = Educations::find($key);
                 $education_user->detail_user_id = $detail_user['id'];
                 $education_user = $value;
@@ -198,7 +199,8 @@ class ProfileController extends Controller
             // ['address'] ['regencies'] ['provinces'] ['country'] ['zip_code'] ['certificate']
 
         } else {
-            foreach($data_user[ Education::class ] as $key => $value) {
+            // add new education
+            foreach($data_user[ Educations::class ] as $key => $value) {
                 if(isset($value)){
                     $education_user = new Educations;
                     $education_user->detail_user_id = $detail_user['id'];
