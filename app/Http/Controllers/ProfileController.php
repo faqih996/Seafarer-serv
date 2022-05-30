@@ -185,12 +185,10 @@ class ProfileController extends Controller
         if (isset($education_user_id)) {
 
             // update education
-            foreach($data_user[ Educations::class ] as $key => $value){
+            foreach($data_user[ 'experience' ] as $key => $value){
                 $education_user = Educations::find($key);
                 $education_user->detail_user_id = $detail_user['id'];
-                $education_user = $value;
-
-                dd($education_user);
+                $education_user->experience = $value;
                 $education_user->save();
 
             }
@@ -200,13 +198,11 @@ class ProfileController extends Controller
 
         } else {
             // add new education
-            foreach($data_user[ Educations::class ] as $key => $value) {
+            foreach($data_user[ 'experience' ] as $key => $value) {
                 if(isset($value)){
                     $education_user = new Educations;
                     $education_user->detail_user_id = $detail_user['id'];
-                    $education_user = $value;
-
-                    dd($education_user);
+                    $education_user->experience = $value;
                     $education_user->save();
 
                 }

@@ -227,20 +227,31 @@ Profile Setting
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="provinces_id">Province</label>
-                                                        <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
-                                                            <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
-                                                        </select>
+                                                        <label for="provinces">Province</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="provinces"
+                                                            aria-describedby="emailHelp"
+                                                            name="provinces"
+                                                            value="{{ $data_user->detail_user->provinces ?? '' }}"
+                                                            required
+                                                        />
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
-                                                        <label for="regencies_id">City</label>
-                                                        <select name="regencies_id" id="regencies_id" class="form-control " v-model="regencies_id" v-if="regencies" required>
-                                                            <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
-                                                        </select>
-                                                        <select v-else class="form-control"></select>
+                                                        <label for="regencies">City</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="address"
+                                                            aria-describedby="emailHelp"
+                                                            name="regencies"
+                                                            value="{{ $data_user->detail_user->regencies ?? '' }}"
+                                                            required
+                                                        />
                                                     </div>
                                                 </div>
 
@@ -306,16 +317,16 @@ Profile Setting
 
                                             @forelse ($education_user as $key => $education)
 
-                                            <div class="mb-2 row"  id="edu-locations">
+                                            <div class="mb-2 row">
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="institution_name">Institution Name</label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
-                                                            id="name"
+                                                            id="education_name"
                                                             aria-describedby="emailHelp"
-                                                            name="name"
+                                                            name="{{ 'education['.$education->id.']' }}"
                                                             value="{{ $education->name }}"
                                                             required
                                                         />
@@ -326,12 +337,27 @@ Profile Setting
                                                     <div class="form-group">
                                                         <label for="course">Course Study</label>
                                                         <input
-                                                            type="course"
+                                                            type="text"
                                                             class="form-control"
-                                                            id="course"
+                                                            id="'education_course"
                                                             aria-describedby="emailHelp"
-                                                            name="course"
+                                                            name="{{ 'education['.$education->id.']' }}"
                                                             value="{{ $education->course }}"
+                                                            required
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                                <div class="col-md-6">
+                                                    <div class="form-group">
+                                                        <label for="degree">Study Degree</label>
+                                                        <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="'education_course"
+                                                            aria-describedby="emailHelp"
+                                                            name="{{ 'education['.$education->id.']' }}"
+                                                            value="{{ $education->degree ?? ' ' }}"
                                                             required
                                                         />
                                                     </div>
@@ -343,9 +369,9 @@ Profile Setting
                                                         <input
                                                             type="date"
                                                             class="form-control"
-                                                            id="start"
+                                                            id="education_start"
                                                             aria-describedby="emailHelp"
-                                                            name="start"
+                                                            name=" {{ 'education['.$education->id.']' }} "
                                                             value="{{ $education->start }}"
                                                             required
                                                         />
@@ -358,24 +384,24 @@ Profile Setting
                                                         <input
                                                             type="date"
                                                             class="form-control"
-                                                            id="graduate"
+                                                            id="'education_graduate"
                                                             aria-describedby="emailHelp"
-                                                            name="graduate"
+                                                            name="{{ 'education['.$education->id.']' }}"
                                                             value="{{ $education->graduate }}"
                                                             required
                                                         />
                                                     </div>
                                                 </div>
 
-                                                <div class="col-md-12">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="address">Address</label>
                                                         <input
                                                             type="text"
                                                             class="form-control"
-                                                            id="address"
+                                                            id="'education_address"
                                                             aria-describedby="emailHelp"
-                                                            name="address"
+                                                            name="{{ 'education['.$education->id.']' }}"
                                                             value="{{ $education->address }}"
                                                             required
                                                         />
@@ -388,10 +414,10 @@ Profile Setting
                                                         <input
                                                             type="text"
                                                             class="form-control"
-                                                            id="regencies"
+                                                            id="'education_regencies"
                                                             aria-describedby="emailHelp"
-                                                            name="regencies"
-                                                            value="{{ $education->regencies }}"
+                                                            name="{{ 'education['.$education->id.']' }}"
+                                                            value="{{ $education->address }}"
                                                             required
                                                         />
                                                     </div>
@@ -403,10 +429,10 @@ Profile Setting
                                                         <input
                                                             type="text"
                                                             class="form-control"
-                                                            id="provinces"
+                                                            id="'education_provinces"
                                                             aria-describedby="emailHelp"
-                                                            name="provinces"
-                                                            value="{{ $education->provinces }}"
+                                                            name="{{ 'education['.$education->id.']' }}"
+                                                            value="{{ $education->address }}"
                                                             required
                                                         />
                                                     </div>
@@ -418,9 +444,9 @@ Profile Setting
                                                         <input
                                                             type="text"
                                                             class="form-control"
-                                                            id="zip_code"
-                                                            name="zip_code"
-                                                            value="{{$education->zip_code }}"
+                                                            id="'education_zip"
+                                                            name="{{ 'education['.$education->id.']' }}"
+                                                            value="{{ $education->address }}"
                                                             required
                                                         />
                                                     </div>
@@ -432,9 +458,9 @@ Profile Setting
                                                         <input
                                                             type="text"
                                                             class="form-control"
-                                                            id="country"
-                                                            name="country"
-                                                            value="{{$education->country }}"
+                                                            id="'education_country"
+                                                            name="{{ 'education['.$education->id.']' }}"
+                                                            value="{{ $education->address }}"
                                                             required
                                                         />
                                                     </div>
@@ -443,26 +469,28 @@ Profile Setting
                                                 <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label>Education Certificate</label>
-                                                        <input type="file" class="form-control" name="certificate" placeholder="certificate" required />
+                                                        <input type="file" class="form-control" name="{{ 'education['.$education->id.']' }}" value="{{ $education->certificate }}" required />
                                                     </div>
                                                 </div>
 
                                             </div>
 
                                             <div class="dropdown-divider bold"></div>
+
+
                                             @empty
                                                 {{-- empty --}}
                                             @endforelse
 
-                                            <div class="row">
-                                                <div class="card" id="newAdvantagesRow">
-                                                    <div class="card-body">
+                                            <div class="row" id="newEducationRow">
+                                                <div class="col-11" >
 
-                                                    </div>
                                                 </div>
+                                            </div>
+                                            <div class="row">
 
-                                                <div class="col-md-9">
-                                                    <button class="btn btn-secondary btn-block" id="addAdvantagesRow">
+                                                <div class="col-md-12">
+                                                    <button typr="button" class="btn btn-secondary btn-block" id="addEducationRow">
                                                         Add Education
                                                     </button>
                                                 </div>
@@ -539,12 +567,20 @@ Profile Setting
 
     <script type="text/javascript">
         // add row
-        $("#addAdvantagesRow").click(function() {
-            var html = '';
-            html += '<input placeholder="Keunggulan Service" type="text" name="advantage_user[]" id="advantage_user" autocomplete="advantage_user" class="block w-full py-3 mt-1 border-gray-300 rounded-md shadow-sm focus:ring-green-500 focus:border-green-500 sm:text-sm" required>';
+        $("#addEducationRow").click(function() {
+            var html_education_name = '';
+            html_education_name += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control"id="education_name[]" aria-describedby="emailHelp" name="education_name[]"value="education_name[]" required/></div></div></div>';
+            var html_education_course = '';
+            html_education_course += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control"id="education_name[]"aria-describedby="emailHelp"name="education_name[]"value="education_name[]" required/></div></div></div>';
+            var  html_education_start= '';
+            html_education_start += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control"id="education_name[]"aria-describedby="emailHelp"name="education_name[]"value="education_name[]" required/></div></div></div>';
+            var  html_education_graduate= '';
+            html_education_graduate += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control"id="education_name[]"aria-describedby="emailHelp"name="education_name[]"value="education_name[]" required/></div></div></div>';
 
-            $('#newAdvantagesRow').append(html);
+            $('#newEducationRow').append(html_education_name, html_education_course, html_education_start, html_education_graduate );
         });
+
+
 
         // remove row
         $(document).on('click', '#removeAdvantagesRow', function() {

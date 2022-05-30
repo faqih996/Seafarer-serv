@@ -16,6 +16,7 @@ class CreateDocumentsTable extends Migration
         Schema::create('documents', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
+            $table->string('slug')->nullable();
             $table->foreignId('detail_user_id')->nullable()->index('fk_education_to_detail_user');
             $table->string('docs_number')->nullable();
             $table->string('place_issued')->nullable();

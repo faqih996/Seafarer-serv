@@ -20,8 +20,8 @@ class ChangeNullableAtEmergenciesTable extends Migration
             $table->string('contact2')->nullable()->change();
             $table->string('email')->nullable()->change();
             $table->longText('address')->nullable()->change();
-            $table->integer('regencies_id')->nullable()->change();
-            $table->integer('provinces_id')->nullable()->change();
+            $table->string('regencies')->nullable()->change();
+            $table->string('provinces')->nullable()->change();
             $table->string('country')->nullable()->change();
             $table->integer('zip_code')->nullable()->change();
         });

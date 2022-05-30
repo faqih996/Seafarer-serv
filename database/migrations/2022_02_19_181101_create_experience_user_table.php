@@ -23,8 +23,8 @@ class CreateExperienceUserTable extends Migration
             $table->date('start_of_contract');
             $table->date('end_of_contract');
             $table->longText('address');
-            $table->integer('regencies_id');
-            $table->integer('provinces_id');
+            $table->string('regencies');
+            $table->string('provinces');
             $table->integer('zip_code');
             $table->string('country');
             $table->string('spv_name');

@@ -21,8 +21,8 @@ class ChangeNullableAtExperienceUserTable extends Migration
             $table->date('start_of_contract')->nullable()->change();
             $table->date('end_of_contract')->nullable()->change();
             $table->longText('address')->nullable()->change();
-            $table->integer('regencies_id')->nullable()->change();
-            $table->integer('provinces_id')->nullable()->change();
+            $table->string('regencies')->nullable()->change();
+            $table->string('provinces')->nullable()->change();
             $table->integer('zip_code')->nullable()->change();
             $table->string('country')->nullable()->change();
             $table->string('spv_name')->nullable()->change();

@@ -22,8 +22,8 @@ class CreateEmergenciesTable extends Migration
             $table->string('contact2');
             $table->string('email');
             $table->longText('address');
-            $table->integer('regencies_id');
-            $table->integer('provinces_id');
+            $table->string('regencies');
+            $table->string('provinces');
             $table->integer('country');
             $table->integer('zip_code');
 

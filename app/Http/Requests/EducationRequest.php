@@ -26,6 +26,7 @@ class EducationRequest extends FormRequest
         return [
             'name' => 'required|string',
             'course' => 'required|string',
+            'degree' => 'required|string',
             'start' => 'required|date',
             'graduate' => 'required|date',
             'address' => 'required|string',
