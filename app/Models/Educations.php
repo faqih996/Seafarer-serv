@@ -14,7 +14,7 @@ class Educations extends Model
     public $table = 'educations';
 
     protected $fillable = [
-        'name', 'detail_user_id', 'degree', 'course', 'start', 'graduate',
+        'name','course', 'start', 'graduate',
         'address', 'regencies', 'provinces', 'zip_code', 'country', 'certificate'
     ];
 

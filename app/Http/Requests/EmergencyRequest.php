@@ -31,8 +31,8 @@ class EmergencyRequest extends FormRequest
             'contact2' =>'nullable|string',
             'email' => 'nullable|email',
             'address' => 'required|string',
-            'regencies_id' => 'required|integer',
-            'provinces_id' => 'required|integer',
+            'regencies' => 'required|string',
+            'provinces' => 'required|string',
             'zip_code' => 'required|integer',
             'country' => 'required|string'
         ];

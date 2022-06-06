@@ -34,6 +34,16 @@ Profile Setting
                                                 Personal Information
                                             </h5>
 
+                                            @if ($errors->any())
+                                                <div class="alert alert-danger">
+                                                    <ul>
+                                                        @foreach ($errors->all() as $error)
+                                                            <li>{{ $error }}</li>
+                                                        @endforeach
+                                                    </ul>
+                                                </div>
+                                            @endif
+
                                             <div class="dropdown-divider"></div>
                                             <div class="mb-2 row" id="locations">
 
@@ -73,6 +83,9 @@ Profile Setting
                                                             name="first_name"
                                                             value="{{ $data_user->first_name ?? ' ' }}"
                                                         />
+                                                        {{-- @if ($errors->has('first_name'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('first_name') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -87,6 +100,9 @@ Profile Setting
                                                             name="last_name"
                                                             value="{{ $data_user->last_name ?? ' ' }}"
                                                         />
+                                                        {{-- @if ($errors->has('last_name'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('last_name') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -102,6 +118,9 @@ Profile Setting
                                                             value="{{ $data_user->detail_user->birth_place ?? ' ' }}"
                                                             required
                                                         />
+                                                        {{-- @if ($errors->has('birth_place'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('birth_place') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -117,6 +136,9 @@ Profile Setting
                                                             value="{{ $data_user->detail_user->birth_date ?? ' ' }}"
                                                             required
                                                         />
+                                                        {{-- @if ($errors->has('birth_date'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('birth_date') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -128,6 +150,9 @@ Profile Setting
                                                             <option value="Male" {{ $data_user->detail_user->gender == 'Male' ? 'selected' : '' }}>Male</option>
                                                             <option value="Female" {{ $data_user->detail_user->gender == 'Female' ? 'selected' : '' }}>Female</option>
                                                         </select>
+                                                        {{-- @if ($errors->has('gender'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('gender') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -135,11 +160,13 @@ Profile Setting
                                                     <div class="form-group">
                                                         <label for="marital">Marital Status</label>
                                                         <select name="marital" required class="form-control"required>
+                                                            <option value="" >- Select One-</option>
                                                             <option value="Single" {{ $data_user->detail_user->marital == 'Single' ? 'selected' : '' }}>Single</option>
                                                             <option value="Married" {{ $data_user->detail_user->marital == 'Married' ? 'selected' : '' }}>Married</option>
                                                             <option value="Widowed" {{ $data_user->detail_user->marital == 'Widowed' ? 'selected' : '' }}>Widowed</option>
                                                             <option value="Divorced" {{ $data_user->detail_user->marital == 'Divorced' ? 'selected' : '' }}>Divorced</option>
                                                         </select>
+
                                                     </div>
                                                 </div>
 
@@ -147,6 +174,9 @@ Profile Setting
                                                     <div class="form-group">
                                                         <label>About Me</label>
                                                         <textarea name="about_me" id="editor">{!! $data_user->detail_user->about_me !!}</textarea>
+                                                        {{-- @if ($errors->has('about_me'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('about_me') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -177,6 +207,9 @@ Profile Setting
                                                             value="{{ $data_user->email ?? '' }}"
                                                             required
                                                         />
+                                                        {{-- @if ($errors->has('email'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('email') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -192,6 +225,9 @@ Profile Setting
                                                             value="{{ $data_user->detail_user->skype ?? '' }}"
                                                             required
                                                         />
+                                                        {{-- @if ($errors->has('skype'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('skype') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -207,6 +243,9 @@ Profile Setting
                                                             value="{{ $data_user->detail_user->phone_number ?? '' }}"
                                                             required
                                                         />
+                                                        {{-- @if ($errors->has('phone_number'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('phone_number') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -222,36 +261,35 @@ Profile Setting
                                                             value="{{ $data_user->detail_user->address ?? '' }}"
                                                             required
                                                         />
+                                                        {{-- @if ($errors->has('address'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('address') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="provinces">Province</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="provinces"
-                                                            aria-describedby="emailHelp"
-                                                            name="provinces"
-                                                            value="{{ $data_user->detail_user->provinces ?? '' }}"
-                                                            required
-                                                        />
+                                                        <select name="provinces_id" id="provinces_id" class="form-control" v-model="provinces_id" v-if="provinces" required>
+                                                            <option v-for="province in provinces" :value="province.id">@{{ province.name }}</option>
+                                                        </select>
+                                                        <select v-else class="form-control"></select>
+                                                        {{-- @if ($errors->has('provinces'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('provinces') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
                                                 <div class="col-md-4">
                                                     <div class="form-group">
                                                         <label for="regencies">City</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="address"
-                                                            aria-describedby="emailHelp"
-                                                            name="regencies"
-                                                            value="{{ $data_user->detail_user->regencies ?? '' }}"
-                                                            required
-                                                        />
+                                                        <select name="regencies_id" id="regencies_id" class="form-control " v-model="regencies_id" v-if="regencies" required>
+                                                            <option v-for="regency in regencies" :value="regency.id">@{{regency.name }}</option>
+                                                        </select>
+                                                        <select v-else class="form-control"></select>
+                                                        {{-- @if ($errors->has('regencies'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('regencies') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -266,6 +304,9 @@ Profile Setting
                                                             value="{{ $data_user->detail_user->zip_code}}"
                                                             required
                                                         />
+                                                        {{-- @if ($errors->has('zip_code'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('zip_code') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
 
@@ -280,6 +321,9 @@ Profile Setting
                                                             value="Indonesia"
                                                             required
                                                         />
+                                                        {{-- @if ($errors->has('country'))
+                                                            <p class="mb-3 text-sm text-danger">{{ $errors->first('country') }}</p>
+                                                        @endif --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -304,209 +348,205 @@ Profile Setting
                     <!-- end personal information -->
 
                     <!-- educations Information -->
-                    <div class="dashboard-content personal">
-                        <div class="row">
-                                <div class="col-11">
+                        <div class="dashboard-content personal">
+                            <div class="row">
+                                    <div class="col-11">
 
-                                    <div class="card">
-                                        <div class="card-body">
-                                            <h5>
-                                                Education Background
-                                            </h5>
-                                            <div class="dropdown-divider"></div>
+                                        <div class="card">
+                                            <div class="card-body">
 
-                                            @forelse ($education_user as $key => $education)
+                                                @forelse ($education_user as $education)
 
-                                            <div class="mb-2 row">
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="institution_name">Institution Name</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="education_name"
-                                                            aria-describedby="emailHelp"
-                                                            name="{{ 'education['.$education->id.']' }}"
-                                                            value="{{ $education->name }}"
-                                                            required
-                                                        />
+                                                <h5>
+                                                    Education Background
+                                                </h5>
+                                                <div class="dropdown-divider"></div>
+
+                                                <div class="mb-2 row">
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="institution_name">Institution Name</label>
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                id="education_name"
+                                                                aria-describedby="emailHelp"
+                                                                name="{{ 'institution_names['.$education->id.']' }}"
+                                                                value="{{ $education->name }}"
+                                                                required
+                                                            />
+                                                            {{-- @if ($errors->has('country'))
+                                                                <p class="mb-3 text-sm text-danger">{{ $errors->first('country') }}</p>
+                                                            @endif --}}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="education_courses">Course Study</label>
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                id="'education_course"
+                                                                aria-describedby="emailHelp"
+                                                                name="{{ 'education_courses['.$education->id.']' }}"
+                                                                value="{{ $education->course }}"
+                                                                required
+                                                            />
+                                                            {{-- @if ($errors->has('education_courses'))
+                                                                <p class="mb-3 text-sm text-danger">{{ $errors->first('education_courses') }}</p>
+                                                            @endif --}}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="education_start">Start From</label>
+                                                            <input
+                                                                type="date"
+                                                                class="form-control"
+                                                                id="education_start"
+                                                                aria-describedby="emailHelp"
+                                                                name=" {{ 'education_starts['.$education->id.']' }} "
+                                                                value="{{ $education->start }}"
+                                                                required
+                                                            />
+                                                            {{-- @if ($errors->has('start'))
+                                                                <p class="mb-3 text-sm text-danger">{{ $errors->first('start') }}</p>
+                                                            @endif --}}
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="education_graduates">Graduate</label>
+                                                            <input
+                                                                type="date"
+                                                                class="form-control"
+                                                                id="'education_graduate"
+                                                                aria-describedby="emailHelp"
+                                                                name="{{ 'education_graduates['.$education->id.']' }}"
+                                                                value="{{ $education->graduate }}"
+                                                                required
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="education_address">Address</label>
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                id="'education_address"
+                                                                aria-describedby="emailHelp"
+                                                                name="{{ 'education_addresses['.$education->id.']' }}"
+                                                                value="{{ $education->address }}"
+                                                                required
+                                                            />
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="education_regencies">City</label>
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                id="'education_regencies"
+                                                                aria-describedby="emailHelp"
+                                                                name="{{ 'education_regencies['.$education->id.']' }}"
+                                                                value="{{ $education->address }}"
+                                                                required
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="education_provinces">Province</label>
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                id="'education_provinces"
+                                                                aria-describedby="emailHelp"
+                                                                name="{{ 'education_provinces['.$education->id.']' }}"
+                                                                value="{{ $education->address }}"
+                                                                required
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-4">
+                                                        <div class="form-group">
+                                                            <label for="postalCode">Postal Code</label>
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                id="'education_zip"
+                                                                name="{{ 'education_zips['.$education->id.']' }}"
+                                                                value="{{ $education->address }}"
+                                                                required
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="country">Country</label>
+                                                            <input
+                                                                type="text"
+                                                                class="form-control"
+                                                                id="'education_country"
+                                                                name="{{ 'education_countries['.$education->id.']' }}"
+                                                                value="{{ $education->address }}"
+                                                                required
+                                                            />
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label>Education Certificate</label>
+                                                            <input type="file" class="form-control" name="{{ 'education_certificates['.$education->id.']' }}" value="{{ $education->certificate }}" required />
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                                <div class="dropdown-divider bold"></div>
+
+
+                                                @empty
+                                                    {{-- empty --}}
+                                                @endforelse
+
+                                                <div class="row" id="newEducationRow">
+                                                    <div class="col-11" >
+
                                                     </div>
                                                 </div>
+                                                <div class="row">
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="course">Course Study</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="'education_course"
-                                                            aria-describedby="emailHelp"
-                                                            name="{{ 'education['.$education->id.']' }}"
-                                                            value="{{ $education->course }}"
-                                                            required
-                                                        />
+                                                    <div class="col-md-12">
+                                                        <button typr="button" class="btn btn-secondary btn-block" id="addEducationRow">
+                                                            Add Education
+                                                        </button>
                                                     </div>
-                                                </div>
 
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="degree">Study Degree</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="'education_course"
-                                                            aria-describedby="emailHelp"
-                                                            name="{{ 'education['.$education->id.']' }}"
-                                                            value="{{ $education->degree ?? ' ' }}"
-                                                            required
-                                                        />
+                                                    <div class="text-right col">
+                                                        <button type="submit" class="px-5 mt-4 btn btn-success">
+                                                            Save
+                                                        </button>
                                                     </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="addressOne">Start From</label>
-                                                        <input
-                                                            type="date"
-                                                            class="form-control"
-                                                            id="education_start"
-                                                            aria-describedby="emailHelp"
-                                                            name=" {{ 'education['.$education->id.']' }} "
-                                                            value="{{ $education->start }}"
-                                                            required
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="graduate">Graduate</label>
-                                                        <input
-                                                            type="date"
-                                                            class="form-control"
-                                                            id="'education_graduate"
-                                                            aria-describedby="emailHelp"
-                                                            name="{{ 'education['.$education->id.']' }}"
-                                                            value="{{ $education->graduate }}"
-                                                            required
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="address">Address</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="'education_address"
-                                                            aria-describedby="emailHelp"
-                                                            name="{{ 'education['.$education->id.']' }}"
-                                                            value="{{ $education->address }}"
-                                                            required
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="regencies">City</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="'education_regencies"
-                                                            aria-describedby="emailHelp"
-                                                            name="{{ 'education['.$education->id.']' }}"
-                                                            value="{{ $education->address }}"
-                                                            required
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="provinces">Province</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="'education_provinces"
-                                                            aria-describedby="emailHelp"
-                                                            name="{{ 'education['.$education->id.']' }}"
-                                                            value="{{ $education->address }}"
-                                                            required
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-4">
-                                                    <div class="form-group">
-                                                        <label for="postalCode">Postal Code</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="'education_zip"
-                                                            name="{{ 'education['.$education->id.']' }}"
-                                                            value="{{ $education->address }}"
-                                                            required
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="country">Country</label>
-                                                        <input
-                                                            type="text"
-                                                            class="form-control"
-                                                            id="'education_country"
-                                                            name="{{ 'education['.$education->id.']' }}"
-                                                            value="{{ $education->address }}"
-                                                            required
-                                                        />
-                                                    </div>
-                                                </div>
-
-                                                <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label>Education Certificate</label>
-                                                        <input type="file" class="form-control" name="{{ 'education['.$education->id.']' }}" value="{{ $education->certificate }}" required />
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                            <div class="dropdown-divider bold"></div>
-
-
-                                            @empty
-                                                {{-- empty --}}
-                                            @endforelse
-
-                                            <div class="row" id="newEducationRow">
-                                                <div class="col-11" >
-
-                                                </div>
-                                            </div>
-                                            <div class="row">
-
-                                                <div class="col-md-12">
-                                                    <button typr="button" class="btn btn-secondary btn-block" id="addEducationRow">
-                                                        Add Education
-                                                    </button>
-                                                </div>
-
-                                                <div class="text-right col">
-                                                    <button type="submit" class="px-5 mt-4 btn btn-success">
-                                                        Save
-                                                    </button>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
 
-                                </div>
+                                    </div>
+                            </div>
                         </div>
-                    </div>
                     <!-- end of educational -->
             </div>
 
@@ -568,18 +608,32 @@ Profile Setting
     <script type="text/javascript">
         // add row
         $("#addEducationRow").click(function() {
+            var html_education_title = '';
+            html_education_title = '<div class="col-md-12"><h5>Add New Education</h5></div><div class="dropdown-divider"></div>';
             var html_education_name = '';
-            html_education_name += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control"id="education_name[]" aria-describedby="emailHelp" name="education_name[]"value="education_name[]" required/></div></div></div>';
+            html_education_name += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control" id="education_name[]" aria-describedby="emailHelp" name="education_name[]" required/></div></div></div>';
             var html_education_course = '';
-            html_education_course += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control"id="education_name[]"aria-describedby="emailHelp"name="education_name[]"value="education_name[]" required/></div></div></div>';
+            html_education_course += '<div class="col-md-6"><div class="form-group"><label for="course">Course Study</label><input type="text" class="form-control" id="education_course[]" aria-describedby="emailHelp" name="education_name[]" required/></div></div></div>';
             var  html_education_start= '';
-            html_education_start += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control"id="education_name[]"aria-describedby="emailHelp"name="education_name[]"value="education_name[]" required/></div></div></div>';
+            html_education_start += '<div class="col-md-6"><div class="form-group"><label for="start">Start Form</label><input type="text" class="form-control" id="education_start[]"aria-describedby="emailHelp"name="education_name[]" required/></div></div></div>';
             var  html_education_graduate= '';
-            html_education_graduate += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control"id="education_name[]"aria-describedby="emailHelp"name="education_name[]"value="education_name[]" required/></div></div></div>';
+            html_education_graduate += '<div class="col-md-6"><div class="form-group"><label for="graduate">Graduate</label><input type="text"class="form-control" id="education_graduate[]"aria-describedby="emailHelp"name="education_name[]" required/></div></div></div>';
+            var  html_education_address= '';
+            html_education_address += '<div class="col-md-6"><div class="form-group"><label for="address">Address</label><input type="text"class="form-control" id="education_address[]"aria-describedby="emailHelp"name="education_address[]" required/></div></div></div>';
+            var  html_education_regencies= '';
+            html_education_regencies += '<div class="col-md-4"><div class="form-group"><label for="regencies">City</label><input type="text" class="form-control" id="education_regencies[]" aria-describedby="emailHelp" name="education_regencies[]" required/></div></div>';
+            var  html_education_provinces= '';
+            html_education_provinces += '<div class="col-md-4"><div class="form-group"><label for="provinces">Province</label><input type="text" class="form-control" id="education_provinces[]" aria-describedby="emailHelp" name="education_provinces[]" required/></div></div>';
+            var  html_education_zip= '';
+            html_education_zip += '<div class="col-md-4"><div class="form-group"><label for="zip">Zip Code</label><input type="text" class="form-control" id="education_zip[]" aria-describedby="emailHelp" name="education_zip[]" required/></div></div>';
+            var  html_education_country= '';
+            html_education_country += '<div class="col-md-6"><div class="form-group"><label for="country">Country</label><input type="text" class="form-control" id="education_country[]" aria-describedby="emailHelp" name="education_country[]" required/></div></div>';
+            var  html_education_certificate= '';
+            html_education_certificate += '<div class="col-md-6"><div class="form-group"><label for="certificate">Certificate</label><input type="file" class="form-control" id="education_certificate[]" aria-describedby="emailHelp" name="education_certificate[]" required/></div></div>';
 
-            $('#newEducationRow').append(html_education_name, html_education_course, html_education_start, html_education_graduate );
+            $('#newEducationRow').append(html_education_title, html_education_name, html_education_course, html_education_start, html_education_graduate,
+            html_education_address, html_education_regencies, html_education_provinces, html_education_zip, html_education_country, html_education_certificate );
         });
-
 
 
         // remove row

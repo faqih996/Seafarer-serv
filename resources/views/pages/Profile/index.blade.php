@@ -122,35 +122,35 @@
                                             <div class="col-6 col-md-6">
                                                 <div class="product-title">Gender</div>
                                                 <div class="product-subtitle">
-                                                    {{ $user->detail_user->gender }}
+                                                    {{ $user->detail_user->gender ?? '' }}
                                                 </div>
                                             </div>
 
                                             <div class="col-6 col-md-6">
                                                 <div class="product-title">Marital Status</div>
                                                 <div class="product-subtitle">
-                                                    {{ $user->detail_user->marital }}
+                                                    {{ $user->detail_user->marital ?? '' }}
                                                 </div>
                                             </div>
 
                                             <div class="col-6 col-md-6">
                                                 <div class="product-title">Place of Birth</div>
                                                 <div class="product-subtitle">
-                                                    {{ $user->detail_user->birth_place }}
+                                                    {{ $user->detail_user->birth_place ?? '' }}
                                                 </div>
                                             </div>
 
                                             <div class="col-6 col-md-6">
                                                 <div class="product-title">Date of Birth</div>
                                                 <div class="product-subtitle">
-                                                    {{ $user->detail_user->birth_date }}
+                                                    {{ $user->detail_user->birth_date ?? '' }}
                                                 </div>
                                             </div>
 
                                             <div class="col-6 col-md-6">
                                                 <div class="product-title">Address</div>
                                                 <div class="product-subtitle">
-                                                    {{ $user->detail_user->address }}
+                                                    {{ $user->detail_user->address ?? '' }}
                                                 </div>
                                             </div>
 
@@ -159,26 +159,26 @@
                                                     Province
                                                 </div>
                                                 <div class="product-subtitle">
-                                                    {{ App\Models\Province::find($user->detail_user->provinces_id)->name }}
+                                                    {{ App\Models\Province::find($user->detail_user->provinces_id)->name ?? '' }}
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">City</div>
                                                 <div class="product-subtitle">
-                                                    {{ App\Models\Regency::find($user->detail_user->regencies_id)->name }}
+                                                    {{ App\Models\Regency::find($user->detail_user->regencies_id)->name ?? '' }}
                                                 </div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Postal Code</div>
-                                                <div class="product-subtitle">{{ $user->detail_user->zip_code }}</div>
+                                                <div class="product-subtitle">{{ $user->detail_user->zip_code ?? '' }}</div>
                                             </div>
 
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Country</div>
                                                 <div class="product-subtitle">
-                                                    {{ $user->detail_user->country }}
+                                                    {{ $user->detail_user->country ?? '' }}
                                                 </div>
                                             </div>
 
@@ -208,37 +208,37 @@
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title"> Institution Name</div>
                                                 <div class="product-subtitle">
-                                                    {{ $education->name }}
+                                                    {{ $education->name ?? '' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Courses</div>
                                                 <div class="product-subtitle">
-                                                    {{$education->course}}
+                                                    {{$education->course ?? ' ' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Start Date</div>
                                                 <div class="product-subtitle">
-                                                    {{$education->start}}
+                                                    {{$education->start ?? ' ' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">End Date</div>
                                                 <div class="product-subtitle">
-                                                    {{ $education->graduate }}
+                                                    {{ $education->graduate ?? ' ' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-12">
                                                 <div class="product-title">Address</div>
                                                 <div class="product-subtitle">
-                                                    {{ $education->address }}
+                                                    {{ $education->address ?? ' ' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">City</div>
                                                 <div class="product-subtitle">
-                                                    {{ $education->regencies_id }}
+                                                    {{ $education->regencies ?? '' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
@@ -246,17 +246,17 @@
                                                     Province
                                                 </div>
                                                 <div class="product-subtitle">
-                                                    {{ $education->provinces_id }}
+                                                    {{ $education->provinces ?? ' ' }}
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Postal Code</div>
-                                                <div class="product-subtitle">{{$education->zip_code }}</div>
+                                                <div class="product-subtitle">{{$education->zip_code ?? ' ' }}</div>
                                             </div>
                                             <div class="col-12 col-md-6">
                                                 <div class="product-title">Country</div>
                                                 <div class="product-subtitle">
-                                                    {{ $education->country }}
+                                                    {{ $education->country ?? ' ' }}
                                                 </div>
                                             </div>
                                             <div class="dropdown-divider"></div>
