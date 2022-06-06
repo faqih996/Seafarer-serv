@@ -155,6 +155,13 @@ class ProfileController extends Controller
                                 ->OrderBy('id', 'asc')
                                 ->get();
 
+        // dd($data_user);
+        // dd($experience_user);
+        // dd($emergency_user);
+        // dd($document_user);
+        // dd($education_user);
+
+
         return view('pages.profile.edit', compact( 'data_user', 'experience_user', 'education_user', 'emergency_user', 'document_user',
                             'provinces', 'regencies', 'districts', 'villages'));
     }
@@ -166,7 +173,7 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProfileRequest $profile_request, UpdateDetailUserRequest $request_detail_user, EducationRequest $request_education )
+    public function update(ProfileRequest $profile_request, UpdateDetailUserRequest $request_detail_user )
     {
         $data_user = $profile_request->all();
         $data_detail_user = $request_detail_user->all();
@@ -181,33 +188,67 @@ class ProfileController extends Controller
         $detail_user = DetailUser::find($user->detail_user->id);
         $detail_user->update($data_detail_user);
 
+        // dd($data_user);
+        // dd($data_detail_user);
+        // dd($detail_user);
+        // dd($detail_user['education']);
+
         $education_user_id = Educations::where('detail_user_id', $detail_user['id'])->first();
         if (isset($education_user_id)) {
 
+            // get array input dari mana sajaa
+            // $total = count($data_detail_user['institution_names']);
+
+            // buat increment untuk panggil array position dari tiap array form
+            // $inc = 0;
+            // $incs = 0;
+
             // update education
-            foreach($data_user[ 'experience' ] as $key => $value){
+            foreach( $data_detail_user['institution_names'] as $key => $value ){
+
                 $education_user = Educations::find($key);
                 $education_user->detail_user_id = $detail_user['id'];
-                $education_user->experience = $value;
+                $education_user->name = $data_detail_user['institution_names'][$key];
+                $education_user->course = $data_detail_user['education_courses'][$key];
+                $education_user->start = $data_detail_user['education_starts'][$key];
+                $education_user->graduate = $data_detail_user['education_graduates'][$key];
+                $education_user->address = $data_detail_user['education_addresses'][$key];
+                $education_user->regencies = $data_detail_user['education_regencies'][$key];
+                $education_user->provinces = $data_detail_user['education_provinces'][$key];
+                $education_user->country = $data_detail_user['education_countries'][$key];
+                $education_user->zip_code = $data_detail_user['education_zips'][$key];
+                $education_user->certificate = $data_detail_user['education_certificates'][$key];
                 $education_user->save();
 
+                // $incs++;
             }
 
             // ['name'] ['course'] ['start'] ['graduate']
             // ['address'] ['regencies'] ['provinces'] ['country'] ['zip_code'] ['certificate']
 
         } else {
+
             // add new education
-            foreach($data_user[ 'experience' ] as $key => $value) {
+            foreach($data_detail_user['institution_names'] as $key => $value) {
                 if(isset($value)){
                     $education_user = new Educations;
                     $education_user->detail_user_id = $detail_user['id'];
-                    $education_user->experience = $value;
+                    $education_user->name = $data_detail_user['institution_name'][$key];
+                    $education_user->course = $data_detail_user['education_course'][$key];
+                    $education_user->start = $data_detail_user['education_start'][$key];
+                    $education_user->graduate = $data_detail_user['education_graduate'][$key];
+                    $education_user->address = $data_detail_user['education_address'][$key];
+                    $education_user->regencies = $data_detail_user['education_regency'][$key];
+                    $education_user->provinces = $data_detail_user['education_province'][$key];
+                    $education_user->country = $data_detail_user['education_zip'][$key];
+                    $education_user->zip_code = $data_detail_user['education_country'][$key];
+                    $education_user->certificate = $data_detail_user['education_certificate'][$key];
                     $education_user->save();
 
                 }
             }
         }
+
 
         return redirect()->route('profile.index');
     }
