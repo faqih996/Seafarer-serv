@@ -35,7 +35,6 @@
                                         <th>Place Issued</th>
                                         <th>Place Issued</th>
                                         <th>Date Expired</th>
-                                        <th>Photos</th>
                                         <th>Status</th>
                                         <th>Action</th>
                                     </tr>
@@ -54,7 +53,7 @@
 
 
 @push('addon-script')
-    <script>
+<script>
         // AJAX DataTable
         var datatable = $('#crudTable').DataTable({
             processing: true,
@@ -70,7 +69,6 @@
                 { data: 'place_issued', name: 'place_issued' },
                 { data: 'issued_date', name: 'issued_date' },
                 { data: 'expired_date', name: 'expired_date' },
-                { data: 'photos', name: 'photos' },
                 { data: 'docs_status', name: 'docs_status' },
                 {
                     data: 'action',
@@ -82,4 +80,6 @@
             ]
         });
     </script>
+
+
 @endpush

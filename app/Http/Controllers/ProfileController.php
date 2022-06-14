@@ -193,62 +193,59 @@ class ProfileController extends Controller
         // dd($detail_user);
         // dd($detail_user['education']);
 
-        $education_user_id = Educations::where('detail_user_id', $detail_user['id'])->first();
-        if (isset($education_user_id)) {
+            // $get_photo = Educations::where('detail_user_id',  $detail_user['id'])->first();
 
             // get array input dari mana sajaa
             // $total = count($data_detail_user['institution_names']);
 
             // buat increment untuk panggil array position dari tiap array form
-            // $inc = 0;
+
             // $incs = 0;
 
-            // update education
-            foreach( $data_detail_user['institution_names'] as $key => $value ){
+            for($incs=0; $incs < count($data_detail_user['institution_names']); $incs++) {
+                // update education
+                foreach( $data_detail_user['institution_names'] as $key => $value ){
 
-                $education_user = Educations::find($key);
-                $education_user->detail_user_id = $detail_user['id'];
-                $education_user->name = $data_detail_user['institution_names'][$key];
-                $education_user->course = $data_detail_user['education_courses'][$key];
-                $education_user->start = $data_detail_user['education_starts'][$key];
-                $education_user->graduate = $data_detail_user['education_graduates'][$key];
-                $education_user->address = $data_detail_user['education_addresses'][$key];
-                $education_user->regencies = $data_detail_user['education_regencies'][$key];
-                $education_user->provinces = $data_detail_user['education_provinces'][$key];
-                $education_user->country = $data_detail_user['education_countries'][$key];
-                $education_user->zip_code = $data_detail_user['education_zips'][$key];
-                $education_user->certificate = $data_detail_user['education_certificates'][$key];
-                $education_user->save();
-
-                // $incs++;
-            }
-
-            // ['name'] ['course'] ['start'] ['graduate']
-            // ['address'] ['regencies'] ['provinces'] ['country'] ['zip_code'] ['certificate']
-
-        } else {
-
-            // add new education
-            foreach($data_detail_user['institution_names'] as $key => $value) {
-                if(isset($value)){
-                    $education_user = new Educations;
+                    $education_user = Educations::find($key);
                     $education_user->detail_user_id = $detail_user['id'];
-                    $education_user->name = $data_detail_user['institution_name'][$key];
-                    $education_user->course = $data_detail_user['education_course'][$key];
-                    $education_user->start = $data_detail_user['education_start'][$key];
-                    $education_user->graduate = $data_detail_user['education_graduate'][$key];
-                    $education_user->address = $data_detail_user['education_address'][$key];
-                    $education_user->regencies = $data_detail_user['education_regency'][$key];
-                    $education_user->provinces = $data_detail_user['education_province'][$key];
-                    $education_user->country = $data_detail_user['education_zip'][$key];
-                    $education_user->zip_code = $data_detail_user['education_country'][$key];
-                    $education_user->certificate = $data_detail_user['education_certificate'][$key];
+                    $education_user->name = $data_detail_user['institution_names'][$key];
+                    $education_user->course = $data_detail_user['education_courses'][$key];
+                    $education_user->start = $data_detail_user['education_starts'][$key];
+                    $education_user->graduate = $data_detail_user['education_graduates'][$key];
+                    $education_user->address = $data_detail_user['education_addresses'][$key];
+                    $education_user->regencies = $data_detail_user['education_regencies'][$key];
+                    $education_user->provinces = $data_detail_user['education_provinces'][$key];
+                    $education_user->country = $data_detail_user['education_countries'][$key];
+                    $education_user->zip_code = $data_detail_user['education_zips'][$key];
+                    $education_user->certificate = $data_detail_user['education_certificates'][$key];
                     $education_user->save();
 
+                    // $incs++;
                 }
             }
-        }
 
+            if(isset($data['advantage-service'])){
+                for($inc=0; $inc < count($data_detail_user['institution_name']); $inc++) {
+                // add new education
+                    foreach($data_detail_user['institution_name'] as $key => $value) {
+
+                            $education_user = new Educations;
+                            $education_user->detail_user_id = $detail_user['id'];
+                            $education_user->name = $data_detail_user['institution_name'][$key];
+                            $education_user->course = $data_detail_user['education_course'][$key];
+                            $education_user->start = $data_detail_user['education_start'][$key];
+                            $education_user->graduate = $data_detail_user['education_graduate'][$key];
+                            $education_user->address = $data_detail_user['education_address'][$key];
+                            $education_user->regencies = $data_detail_user['education_regency'][$key];
+                            $education_user->provinces = $data_detail_user['education_province'][$key];
+                            $education_user->country = $data_detail_user['education_country'][$key];
+                            $education_user->zip_code = $data_detail_user['education_zip'][$key];
+                            $education_user->certificate = $data_detail_user['education_certificate'][$key];
+                            $education_user->save();
+
+                    }
+                }
+            }
 
         return redirect()->route('profile.index');
     }

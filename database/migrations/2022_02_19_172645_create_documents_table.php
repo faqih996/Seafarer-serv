@@ -17,7 +17,7 @@ class CreateDocumentsTable extends Migration
             $table->id();
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
-            $table->foreignId('detail_user_id')->nullable()->index('fk_education_to_detail_user');
+            $table->foreignId('users_id')->nullable()->index('fk_document_to_users');
             $table->string('docs_number')->nullable();
             $table->string('place_issued')->nullable();
             $table->date('issued_date')->nullable();

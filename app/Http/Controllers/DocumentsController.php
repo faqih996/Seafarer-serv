@@ -22,7 +22,7 @@ class DocumentsController extends Controller
     public function index()
     {
          if (request()->ajax()) {
-            $query = Documents::query();
+            $query = Documents::with('users');
 
             return Datatables::of($query)
                 ->addColumn('action', function ($item) {
@@ -50,12 +50,10 @@ class DocumentsController extends Controller
                             </div>
                     </div>';
                 })
-                ->editColumn('photos', function ($item) {
-                    return $item->photos ? '<img src="' . Storage::url($item->photos) . '" style="max-height: 80px;"/>' : '';
-                })
-                ->rawColumns(['action','photos'])
-                // raw column ini berfungsi untuk memanggil Fungsi yang ada di addColumn dan editColumn
+                ->rawColumns(['action'])
+                // raw column ini berfungsi untuk memanggil Fungsi yang ada di addColumn
                 ->make();
+                // make untuk membuat fungsi rawColums
         }
 
         return view('pages.document.index');
@@ -81,6 +79,10 @@ class DocumentsController extends Controller
     public function store(DocumentsRequest $request)
     {
         $data = $request->all();
+
+
+        // dd($data);
+
         $data['users_id'] = auth()->user()->id;
         $data['slug'] = Str::slug($request->name);
         $data['certificate'] = $request->file('certificate')->store('assets/documents', 'public');

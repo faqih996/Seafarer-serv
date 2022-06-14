@@ -5,6 +5,8 @@ Profile Setting
 @endsection
 
 @section('content')
+
+
     <!-- Section Content -->
     <div class="section-content section-dashboard-home" data-aos="fade-up">
 
@@ -52,10 +54,10 @@ Profile Setting
                                                         {{-- Image validation if profile image is null --}}
                                                         @if (auth()->user()->detail_user()->first()->photo != NULL)
                                                             <img src="{{ url(Storage::url(auth()->user()->detail_user()->first()->photo)) }}" alt="photo profile"
-                                                                srcset="" class="w-16 h-16 rounded-full">
+                                                                srcset="" class="rounded-full" width="150" height="150">
                                                         @else
                                                             <span class="inline-block w-16 h-16 overflow-hidden bg-gray-100 rounded-full">
-                                                                <svg class="inline w-12 h-12 mr-3 text-gray-300 rounded-full" fill="currentColor" viewBox="0 0 24 24">
+                                                                <svg class="inline w-12 h-12 mr-3 text-gray-300 rounded-full" width="150" height="150" fill="currentColor" viewBox="0 0 24 24">
                                                                     <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z"></path>
                                                                 </svg>
                                                             </span>
@@ -206,6 +208,7 @@ Profile Setting
                                                             name="email"
                                                             value="{{ $data_user->email ?? '' }}"
                                                             required
+                                                            readonly
                                                         />
                                                         {{-- @if ($errors->has('email'))
                                                             <p class="mb-3 text-sm text-danger">{{ $errors->first('email') }}</p>
@@ -372,7 +375,7 @@ Profile Setting
                                                                 id="education_name"
                                                                 aria-describedby="emailHelp"
                                                                 name="{{ 'institution_names['.$education->id.']' }}"
-                                                                value="{{ $education->name }}"
+                                                                value="{{ $education->name ?? '' }}"
                                                                 required
                                                             />
                                                             {{-- @if ($errors->has('country'))
@@ -390,7 +393,7 @@ Profile Setting
                                                                 id="'education_course"
                                                                 aria-describedby="emailHelp"
                                                                 name="{{ 'education_courses['.$education->id.']' }}"
-                                                                value="{{ $education->course }}"
+                                                                value="{{ $education->course ?? '' }}"
                                                                 required
                                                             />
                                                             {{-- @if ($errors->has('education_courses'))
@@ -408,7 +411,7 @@ Profile Setting
                                                                 id="education_start"
                                                                 aria-describedby="emailHelp"
                                                                 name=" {{ 'education_starts['.$education->id.']' }} "
-                                                                value="{{ $education->start }}"
+                                                                value="{{ $education->start ?? '' }}"
                                                                 required
                                                             />
                                                             {{-- @if ($errors->has('start'))
@@ -426,7 +429,7 @@ Profile Setting
                                                                 id="'education_graduate"
                                                                 aria-describedby="emailHelp"
                                                                 name="{{ 'education_graduates['.$education->id.']' }}"
-                                                                value="{{ $education->graduate }}"
+                                                                value="{{ $education->graduate ?? '' }}"
                                                                 required
                                                             />
                                                         </div>
@@ -441,7 +444,7 @@ Profile Setting
                                                                 id="'education_address"
                                                                 aria-describedby="emailHelp"
                                                                 name="{{ 'education_addresses['.$education->id.']' }}"
-                                                                value="{{ $education->address }}"
+                                                                value="{{ $education->address ?? '' }}"
                                                                 required
                                                             />
 
@@ -457,7 +460,7 @@ Profile Setting
                                                                 id="'education_regencies"
                                                                 aria-describedby="emailHelp"
                                                                 name="{{ 'education_regencies['.$education->id.']' }}"
-                                                                value="{{ $education->address }}"
+                                                                value="{{ $education->regencies ?? '' }}"
                                                                 required
                                                             />
                                                         </div>
@@ -472,7 +475,7 @@ Profile Setting
                                                                 id="'education_provinces"
                                                                 aria-describedby="emailHelp"
                                                                 name="{{ 'education_provinces['.$education->id.']' }}"
-                                                                value="{{ $education->address }}"
+                                                                value="{{ $education->provinces ?? '' }}"
                                                                 required
                                                             />
                                                         </div>
@@ -486,7 +489,7 @@ Profile Setting
                                                                 class="form-control"
                                                                 id="'education_zip"
                                                                 name="{{ 'education_zips['.$education->id.']' }}"
-                                                                value="{{ $education->address }}"
+                                                                value="{{ $education->zip_code ?? '' }}"
                                                                 required
                                                             />
                                                         </div>
@@ -500,7 +503,7 @@ Profile Setting
                                                                 class="form-control"
                                                                 id="'education_country"
                                                                 name="{{ 'education_countries['.$education->id.']' }}"
-                                                                value="{{ $education->address }}"
+                                                                value="{{ $education->country ?? '' }}"
                                                                 required
                                                             />
                                                         </div>
@@ -611,19 +614,19 @@ Profile Setting
             var html_education_title = '';
             html_education_title = '<div class="col-md-12"><h5>Add New Education</h5></div><div class="dropdown-divider"></div>';
             var html_education_name = '';
-            html_education_name += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control" id="education_name[]" aria-describedby="emailHelp" name="education_name[]" required/></div></div></div>';
+            html_education_name += '<div class="col-md-6"><div class="form-group"><label for="institution_name">Institution Name</label><input type="text"class="form-control" id="institution_name[]" aria-describedby="emailHelp" name="institution_name[]" required/></div></div></div>';
             var html_education_course = '';
-            html_education_course += '<div class="col-md-6"><div class="form-group"><label for="course">Course Study</label><input type="text" class="form-control" id="education_course[]" aria-describedby="emailHelp" name="education_name[]" required/></div></div></div>';
+            html_education_course += '<div class="col-md-6"><div class="form-group"><label for="course">Course Study</label><input type="text" class="form-control" id="education_course[]" aria-describedby="emailHelp" name="education_course[]" required/></div></div></div>';
             var  html_education_start= '';
-            html_education_start += '<div class="col-md-6"><div class="form-group"><label for="start">Start Form</label><input type="text" class="form-control" id="education_start[]"aria-describedby="emailHelp"name="education_name[]" required/></div></div></div>';
+            html_education_start += '<div class="col-md-6"><div class="form-group"><label for="start">Start Form</label><input type="date" class="form-control" id="education_start[]"aria-describedby="emailHelp"name="education_start[]" required/></div></div></div>';
             var  html_education_graduate= '';
-            html_education_graduate += '<div class="col-md-6"><div class="form-group"><label for="graduate">Graduate</label><input type="text"class="form-control" id="education_graduate[]"aria-describedby="emailHelp"name="education_name[]" required/></div></div></div>';
+            html_education_graduate += '<div class="col-md-6"><div class="form-group"><label for="graduate">Graduate</label><input type="date"class="form-control" id="education_graduate[]"aria-describedby="emailHelp"name="education_graduate[]" required/></div></div></div>';
             var  html_education_address= '';
             html_education_address += '<div class="col-md-6"><div class="form-group"><label for="address">Address</label><input type="text"class="form-control" id="education_address[]"aria-describedby="emailHelp"name="education_address[]" required/></div></div></div>';
             var  html_education_regencies= '';
-            html_education_regencies += '<div class="col-md-4"><div class="form-group"><label for="regencies">City</label><input type="text" class="form-control" id="education_regencies[]" aria-describedby="emailHelp" name="education_regencies[]" required/></div></div>';
+            html_education_regencies += '<div class="col-md-4"><div class="form-group"><label for="regencies">City</label><input type="text" class="form-control" id="education_regency[]" aria-describedby="emailHelp" name="education_regency[]" required/></div></div>';
             var  html_education_provinces= '';
-            html_education_provinces += '<div class="col-md-4"><div class="form-group"><label for="provinces">Province</label><input type="text" class="form-control" id="education_provinces[]" aria-describedby="emailHelp" name="education_provinces[]" required/></div></div>';
+            html_education_provinces += '<div class="col-md-4"><div class="form-group"><label for="provinces">Province</label><input type="text" class="form-control" id="education_province[]" aria-describedby="emailHelp" name="education_province[]" required/></div></div>';
             var  html_education_zip= '';
             html_education_zip += '<div class="col-md-4"><div class="form-group"><label for="zip">Zip Code</label><input type="text" class="form-control" id="education_zip[]" aria-describedby="emailHelp" name="education_zip[]" required/></div></div>';
             var  html_education_country= '';

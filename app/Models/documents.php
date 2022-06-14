@@ -27,10 +27,9 @@ class Documents extends Model
 
     ];
 
-    // one to many
-    public function detail_user()
-    {
-        return $this->belongsTo('App\Models\DetailUser', 'detail_user_id', 'id');
+    // one to one
+    public function users(){
+        return $this->hasOne( User::class, 'id', 'users_id');
     }
 
 }
