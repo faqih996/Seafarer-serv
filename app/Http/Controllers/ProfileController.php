@@ -193,10 +193,19 @@ class ProfileController extends Controller
         // dd($detail_user);
         // dd($detail_user['education']);
 
+        
         for($incs=0; $incs < count($data_detail_user['institution_names']); $incs++) {
-            // update education
-            foreach( $data_detail_user['institution_names'] as $key => $value ){
 
+            // update education
+            foreach( $data_detail_user['institution_names'] as $key => $file ){
+
+                // get old photo thumbnail
+                $get_photo = Educations::where('id', $key)->first();
+
+                // store photo
+                $path = $file->store(
+                    'assets/education/certificate', 'public'
+                );
 
                 $education_user = Educations::find($key);
                 $education_user->detail_user_id = $detail_user['id'];
@@ -209,10 +218,17 @@ class ProfileController extends Controller
                 $education_user->provinces = $data_detail_user['education_provinces'][$key];
                 $education_user->country = $data_detail_user['education_countries'][$key];
                 $education_user->zip_code = $data_detail_user['education_zips'][$key];
-                $education_user->certificate = $data_detail_user['education_certificates'][$key];
+                $education_user->certificate = $data_detail_user['education_certificates'][$path];
                 $education_user->save();
 
                 // $incs++;
+                 // delete old photo thumbnail
+                $data = 'storage/' .$get_photo['certificate'];
+                if (File::exists($data)) {
+                    File::delete($data);
+                } else {
+                    File::delete('storage/app/public/' .$get_photo['certificate']);
+                }
             }
         }
 
