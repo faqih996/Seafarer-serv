@@ -173,8 +173,13 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+    public function profile(ProfileRequest $profile_request, UpdateDetailUserRequest $request_detail_user ){
+
+    }
+
     public function update(ProfileRequest $profile_request, UpdateDetailUserRequest $request_detail_user )
     {
+
         $data_user = $profile_request->all();
         $data_detail_user = $request_detail_user->all();
         // $data_education = $request_education->all();
@@ -188,46 +193,44 @@ class ProfileController extends Controller
         $detail_user = DetailUser::find($user->detail_user->id);
         $detail_user->update($data_detail_user);
 
-        // dd($data_user);
         // dd($data_detail_user);
-        // dd($detail_user);
+        // dd($detail_user['institution_names']['1']);
         // dd($detail_user['education']);
 
-        
+        // hitung array data yang diinput
         for($incs=0; $incs < count($data_detail_user['institution_names']); $incs++) {
+            if($data_detail_user['institution_names']->file('certificate')) {
+                $file = array();
+                // update education
+                foreach( $data_detail_user['institution_names'] as $key => $file ){
+                            // get old photo thumbnail
+                    $get_photo = Educations::where('id', $key)->first();
 
-            // update education
-            foreach( $data_detail_user['institution_names'] as $key => $file ){
+                    // store photo
+                    $path = $file->store(
+                        'assets/education/thumbnail', 'public'
+                    );
 
-                // get old photo thumbnail
-                $get_photo = Educations::where('id', $key)->first();
+                    $education_user = Educations::find($key);
+                    $education_user->detail_user_id = $detail_user['id'];
+                    $education_user->name = $data_detail_user['institution_names'][$key];
+                    $education_user->course = $data_detail_user['education_courses'][$key];
+                    $education_user->start = $data_detail_user['education_starts'][$key];
+                    $education_user->graduate = $data_detail_user['education_graduates'][$key];
+                    $education_user->address = $data_detail_user['education_addresses'][$key];
+                    $education_user->regencies = $data_detail_user['education_regencies'][$key];
+                    $education_user->provinces = $data_detail_user['education_provinces'][$key];
+                    $education_user->country = $data_detail_user['education_countries'][$key];
+                    $education_user->zip_code = $data_detail_user['education_zips'][$key];
+                    $education_user->certificate = $path[$key];
+                    $education_user->save();
 
-                // store photo
-                $path = $file->store(
-                    'assets/education/certificate', 'public'
-                );
-
-                $education_user = Educations::find($key);
-                $education_user->detail_user_id = $detail_user['id'];
-                $education_user->name = $data_detail_user['institution_names'][$key];
-                $education_user->course = $data_detail_user['education_courses'][$key];
-                $education_user->start = $data_detail_user['education_starts'][$key];
-                $education_user->graduate = $data_detail_user['education_graduates'][$key];
-                $education_user->address = $data_detail_user['education_addresses'][$key];
-                $education_user->regencies = $data_detail_user['education_regencies'][$key];
-                $education_user->provinces = $data_detail_user['education_provinces'][$key];
-                $education_user->country = $data_detail_user['education_countries'][$key];
-                $education_user->zip_code = $data_detail_user['education_zips'][$key];
-                $education_user->certificate = $data_detail_user['education_certificates'][$path];
-                $education_user->save();
-
-                // $incs++;
-                 // delete old photo thumbnail
-                $data = 'storage/' .$get_photo['certificate'];
-                if (File::exists($data)) {
-                    File::delete($data);
-                } else {
-                    File::delete('storage/app/public/' .$get_photo['certificate']);
+                    $data_detail_user = 'storage/' .$get_photo['certificate'];
+                    if (File::exists($data_detail_user)) {
+                        File::delete($data_detail_user);
+                    } else {
+                        File::delete('storage/app/public/' .$get_photo['certificate']);
+                    }
                 }
             }
         }
@@ -237,24 +240,23 @@ class ProfileController extends Controller
             // add new education
                 foreach($data_detail_user['institution_name'] as $key => $value) {
 
-                        $education_user = new Educations;
-                        $education_user->detail_user_id = $detail_user['id'];
-                        $education_user->name = $data_detail_user['institution_name'][$key];
-                        $education_user->course = $data_detail_user['education_course'][$key];
-                        $education_user->start = $data_detail_user['education_start'][$key];
-                        $education_user->graduate = $data_detail_user['education_graduate'][$key];
-                        $education_user->address = $data_detail_user['education_address'][$key];
-                        $education_user->regencies = $data_detail_user['education_regency'][$key];
-                        $education_user->provinces = $data_detail_user['education_province'][$key];
-                        $education_user->country = $data_detail_user['education_country'][$key];
-                        $education_user->zip_code = $data_detail_user['education_zip'][$key];
-                        $education_user->certificate = $data_detail_user['education_certificate'][$key];
-                        $education_user->save();
+                    $education_user = new Educations;
+                    $education_user->detail_user_id = $detail_user['id'];
+                    $education_user->name = $data_detail_user['institution_name'][$key];
+                    $education_user->course = $data_detail_user['education_course'][$key];
+                    $education_user->start = $data_detail_user['education_start'][$key];
+                    $education_user->graduate = $data_detail_user['education_graduate'][$key];
+                    $education_user->address = $data_detail_user['education_address'][$key];
+                    $education_user->regencies = $data_detail_user['education_regency'][$key];
+                    $education_user->provinces = $data_detail_user['education_province'][$key];
+                    $education_user->country = $data_detail_user['education_country'][$key];
+                    $education_user->zip_code = $data_detail_user['education_zip'][$key];
+                    $education_user->certificate = $data_detail_user['education_certificate'][$key];
+                    $education_user->save();
 
                 }
             }
         }
-
         return redirect()->route('profile.index');
     }
 

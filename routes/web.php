@@ -37,7 +37,8 @@ Route::get('/detail', [DetailController::class,'index'])->name('detail');
 
 Route::group(['middleware' => ['auth']], function () {
         Route::get('/dashboard', [DashboardController::class,'index'])->name('dashboard');
-        Route::resource('profile', ProfileController::class);
+        // Route::get('my-profile', [ProfileController::class,'profile'])->name('my-profile');
+        Route::resource('profile', [ProfileController::class,'profile']);
         Route::resource('documents', DocumentsController::class);
         Route::resource('education', EducationController::class);
         Route::resource('experience', ExperienceController::class);

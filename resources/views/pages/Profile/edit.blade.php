@@ -10,13 +10,13 @@ Profile Setting
     <!-- Section Content -->
     <div class="section-content section-dashboard-home" data-aos="fade-up">
 
-        <form action="{{ route('profile.update',  [Auth::user()->id]) }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('profile.update', [Auth::user()->id]) }}" method="post" enctype="multipart/form-data">
 
             <div class="container-fluid">
                 <div class="dashboard-heading">
                     <h2 class="dashboard-title">Edit Profile</h2>
                     <p class="dashboard-subtitle">
-                    Please Compleate Your Data Information
+                        Please Compleate Your Data Information
                     </p>
                 </div>
 
@@ -383,6 +383,22 @@ Profile Setting
                                                             @endif --}}
                                                         </div>
                                                     </div>
+
+                                                    {{-- <div class="col-md">
+                                                        <div class="form-">
+                                                            <label for="" class="education_degree">
+                                                                Education Degree
+                                                            </label>
+                                                            <select name="name="{{ 'education_degrees['.$education->id.']' }}"" class="form-control">
+                                                                <option>Butuh Berapa hari service kamu selesai?</option>
+                                                                <option value="2">2 Days</option>
+                                                                <option value="4">4 Days</option>
+                                                                <option value="8">8 Days</option>
+                                                                <option value="16">16 Days</option>
+                                                                <option value="32">32 Days</option>
+                                                            </select>
+                                                        </div>
+                                                    </div> --}}
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
